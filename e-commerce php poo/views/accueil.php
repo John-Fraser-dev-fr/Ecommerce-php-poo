@@ -1,4 +1,4 @@
-<h1>Nos articles</h1>
+<h1>Nos Produits</h1>
 <div class="row">
 
 
