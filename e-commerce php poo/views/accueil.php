@@ -1,4 +1,4 @@
-<h1>Nos Articles</h1>
+<h1>Nos produits</h1>
 <div class="row">
 
 
@@ -25,7 +25,7 @@
             </form>
 </div>
         </div>
-    
+
  
     
 <?php endforeach ?>
