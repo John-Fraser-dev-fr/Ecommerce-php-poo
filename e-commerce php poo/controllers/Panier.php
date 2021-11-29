@@ -133,7 +133,7 @@ class Panier extends Controller
             
    
     
-            $pageTitle = 'panier';
+            $pageTitle = 'test page';
             \Renderer::render('panier', compact('pageTitle', 'montantTotal', 'produits'));
 
 
