@@ -13,10 +13,12 @@ class Admin extends Controller
     {
         
 
-            $this->model->showAdmin();
-        
-            $pageTitle= 'Administrateur';
-            \Renderer::render('admin', compact('pageTitle'));
+        $commandes = $this->model->CommandeClient();
+            
+        $commandeDetails = $this->model->CommandeClientDetail();
+
+        $pageTitle= 'Administrateur';
+        \Renderer::render('admin', compact('pageTitle', 'commandes', 'commandeDetails'));
        
     }
 }
