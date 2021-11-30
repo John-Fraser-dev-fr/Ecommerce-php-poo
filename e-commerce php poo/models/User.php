@@ -20,7 +20,7 @@ class User extends Model
     //Connexion de l'utilisateur
     public function connexion($email,$password)
     {
-	    $q=$this->pdo->prepare("SELECT id_user,nom,prenom,email,password FROM users WHERE (email=:email)");
+	    $q=$this->pdo->prepare("SELECT id_user,nom,prenom,email,password, role FROM users WHERE (email=:email)");
 	    $q->execute(['email'=>$email]);
         $userHasBeenFound=$q->rowCount();
 	    $user=$q->fetch();
@@ -31,6 +31,7 @@ class User extends Model
             $_SESSION['nom']=$user['nom'] ;
             $_SESSION['prenom']=$user['prenom'] ;
 		    $_SESSION['email']=$user['email'] ;	
+            $_SESSION['role']=$user['role'];
 	    }
 	    else
 	    {

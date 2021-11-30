@@ -29,6 +29,9 @@
             <span class="visually-hidden">(current)</span>
           </a>
         </li>
+     
+
+        
         <?php if (!isset($_SESSION['id']) && !isset($_SESSION['email']))  { ?>
         <li class="nav-item">
           <a class="nav-link" href="index.php?controller=user&task=inscription">Inscription</a>
@@ -45,9 +48,14 @@
             <a class="nav-link active" href="index.php?controller=panier&task=show"><i class="fas fa-shopping-cart"></i></a>
         
         <?php }else{} ?>
-        
+        <?php  if (isset($_SESSION['role']) && $_SESSION['role'] == 1)   {?>
+
+          <li class="nav-item">
+          <a class="nav-link" href="index.php?controller=admin&task=show">Administrateur</a>
+        </li>
+        <?php }else{} ?>
       </ul>
-     
+    
     </div>
   </div>
 </nav>
