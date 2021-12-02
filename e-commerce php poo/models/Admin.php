@@ -16,13 +16,13 @@ class Admin extends Model
         return $commandes;
     }
 
-    public function CommandeClientDetail()
+    public function changeStatus($check, $id_commande)
     {
-        $r = $this->pdo->query('SELECT * FROM commande,details_commande, articles  
-                                WHERE commande.id_commande = details_commande.id_commande 
-                                AND details_commande.id_article = articles.id_article ');
-        $commandeDetails = $r->fetchAll();
-
-        return $commandeDetails;
+        $q = $this->pdo->prepare('UPDATE commande SET status = :status WHERE id_commande=:id_commande');
+	    $q->execute(['status'=>$check,
+                     'id_commande'=>$id_commande]);
     }
+
+
+    
 }
