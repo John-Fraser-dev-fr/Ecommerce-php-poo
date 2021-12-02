@@ -24,5 +24,9 @@ class Admin extends Model
     }
 
 
-    
+    public function deleteCommande($id_commande)
+    {
+        $q = $this->pdo->prepare("DELETE FROM commande WHERE id_commande =:id_commande ");
+        $q->execute(['id_commande' => $id_commande]);
+    }
 }

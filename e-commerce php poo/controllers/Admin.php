@@ -45,4 +45,20 @@ class Admin extends Controller
         }
 
     }
+
+
+    public function suppCommande()
+    {
+        
+        if(isset($_POST['sup_com']) && !empty($_POST['id_commande_supp']))
+        {
+
+            $id_commande = $_POST['id_commande_supp'];
+
+            $this->model->deleteCommande($id_commande);
+
+            \Http::redirect("index.php?controller=admin&task=show");
+        }
+
+    }
 }

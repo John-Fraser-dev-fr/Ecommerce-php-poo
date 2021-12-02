@@ -14,6 +14,7 @@
 		<th scope="col">Total</th>
         <th scope="col">Status</th>
         <th scope="col">Changement status</th>
+        <th scope="col">Supprimer Commande</th>
         
 	</tr>
 </thead>
@@ -69,6 +70,11 @@ else if ($commande['status'] == 4)
               <input type="hidden" class="btn btn-primary" name="id_commande" value="'. $commande['id_commande'] .'"></input>
             </form> 
                   </ td>';
+                echo '<td>
+                <form method="POST" action="index.php?controller=admin&task=suppCommande">
+                <input type="submit" class="btn btn-primary" name="sup_com"  value="Supprimer"></input>
+                <input type="hidden" name="id_commande_supp"  value="'. $commande['id_commande'] .'"></input>
+                </form></ td>';
     echo "</tr>";
     
            
