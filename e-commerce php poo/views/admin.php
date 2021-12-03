@@ -13,7 +13,8 @@
         <th scope="col">Commande N°</th>
 		<th scope="col">Total</th>
         <th scope="col">Status</th>
-        <th scope="col">Changement status</th>
+        <th scope="col">Date</th>
+       
         <th scope="col"></th>
         
 	</tr>
@@ -22,6 +23,11 @@
 <tbody>
 
 	<?php foreach ($commandes as $commande) : 
+
+
+//$originalDate = $commande['date'];
+//$timestamp = strtotime($originalDate); 
+//$newDate = date("l d F Y", $timestamp );
 
 $status_1 = '';
 $status_2 = '';
@@ -50,7 +56,7 @@ else if ($commande['status'] == 4)
             echo "<td>" . $commande['prenom']  . "</ td>";
             echo "<td>" . $commande['id_commande'] . "</td>";
             echo "<td>" . number_format($commande['montant'], 2, ',','') . " €</td>";
-            echo "<td>" . $status_1 .  $status_2 . $status_3 . $status_4 . "</td>";
+           
            
             echo '<td>
             <div class="Ajout">
@@ -59,7 +65,7 @@ else if ($commande['status'] == 4)
               <select name="changementStatus">
                
               
-                <option value=""></option>
+                <option value="">' . $status_1 .  $status_2 . $status_3 . $status_4 . '</option>
                 <option value="1">En attente de validation</option>
                 <option value="2">Validée</option>
                 <option value="3">En préparation</option>
@@ -70,16 +76,36 @@ else if ($commande['status'] == 4)
               <input type="hidden" class="btn btn-primary" name="id_commande" value="'. $commande['id_commande'] .'"></input>
             </form> 
                   </ td>';
-                echo '<td>
-                <form method="POST" action="index.php?controller=admin&task=suppCommande">
-                <input type="submit" class="btn btn-primary" name="sup_com"  value="Supprimer"></input>
-                <input type="hidden" name="id_commande_supp"  value="'. $commande['id_commande'] .'"></input>
-                </form></ td>';
+                  echo "<td>" . $commande['date'] . "</td>";
+                  echo "<td><button type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#Modal". $commande['id_commande'] ."'>
+                  + d'infos
+                </button></td>";
+                
     echo "</tr>";
     
            
    
- 
+    
+    echo'<div class="modal fade" id="Modal'. $commande['id_commande'] .'" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Commande N°'. $commande['id_commande'] .'</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          
+          <div class="modal-body">
+            <p>'. $commande['nom'].' '.$commande['prenom'].'</p>
+            <p>'. $commande['numero_rue'].' '.$commande['rue'].'</p>
+            <p>'. $commande['code_postal'].' '.$commande['ville'].', '. $commande['pays'].' </p>
+            
+            
+          </div>
+          
+          
+        </div>
+      </div>
+    </div>';
 
      endforeach ?>
 
@@ -160,3 +186,22 @@ endforeach ?>
   </div>
 
 
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

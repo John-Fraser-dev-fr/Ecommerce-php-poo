@@ -10,7 +10,8 @@ class Admin extends Model
 
     public function CommandeClient()
     {
-        $r = $this->pdo->query('SELECT * FROM commande, users WHERE users.id_user = commande.id_user');
+        $requete= $this->pdo->query('SET lc_time_names = \'fr_FR\'');
+        $r = $this->pdo->query('SELECT * , DATE_FORMAT(date,"%W %d %M %Y") AS date FROM commande, users WHERE users.id_user = commande.id_user  ORDER BY commande.date DESC');
         $commandes = $r->fetchAll();
 
         return $commandes;
@@ -24,11 +25,6 @@ class Admin extends Model
     }
 
 
-    public function deleteCommande($id_commande)
-    {
-        $q = $this->pdo->prepare("DELETE FROM commande WHERE id_commande =:id_commande ");
-        $q->execute(['id_commande' => $id_commande]);
-    }
 
 
     public function findAll(): array
@@ -53,5 +49,13 @@ class Admin extends Model
     {
         $q = $this->pdo->prepare("DELETE FROM articles WHERE id_article =:id_article ");
         $q->execute(['id_article' => $id_article]);
+    }
+
+    public function findByUser(): array
+    {
+        $resultats = $this->pdo->query('SELECT * FROM articles');
+        $articles = $resultats->fetchAll();
+
+        return $articles;
     }
 }
