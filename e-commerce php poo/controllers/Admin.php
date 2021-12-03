@@ -14,11 +14,12 @@ class Admin extends Controller
         
 
         $commandes = $this->model->CommandeClient();
+        $articles=$this->model->findAll();
             
        
 
         $pageTitle= 'Administrateur';
-        \Renderer::render('admin', compact('pageTitle', 'commandes'));
+        \Renderer::render('admin', compact('pageTitle', 'commandes', 'articles' ));
        
     }
 
@@ -60,5 +61,51 @@ class Admin extends Controller
             \Http::redirect("index.php?controller=admin&task=show");
         }
 
+    }
+
+
+    public function AjoutProduit()
+    {
+        if(isset($_POST['ajoutProduit']))
+        {
+            if(!empty(['marque', 'modele', 'prix', 'stock']))
+            {
+                $_POST=array_map('htmlspecialchars',$_POST);
+		        extract($_POST,EXTR_SKIP);
+
+                if (!$marque || !$modele|| !$prix|| !$stock) 
+                {
+                    die("Veuillez remplir tous les champs");
+                }
+                else
+                {
+
+
+                $this->model->addProduct($marque, $modele, $prix, $stock);
+                
+
+                \Http::redirect("index.php?controller=admin&task=show");
+                }
+              
+            }
+            else
+            {
+            
+            }
+        }
+        
+    }
+
+
+    public function suppProduit()
+    {
+        if(isset($_POST['suppArt']) && !empty($_POST['article_supp']))
+        {
+            $id_article = $_POST['article_supp'];
+
+            $this->model->deleteArticle($id_article);
+
+            \Http::redirect("index.php?controller=admin&task=show");
+        }
     }
 }

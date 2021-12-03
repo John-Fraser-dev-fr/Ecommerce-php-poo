@@ -29,4 +29,29 @@ class Admin extends Model
         $q = $this->pdo->prepare("DELETE FROM commande WHERE id_commande =:id_commande ");
         $q->execute(['id_commande' => $id_commande]);
     }
+
+
+    public function findAll(): array
+    {
+        $resultats = $this->pdo->query('SELECT * FROM articles');
+        $articles = $resultats->fetchAll();
+
+        return $articles;
+    }
+
+    public function addProduct($marque, $modele, $prix, $stock)
+    {
+	    $q = $this->pdo->prepare('INSERT INTO articles(marque, modele, prix, stock) VALUES (:marque,:modele,:prix,:stock)');
+	    $q->execute(['marque'=>$marque,
+		            'modele'=>$modele,
+                    'prix'=>$prix,
+                    'stock'=>$stock]);
+    }
+
+
+    public function deleteArticle($id_article)
+    {
+        $q = $this->pdo->prepare("DELETE FROM articles WHERE id_article =:id_article ");
+        $q->execute(['id_article' => $id_article]);
+    }
 }
