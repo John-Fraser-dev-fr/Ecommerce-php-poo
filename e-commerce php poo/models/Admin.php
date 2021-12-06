@@ -51,11 +51,8 @@ class Admin extends Model
         $q->execute(['id_article' => $id_article]);
     }
 
-    public function findByUser(): array
-    {
-        $resultats = $this->pdo->query('SELECT * FROM articles');
-        $articles = $resultats->fetchAll();
 
-        return $articles;
-    }
+    
+    
+    
 }

@@ -8,10 +8,15 @@ class Renderer
         extract($variables);
 
         ob_start();
+        
         require('Views/' .$path. '.php');
-        $pageContent = ob_get_clean();
 
-        require('templates/layout.php'); 
+        $pageContent = ob_get_clean();
+        
+
+        require('templates/layout.php');
+        
+       
     }
 
 }

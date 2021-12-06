@@ -25,9 +25,6 @@
 	<?php foreach ($commandes as $commande) : 
 
 
-//$originalDate = $commande['date'];
-//$timestamp = strtotime($originalDate); 
-//$newDate = date("l d F Y", $timestamp );
 
 $status_1 = '';
 $status_2 = '';
@@ -95,6 +92,7 @@ else if ($commande['status'] == 4)
           </div>
           
           <div class="modal-body">
+            <u><p>Adresse de livraison :</p></u>
             <p>'. $commande['nom'].' '.$commande['prenom'].'</p>
             <p>'. $commande['numero_rue'].' '.$commande['rue'].'</p>
             <p>'. $commande['code_postal'].' '.$commande['ville'].', '. $commande['pays'].' </p>
