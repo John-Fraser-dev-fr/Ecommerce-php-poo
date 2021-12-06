@@ -4,7 +4,7 @@
 
 
 
-<h4>Voici les commandes en cours :</h4>
+<h4 id="titre">Voici les commandes en cours :</h4>
 <table class="table table-hover">
 <thead>
 	<tr>

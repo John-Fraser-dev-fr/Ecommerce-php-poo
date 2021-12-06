@@ -1,5 +1,13 @@
+.box {
+    display: grid;
+    
+   
+  }
 
-
+  .box :first-child {
+    align-self: center;
+}
+  
 
 
 

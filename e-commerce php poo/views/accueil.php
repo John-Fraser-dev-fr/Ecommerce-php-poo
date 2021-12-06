@@ -1,11 +1,27 @@
-<h1>Nos produits de qualité</h1>
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <img src="assets/image_produits/iphone_header.jpg" class=" w-100 img-fluid">
+        <h1 class="display-4">Fluid jumbotron</h1>
+        <p class="lead">...</p>
+    </div>
+</div>
+
+
+<div class="container">
+   <h3>Nos meilleures ventes</h3>
+   <p>...</p>
+   <p>...</p>
+   <p>...</p>
+</div>
+<div class="container">
+<h3>Nos produits</h3>
 <div class="row">
 
 
 <?php foreach ($articles as $article) : ?>
 
     
-        <div class="card border-primary mb-3 col-sm-4 list_products" style="max-width: 20rem;">
+        <div class="card border-primary m-3 col-sm-4 list_products" style="max-width: 20rem">
             <div class="card-header">
                 <h4><?= $article['marque'] ?></h4>
             </div>
@@ -32,4 +48,5 @@
     
 <?php endforeach ?>
 
+</div>
 </div>
