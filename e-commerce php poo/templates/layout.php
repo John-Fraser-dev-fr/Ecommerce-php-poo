@@ -31,14 +31,14 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">New Projet</a>
+    <a class="navbar-brand" href="index.php?controller=article&task=index"><img class="logo_light" src="assets/image_produits/logo.png" alt="logo" style="height: 40px; width: auto;">  </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarColor01">
       <ul class="navbar-nav me-auto">
-        <li class="nav-item">
+        <li class="nav-item col">
           <a class="nav-link" href="index.php?controller=article&task=index">Accueil
             <span class="visually-hidden">(current)</span>
           </a>
@@ -55,24 +55,37 @@
         </li>
         <?php }else{}?>
 
-       <?php if (isset($_SESSION['id']) && isset($_SESSION['email']))  {?>
-       
-       
-            <a class="nav-link active" href='index.php?controller=user&task=compte'><i class="fas fa-user-alt"></i></a>
-            <a class="nav-link active" href="index.php?controller=panier&task=show"><i class="fas fa-shopping-cart"></i></a>
-        
-        <?php }else{} ?>
         <?php  if (isset($_SESSION['role']) && $_SESSION['role'] == 1)   {?>
 
           <li class="nav-item">
           <a class="nav-link" href="index.php?controller=admin&task=show">Administrateur</a>
         </li>
         <?php }else{} ?>
+
+        <li class="nav-item">
+          
+        </li>
+       
+        <div class="nav_compte_panier ">
+          <li class="nav-item">
+          <a class="nav-link active" href='index.php?controller=user&task=compte'><i class="fas fa-user-alt"></i></a>
+          </li>
+          <li class="nav-item">
+       <a class="nav-link active" href="index.php?controller=panier&task=show"><i class="fas fa-shopping-cart"></i></a>
+          </li>
+        </div>
+   
+  
       </ul>
     
     </div>
   </div>
 </nav>
+
+
+
+
+
 
 
 

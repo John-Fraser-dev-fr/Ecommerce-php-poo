@@ -59,7 +59,7 @@ else if ($commande['status'] == 4)
             <div class="Ajout">
 
             <form method="POST" action="index.php?controller=admin&task=changeStatus">
-              <select name="changementStatus">
+              <select   name="changementStatus">
                
               
                 <option value="">' . $status_1 .  $status_2 . $status_3 . $status_4 . '</option>
