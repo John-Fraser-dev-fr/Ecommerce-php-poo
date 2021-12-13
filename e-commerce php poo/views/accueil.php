@@ -24,7 +24,47 @@
   </button>
 </div>
 
-<div class="container">
+
+
+<div class="container mt-5">
+        <div class="row">
+            <div class="box col-lg-4 col-sm-6">	
+                <div class="icon_box">
+                    <div class="icon">
+                    <i class="fas fa-truck fa-2x"></i>
+                    </div>
+                    <div class="icon_box_content">
+                        <h6>Livraison gratuite</h6>
+                        <p>À partir de 49 €</p>
+                    </div>
+                </div>
+            </div>
+            <div class="box col-lg-4 col-sm-6">	
+                <div class="icon_box">
+                    <div class="icon">
+                    <i class="fas fa-hand-holding-usd fa-2x"></i>
+                    </div>
+                    <div class="icon_box_content">
+                        <h6>Satisfait ou remboursé</h6>
+                        <p>Pendant 30 jours</p>
+                    </div>
+                </div>
+            </div>
+            <div class="box col-lg-4 col-sm-6">	
+                <div class="icon_box">
+                    <div class="icon">
+                    <i class="fas fa-lock fa-2x"></i>
+                    </div>
+                    <div class="icon_box_content">
+                        <h6>Payer en toute sécurité</h6>
+                        <p>Paiement 100% sécurisé</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div class="container mt-5">
 <h3>Nos produits</h3>
 <div class="row">
 

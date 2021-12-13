@@ -7,5 +7,18 @@
     right: 5%;
 }
 
+.box
+{
+    padding: 0;    
+}
+.icon_box
+{
+    display: flex;
+    border: 1px solid #ddd;
+    padding: 30px;
+    margin-bottom: 0;
+}
+
+
 
     
