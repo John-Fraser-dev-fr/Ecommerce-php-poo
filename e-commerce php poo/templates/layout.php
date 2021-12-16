@@ -54,45 +54,50 @@
             <a class="nav-link active" href='index.php?controller=user&task=compte'><i class="fas fa-user-alt"></i></a>
           </li>
           <li class="nav-item">
-            
-            <a class="nav-link active" data-toggle="popover" data-bs-placement="bottom" title="Votre panier :"
-            data-bs-content="<?php for ($i=0 ;$i < count($_SESSION['panier']['modele']) ; $i++)
-            {
-            
-              $total = '0';
-              $montantTotal = '0';
-           
-           echo htmlspecialchars($_SESSION['panier']['marque'][$i]);
+            <div><button id="target">click me</button></div>
 
-           
-          
-           
-   
-           
-            echo htmlspecialchars($_SESSION['panier']['qte_produit'][$i]);
+            <!-- Contenu du Popover Panier -->
+            <div id='panier_pop' class="container">
+              <h6><b>Votre Panier :</b></h6>
 
-            echo number_format($_SESSION['panier']['prix'][$i], 2, ',','');
-            
-            $total = $_SESSION['panier']['qte_produit'][$i] * $_SESSION['panier']['prix'][$i];
+              <?php if (!isset($_SESSION['panier'])) : ?>
+              <p>Votre panier est vide</p>
+              <?php else : ?>
 
-           $montantTotal += $total;
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">Marque</th>
+                    <th scope="col">Modèle</th>
+                    <th scope="col">Quantité</th>
+                    <th scope="col">Prix</th>
+                  </tr>
+                </thead>
+                <tbody>
 
-            echo number_format($total, 2, ',', '');
+                  <?php
+                  $total ='0';
+                  $montantTotal = '0';
+                  //Affichage des elements contenue dans la session panier
+                  for ($i=0 ;$i < count($_SESSION['panier']['modele']) ; $i++){ ?>
 
-            
-            }
-           
-            ?>" >
-            <i class="fas fa-shopping-cart"></i></a>
+                  <tr>
+                    <td> <?= htmlspecialchars($_SESSION['panier']['marque'][$i])?> </td>
+                    <td> <?= htmlspecialchars($_SESSION['panier']['modele'][$i])?> </td>
+                    <td> <?= htmlspecialchars($_SESSION['panier']['qte_produit'][$i])?> </td>
+                    <td> <?= number_format($_SESSION['panier']['prix'][$i], 2, ',','')?> €</td>
+                  </tr>
+
+                  <?php } ?>
+                </tbody>
+              </table>
+        
+              <?php endif ?>
+        
+            </div>
           </li>
-          
-    
-         
         </div>
-   
-  
       </ul>
-    
     </div>
   </div>
 </nav>
@@ -104,14 +109,14 @@
 
 
 
-    <?= $pageContent ?>
+  <?= $pageContent ?>
 
 
-    <script type="text/javascript" src="templates/script.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="templates/script.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
 
     
 </body>
