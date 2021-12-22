@@ -53,7 +53,8 @@
 
             <!-- Contenu du Popover Panier -->
             <div id='panier_pop' class="container">
-              <h6><b>Votre Panier :</b></h6>
+              <h6><b>Votre Panier</b></h6>
+              <div class="dropdown-divider" style="color:black"></div>
 
               <?php if (!isset($_SESSION['panier'])) : ?>
               <p>Votre panier est vide</p>
@@ -70,40 +71,46 @@
                   <ul>
                     <li>
                       
-                      <div>
-                        <img src="https://fakeimg.pl/40x40/"> 
-                        <?= htmlspecialchars($_SESSION['panier']['marque'][$i])?> 
-                        <?= htmlspecialchars($_SESSION['panier']['modele'][$i])?><br>
-                        <?= number_format($_SESSION['panier']['prix'][$i], 2, ',','')?> € 
+                      <div class="pop_panier_produit">
+
+                        <div class="col-3">
+                          <img src="assets/image_produits/<?= $_SESSION['panier']['modele'][$i] ?>.jpg" class="img-fluid" style="width:60px; height: auto;">
+                        </div>
+
+                        <div class="pop_panier_description col-6">
+                          <p style="margin-bottom: 0"><b><?= htmlspecialchars($_SESSION['panier']['modele'][$i])?></b></p>
+                          <p style="margin-bottom: 0"><?= number_format($_SESSION['panier']['prix'][$i], 2, ',','')?> € </p>
+                          <p style="font-size: 12px">Quantité : <?= htmlspecialchars($_SESSION['panier']['qte_produit'][$i])?> </p>
+                        </div>
+
+                        <div class="pop_panier_total col-4">
+                        <?php 
+                           $total = $_SESSION['panier']['qte_produit'][$i] * $_SESSION['panier']['prix'][$i];
+                           $montantTotal += $total;
+                          ?>
+                          <p><?= number_format($total, 2, ',','')?> €</p>
+                        </div>
+
                       </div>
-          
-                      <span>
-                        <?= htmlspecialchars($_SESSION['panier']['qte_produit'][$i])?> x 
-                      </span>
                     
                     </li>
                 
                   
                     
-                   
 
-                    <?php 
-                    $total = $_SESSION['panier']['qte_produit'][$i] * $_SESSION['panier']['prix'][$i];
-                    $montantTotal += $total;
-                    ?>
-                    <p><?= number_format($total, 2, ',','')?> €</p>
+                    
 
 
                   </ul>
-                  <hr class="solid">
+                  
 
                   <?php } ?>
-            
-
+                  
+                  <div class="dropdown-divider"></div>
               <h5>Total : <?= number_format($montantTotal, 2, ',', ' ')?> €</h5>
-        
+             
               <?php endif ?>
-        
+              <a href="index.php?controller=panier&task=show">Voir mon panier</a></p>
             </div>
 
 
@@ -124,13 +131,12 @@
           <label for="exampleInputPassword1">Mot de passe</label>
           <input type="password" class="form-control" name="password" >
         </div>
-        <button type="submit" class="btn btn-primary" name="login">Connexion</button>
+        <button type="submit" class="btn btn-primary mt-1" name="login">Connexion</button>
       </form>
     </div>
-    <div class="dropdown-divider">
-                </div>
+    <div class="dropdown-divider"></div>
               
-           <p>Pas encore de compte ? <a class="nav-link" href="index.php?controller=user&task=inscription">Inscrivez-vous</a></p>
+           <p>Pas encore de compte ? <a href="index.php?controller=user&task=inscription">Inscrivez-vous</a></p>
           
          
 
@@ -164,9 +170,12 @@
 
 
 
-  <?= $pageContent ?>
+ <?= $pageContent ?>
 
-  <footer>Design By John Fraser</footer>
+
+
+
+
   <script type="text/javascript" src="templates/script.js"></script>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 

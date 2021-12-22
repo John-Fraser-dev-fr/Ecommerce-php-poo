@@ -89,7 +89,7 @@
     
         <div class="card border-primary m-3 col-sm-4 list_products" style="max-width: 20rem">
             
-            <div class="card-body">
+            <div class="card-body product">
             <img src="assets/image_produits/<?= $article['modele'] ?>.jpg" class="img-fluid">
                 <p class="card-text"><?= $article['marque'] ?> <?= $article['modele'] ?></p>
                 <p class="card-text"><?= $article['detail_modele'] ?></p>
