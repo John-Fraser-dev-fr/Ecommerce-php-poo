@@ -1,12 +1,22 @@
 
 
 /* Navbar */
-.nav_compte_panier
-{
-    display: flex;
-    position: absolute;
-    right: 5%;
+
+
+
+#navbar{
+    background-color: rgba(0, 0, 0, 0.9);
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 999;
 }
+
+.nav-icons{
+    display: flex;
+    gap: 15px;
+}
+
 
 /* Responsabilités */
 .box
@@ -40,8 +50,21 @@
 }
 
 
-    
 
 
+.popover{
+    min-width: 400px;
+    position: fixed;
+}
+
+ul {
+    list-style: none;
+    padding-left: 0;
+    }
+
+
+    hr.solid {
+        border-top: 1px solid #bbb;
+      }
 
 

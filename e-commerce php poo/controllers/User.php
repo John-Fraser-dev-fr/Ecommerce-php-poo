@@ -62,10 +62,6 @@ class User extends Controller
 	        }
         }
 
-        
-
-        $pageTitle = 'Connexion';
-        \Renderer::render('connexion', compact('pageTitle'));
     }
 
     

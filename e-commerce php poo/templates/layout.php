@@ -18,26 +18,17 @@
 
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <nav class="navbar navbar-expand-lg navbar-dark " id="navbar">
     <div class="container-fluid">
       <a class="navbar-brand" href="index.php?controller=article&task=index"><img class="logo_light" src="assets/image_produits/logo.png" alt="logo" style="height: 40px; width: auto;">  </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-    <div class="collapse navbar-collapse" id="navbarColor01">
-      <ul class="navbar-nav me-auto">
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul class="nav-links navbar-nav me-auto">
     
-      <?php if (!isset($_SESSION['id']) && !isset($_SESSION['email']))  { ?>
-
-        <li class="nav-item">
-          <a class="nav-link" href="index.php?controller=user&task=inscription">Inscription</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="index.php?controller=user&task=connexion">Connexion</a>
-        </li>
-
-        <?php }else{}?>
+    
         <?php  if (isset($_SESSION['role']) && $_SESSION['role'] == 1)   {?>
 
         <li class="nav-item">
@@ -49,12 +40,16 @@
         <li class="nav-item">
         </li>
        
-        <div class="nav_compte_panier ">
-          <li class="nav-item">
-            <a class="nav-link active" href='index.php?controller=user&task=compte'><i class="fas fa-user-alt"></i></a>
+        
+          <li class="nav-icons">
+          <div id="pop2">
+            <a id="target2" class="nav-link" href='#'><i class="fas fa-user-alt"></i></a>
+          </div>
+            <div id="pop">
+              <a class="nav-link" id="target" href='#'><i class="fas fa-shopping-cart"></i></a>  
+            </div>
           </li>
-          <li class="nav-item">
-            <div><button id="target">click me</button></div>
+      </ul>
 
             <!-- Contenu du Popover Panier -->
             <div id='panier_pop' class="container">
@@ -64,54 +59,114 @@
               <p>Votre panier est vide</p>
               <?php else : ?>
 
-              <table class="table table-hover">
-                <thead>
-                  <tr>
-                    <th scope="col">Marque</th>
-                    <th scope="col">Modèle</th>
-                    <th scope="col">Quantité</th>
-                    <th scope="col">Prix</th>
-                  </tr>
-                </thead>
-                <tbody>
+             
 
                   <?php
                   $total ='0';
                   $montantTotal = '0';
-                  //Affichage des elements contenue dans la session panier
+
                   for ($i=0 ;$i < count($_SESSION['panier']['modele']) ; $i++){ ?>
 
-                  <tr>
-                    <td> <?= htmlspecialchars($_SESSION['panier']['marque'][$i])?> </td>
-                    <td> <?= htmlspecialchars($_SESSION['panier']['modele'][$i])?> </td>
-                    <td> <?= htmlspecialchars($_SESSION['panier']['qte_produit'][$i])?> </td>
-                    <td> <?= number_format($_SESSION['panier']['prix'][$i], 2, ',','')?> €</td>
-                  </tr>
+                  <ul>
+                    <li>
+                      
+                      <div>
+                        <img src="https://fakeimg.pl/40x40/"> 
+                        <?= htmlspecialchars($_SESSION['panier']['marque'][$i])?> 
+                        <?= htmlspecialchars($_SESSION['panier']['modele'][$i])?><br>
+                        <?= number_format($_SESSION['panier']['prix'][$i], 2, ',','')?> € 
+                      </div>
+          
+                      <span>
+                        <?= htmlspecialchars($_SESSION['panier']['qte_produit'][$i])?> x 
+                      </span>
+                    
+                    </li>
+                
+                  
+                    
+                   
+
+                    <?php 
+                    $total = $_SESSION['panier']['qte_produit'][$i] * $_SESSION['panier']['prix'][$i];
+                    $montantTotal += $total;
+                    ?>
+                    <p><?= number_format($total, 2, ',','')?> €</p>
+
+
+                  </ul>
+                  <hr class="solid">
 
                   <?php } ?>
-                </tbody>
-              </table>
+            
+
+              <h5>Total : <?= number_format($montantTotal, 2, ',', ' ')?> €</h5>
         
               <?php endif ?>
         
             </div>
+
+
+            <div id='user_pop' class="container">
+            <div id="info_compte">
+            <?php if (!isset($_SESSION['id']) && !isset($_SESSION['email']))  { ?>
+              <h6>Connexion</h6>
+              <div class="dropdown-divider">
+                </div>
+              <div id="formulaire_connexion" class="d-flex justify-content-center">
+              
+      <form method="POST" action="index.php?controller=user&task=connexion">
+        <div class="form-group">
+          <label >Email</label>
+          <input type="email" class="form-control" name="email">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Mot de passe</label>
+          <input type="password" class="form-control" name="password" >
+        </div>
+        <button type="submit" class="btn btn-primary" name="login">Connexion</button>
+      </form>
+    </div>
+    <div class="dropdown-divider">
+                </div>
+              
+           <p>Pas encore de compte ? <a class="nav-link" href="index.php?controller=user&task=inscription">Inscrivez-vous</a></p>
+          
+         
+
+<?php }else{?>
+    <h6>Bonjour <?php echo $_SESSION['prenom'];?> <?php echo $_SESSION['nom'];?></h6> 
+ 
+    <br>
+    <h6>Voici vos informations de profil</h6>
+    <p>Votre Email : <?php echo $_SESSION['email'];?></p>
+
+    <br>
+    <h6>Etat des commandes :</h6>
+    <p>Aucune commande en cours</p>
+    <a class="nav-link" href="index.php?controller=user&task=deconnexion">Deconnexion</a>
+</div>
+      <?php } ?>      </div>
+
+          
           </li>
         </div>
-      </ul>
+        
+              
     </div>
   </div>
+                  
+                 
+
+  
 </nav>
-
-
-
-
 
 
 
 
   <?= $pageContent ?>
 
-
+  <footer>Design By John Fraser</footer>
   <script type="text/javascript" src="templates/script.js"></script>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 
