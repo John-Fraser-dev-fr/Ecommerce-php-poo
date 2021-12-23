@@ -74,3 +74,8 @@ ul {
     display: flex;
     flex-direction: column;
 }
+
+.pop_total{
+    display: flex;
+    justify-content: space-between;
+}

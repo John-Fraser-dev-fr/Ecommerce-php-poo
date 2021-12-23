@@ -54,7 +54,7 @@
             <!-- Contenu du Popover Panier -->
             <div id='panier_pop' class="container">
               <h6><b>Votre Panier</b></h6>
-              <div class="dropdown-divider" style="color:black"></div>
+              <div class="dropdown-divider" style="background-color:black"></div>
 
               <?php if (!isset($_SESSION['panier'])) : ?>
               <p>Votre panier est vide</p>
@@ -92,8 +92,10 @@
                         </div>
 
                       </div>
-                    
+                      
                     </li>
+
+                   
                 
                   
                     
@@ -103,14 +105,27 @@
 
                   </ul>
                   
-
+                 
                   <?php } ?>
-                  
-                  <div class="dropdown-divider"></div>
-              <h5>Total : <?= number_format($montantTotal, 2, ',', ' ')?> €</h5>
+                 
+                  <div class="dropdown-divider" style="background-color:black"></div>
+                  <div class="pop_total">
+                    <div>
+                      <h5>Total : </h5>
+                    </div>
+                    <div>
+                      <h5><?= number_format($montantTotal, 2, ',', ' ')?> €</h5>
+                    </div>
+                  </div>
+              
              
               <?php endif ?>
-              <a href="index.php?controller=panier&task=show">Voir mon panier</a></p>
+
+              <div class="d-grid gap-2">
+  <button class="btn btn-lg " type="button" style=" background-color: rgba(0, 0, 0, 0.9);"><a href="index.php?controller=panier&task=show" style="text-decoration:none; color:white">Voir mon panier</a></button>
+  <button class="btn btn-lg " style=" background-color: rgba(0, 0, 0, 0.9);" type="button"><a href="#" style="text-decoration:none; color:white">Finaliser ma commande</a></button>
+</div>
+              
             </div>
 
 
