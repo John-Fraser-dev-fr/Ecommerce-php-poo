@@ -77,23 +77,23 @@
     </div>
 
 <div class="container mt-5">
-<h3>test</h3>
-<div class="row">
 
+<div class="row" id="list_products">
 
+<h3 id="title_products">Nos produits</h3>
 
 
 
 <?php foreach ($articles as $article) : ?>
 
     
-        <div class="card border-primary m-3 col-sm-4 list_products" style="max-width: 20rem">
+        <div class="card  m-3 col-3 products">
             
             <div class="card-body product">
-            <img src="assets/image_produits/<?= $article['modele'] ?>.jpg" class="img-fluid">
-                <p class="card-text"><?= $article['marque'] ?> <?= $article['modele'] ?></p>
-                <p class="card-text"><?= $article['detail_modele'] ?></p>
-                <p><?= number_format($article['prix'], 2, ',', ' ') ?> €</p>
+            <img src="assets/image_produits/<?= $article['modele'] ?>.jpg" class="img-fluid" >
+                <p class="card-text-modele"> <?= $article['modele'] ?></p>
+                <p class="card-text-detail"><?= $article['detail_modele'] ?></p>
+                <p class="card-text-prix"> <?= number_format($article['prix'], 2, ',', ' ') ?> €</p>
             </div>
             <a href="index.php?controller=article&task=show&id=<?= $article['id_article'] ?>">description</a>
             <div class="card-action">

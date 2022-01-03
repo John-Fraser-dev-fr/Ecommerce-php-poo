@@ -79,3 +79,40 @@ ul {
     display: flex;
     justify-content: space-between;
 }
+
+
+/*********/
+
+#list_products{
+    justify-content: center;
+}
+
+#title_products{
+    text-align: center;
+}
+
+
+/***********/
+
+
+.card-text-modele{
+    font-weight: 500;
+    line-height: 1.9rem;
+    font-size: 1.1rem;
+    font-family: "BodyFont", sans-serif;
+}
+
+
+.card-text-detail{
+    line-height: 1.8rem;
+    font-weight: 300;
+    font-size: 0.9rem;
+    font-family: "Body-font", sans-serif;
+}
+
+.card-text-prix{
+    font-weight: 500;
+    line-height: 1.9rem;
+    font-size: 1rem;
+    font-family: "BodyFont", sans-serif;
+}
