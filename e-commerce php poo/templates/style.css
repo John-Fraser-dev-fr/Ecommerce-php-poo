@@ -143,6 +143,10 @@ ul {
     text-align: center;
 }
 
+.detail{
+    display: flex;
+    justify-content: space-between;
+}
 
 .detail_modele{
     font-size: 2rem;
@@ -154,4 +158,11 @@ ul {
     font-weight: 300;
     font-size: 1rem;
     font-family: "Body-font", sans-serif;
+}
+
+.detail_prix{
+    
+        font-size: 1.8rem;
+        font-family: "BodyFont", sans-serif;
+
 }

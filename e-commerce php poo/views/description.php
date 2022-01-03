@@ -8,16 +8,22 @@
     </div>
 
     <div class="detail col-6">
-        <p class="detail_modele"><?= $article['modele'] ?></p>
-        <p class="detail_detail"><?= $article['detail_modele'] ?></p>
-        <p><?= number_format($article['prix'], 2, ',', ' ') ?> €</p>
-        <div class="card-action row">
+        <div>
+            <p class="detail_modele"><?= $article['modele'] ?></p>
+            <p class="detail_detail"><?= $article['detail_modele'] ?></p>
+            <div class="card-action row">
             <form method="POST" action="index.php?controller=panier&task=add&id=<?= $article['id_article'] ?>">
                 <input type="submit" class="btn btn-primary" name="ajout_panier" value="Ajouter au panier"></input>
                 <input type="hidden" name="id_article"  value="<?php echo $article['id_article']; ?>" >
             </form>
-        </div>
     </div>
+        </div>
+        <div>
+            <p class="detail_prix"><?= number_format($article['prix'], 2, ',', ' ') ?> €</p>
+        </div>
+        
+    </div>
+    
 
 </div>
 
