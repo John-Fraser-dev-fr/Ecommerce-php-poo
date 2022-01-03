@@ -131,3 +131,27 @@ ul {
 .card:hover {
     box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 15px;
 }
+
+
+/*****/
+.description_produit{
+    display: flex;
+    
+}
+
+.photo{
+    text-align: center;
+}
+
+
+.detail_modele{
+    font-size: 2rem;
+    font-family: "BodyFont", sans-serif;
+}
+
+.detail_detail{
+    line-height: 1.8rem;
+    font-weight: 300;
+    font-size: 1rem;
+    font-family: "Body-font", sans-serif;
+}

@@ -1,15 +1,15 @@
 
 
 
-<div class="row"> 
+<div class="container description_produit mt-5"> 
 
-    <div>
+    <div class="photo col-6">
         <img src="assets/image_produits/<?= $article['modele'] ?>.jpg" class="img-fluid" >
     </div>
 
-    <div>
-        <p><b><?= $article['marque'] ?></b></p>
-        <p><?= $article['modele'] ?></p>
+    <div class="detail col-6">
+        <p class="detail_modele"><?= $article['modele'] ?></p>
+        <p class="detail_detail"><?= $article['detail_modele'] ?></p>
         <p><?= number_format($article['prix'], 2, ',', ' ') ?> €</p>
         <div class="card-action row">
             <form method="POST" action="index.php?controller=panier&task=add&id=<?= $article['id_article'] ?>">
