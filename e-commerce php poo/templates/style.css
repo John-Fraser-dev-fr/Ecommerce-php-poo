@@ -136,17 +136,25 @@ ul {
 /*****/
 .description_produit{
     display: flex;
-    background-color: white;
+  
+    
     
 }
 
 .photo{
     text-align: center;
+    background-color: white;
+
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 15px;
 }
+
+
+
 
 .detail{
     display: flex;
     justify-content: space-between;
+    padding-left: 5%;
 }
 
 .detail_modele{
@@ -166,4 +174,25 @@ ul {
         font-size: 1.8rem;
         font-family: "BodyFont", sans-serif;
 
+}
+
+
+
+/**********/
+ 
+.btn{
+    background-color: rgb(78, 158, 188);
+    border: none;
+    width: 200px;
+    color: white;
+}
+
+.btn-pop{
+    background-color: rgb(78, 158, 188);
+    border: none;
+    width: 100%;
+    color: white;
+    border-radius: 0.25rem;
+    padding: 6px 12px;
+    font-size: 16px;
 }

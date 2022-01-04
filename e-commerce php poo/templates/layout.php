@@ -18,6 +18,10 @@
 
 
 <body>
+
+
+
+
   <nav class="navbar navbar-expand-lg navbar-dark " id="navbar">
     <div class="container-fluid">
       <a class="navbar-brand" href="index.php?controller=article&task=index"><img class="logo_light" src="assets/image_produits/logo.png" alt="logo" style="height: 40px; width: auto;">  </a>
@@ -26,7 +30,7 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-      <ul class="nav-links navbar-nav me-auto">
+      <ul class="navbar-nav ms-auto">
     
     
         <?php  if (isset($_SESSION['role']) && $_SESSION['role'] == 1)   {?>
@@ -34,20 +38,19 @@
         <li class="nav-item">
           <a class="nav-link" href="index.php?controller=admin&task=show">Administrateur</a>
         </li>
+      </ul>
 
         <?php }else{} ?>
 
-        <li class="nav-item">
-        </li>
-       
+        
+       <ul>
         
           <li class="nav-icons">
-          <div id="pop2">
+          
             <a id="target2" class="nav-link" href='#'><i class="fas fa-user-alt"></i></a>
-          </div>
-            <div id="pop">
+          
               <a class="nav-link" id="target" href='#'><i class="fas fa-shopping-cart"></i></a>  
-            </div>
+            
           </li>
       </ul>
 
@@ -121,9 +124,9 @@
              
               <?php endif ?>
 
-              <div class="d-grid gap-2">
-  <button class="btn btn-lg " type="button" style=" background-color: rgba(0, 0, 0, 0.9);"><a href="index.php?controller=panier&task=show" style="text-decoration:none; color:white">Voir mon panier</a></button>
-  <button class="btn btn-lg " style=" background-color: rgba(0, 0, 0, 0.9);" type="button"><a href="#" style="text-decoration:none; color:white">Finaliser ma commande</a></button>
+              <div class="d-grid gap-2 mt-2">
+              <a href="index.php?controller=panier&task=show" ><button class="btn-pop" type="button" >Voir mon panier</button></a>
+              <a href="#"><button class="btn-pop"  type="button">Finaliser ma commande</button></a>
 </div>
               
             </div>

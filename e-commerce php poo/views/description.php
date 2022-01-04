@@ -4,7 +4,7 @@
 <div class="container description_produit mt-5"> 
 
     <div class="photo col-6">
-        <img src="assets/image_produits/<?= $article['modele'] ?>.jpg" class="img-fluid" >
+        <img src="assets/image_produits/<?= $article['modele'] ?>.jpg" class="photo_desc img-fluid" >
     </div>
 
     <div class="detail col-6">
@@ -12,12 +12,15 @@
             <p class="detail_modele"><?= $article['modele'] ?></p>
             <p class="detail_prix"><?= number_format($article['prix'], 2, ',', ' ') ?> €</p>
             <p class="detail_detail"><?= $article['detail_modele'] ?></p>
-            <div class="card-action row">
-            <form method="POST" action="index.php?controller=panier&task=add&id=<?= $article['id_article'] ?>">
-                <input type="submit" class="btn btn-primary" name="ajout_panier" value="Ajouter au panier"></input>
-                <input type="hidden" name="id_article"  value="<?php echo $article['id_article']; ?>" >
-            </form>
-    </div>
+            <div class="d-grid gap-2">
+                <form method="POST" action="index.php?controller=panier&task=add&id=<?= $article['id_article'] ?>">
+                    <button type="submit" class="btn" name="ajout_panier" value="Ajouter au panier">Ajouter au panier</button>
+                    <input type="hidden" name="id_article"  value="<?php echo $article['id_article']; ?>" >
+                </form>
+                <a href="index.php?controller=article&task=index" style="text-decoration:none; color:white"><button class="btn" type="button">Continuez vos achats</button></a>
+            </div>    
+           
+    
         </div>
         
            
@@ -27,6 +30,9 @@
     
 
 </div>
+
+
+
 
 
 
