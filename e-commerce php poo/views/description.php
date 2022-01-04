@@ -10,6 +10,7 @@
     <div class="detail col-6">
         <div>
             <p class="detail_modele"><?= $article['modele'] ?></p>
+            <p class="detail_prix"><?= number_format($article['prix'], 2, ',', ' ') ?> €</p>
             <p class="detail_detail"><?= $article['detail_modele'] ?></p>
             <div class="card-action row">
             <form method="POST" action="index.php?controller=panier&task=add&id=<?= $article['id_article'] ?>">
@@ -18,9 +19,9 @@
             </form>
     </div>
         </div>
-        <div>
-            <p class="detail_prix"><?= number_format($article['prix'], 2, ',', ' ') ?> €</p>
-        </div>
+        
+           
+        
         
     </div>
     

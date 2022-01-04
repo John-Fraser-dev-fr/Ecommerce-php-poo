@@ -136,6 +136,7 @@ ul {
 /*****/
 .description_produit{
     display: flex;
+    background-color: white;
     
 }
 
