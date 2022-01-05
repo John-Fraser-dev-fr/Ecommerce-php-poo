@@ -17,7 +17,7 @@
                     <button type="submit" class="btn" name="ajout_panier" value="Ajouter au panier">Ajouter au panier</button>
                     <input type="hidden" name="id_article"  value="<?php echo $article['id_article']; ?>" >
                 </form>
-                <a href="index.php?controller=article&task=index" style="text-decoration:none; color:white"><button class="btn" type="button">Continuez vos achats</button></a>
+                <a href="index.php?controller=article&task=index"> <button class="btn" type="button">Continuez vos achats</button></a>
             </div>    
            
     

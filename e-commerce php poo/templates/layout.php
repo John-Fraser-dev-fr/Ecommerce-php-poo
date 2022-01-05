@@ -47,9 +47,9 @@
         
           <li class="nav-icons">
           
-            <a id="target2" class="nav-link" href='#'><i class="fas fa-user-alt"></i></a>
+            <a id="target2" class="nav-icon" href='#'><i class="fas fa-user-alt"></i></a>
           
-              <a class="nav-link" id="target" href='#'><i class="fas fa-shopping-cart"></i></a>  
+            <a  id="target" class="nav-icon" href='#'><i class="fas fa-shopping-cart"></i></a>  
             
           </li>
       </ul>

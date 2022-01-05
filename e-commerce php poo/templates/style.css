@@ -15,43 +15,40 @@ body{
     z-index: 999;
 }
 
+.navbar-nav{
+    margin-right: 2%;
+}
+
 .nav-icons{
     display: flex;
     gap: 15px;
+    color: white;
+}
+
+.nav-icon{
+    color:white;
+}
+
+.nav-icon:hover{
+    color: rgb(78, 158, 188);
 }
 
 
 /* Responsabilités */
 .box
 {
-    padding: 0;    
-}
-.icon_box
-{
+    padding: 0;
     display: flex;
-    border-top: 1px solid #ddd;
-    border-bottom: 1px solid #ddd;
-    border-right: 1px solid #ddd;
-    margin-bottom: 0;
-    justify-content: space-evenly;
-    padding: 20px;
-    background-color: white;
-
-   
-   
-}
-
-.icon>i{
-    position:relative;
-    top: calc(50% - 18px); 
+    background-color: white;  
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 15px;  
+    border-radius: 1rem;
 }
 
 
 
-#icon_box_livraison
-{
-    border-left: 1px solid #ddd;
-}
+
+
+
 
 
 
@@ -196,3 +193,7 @@ ul {
     padding: 6px 12px;
     font-size: 16px;
 }
+
+
+/**********/
+

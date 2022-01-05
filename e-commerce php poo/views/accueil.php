@@ -27,9 +27,10 @@
 
 
 <div class="container mt-5">
-        <div class="row">
-            <div class="box col-lg-3 col-sm-6">	
-                <div class="icon_box" id="icon_box_livraison">
+ 
+        <div class="box">
+            <div class="col-lg-3 col-sm-6">	
+                <div class="icon_box">
                     <div class="icon">
                     <i class="fas fa-truck fa-2x"></i>
                     </div>
@@ -39,7 +40,7 @@
                     </div>
                 </div>
             </div>
-            <div class="box col-lg-3 col-sm-6">	
+            <div class="col-lg-3 col-sm-6">	
                 <div class="icon_box">
                     <div class="icon">
                     <i class="fas fa-certificate fa-2x"></i>
@@ -50,7 +51,7 @@
                     </div>
                 </div>
             </div>
-            <div class="box col-lg-3 col-sm-6">	
+            <div class="col-lg-3 col-sm-6">	
                 <div class="icon_box">
                     <div class="icon">
                     <i class="fas fa-hand-holding-usd fa-2x"></i>
@@ -62,7 +63,7 @@
                 </div>
             </div>
             
-            <div class="box col-lg-3 col-sm-6">	
+            <div class="col-lg-3 col-sm-6">	
                 <div class="icon_box">
                     <div class="icon">
                     <i class="fas fa-lock fa-2x"></i>
@@ -73,6 +74,7 @@
                     </div>
                 </div>
             </div>
+       
         </div>
     </div>
 
