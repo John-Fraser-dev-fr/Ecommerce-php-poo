@@ -33,26 +33,71 @@ body{
     color: rgb(78, 158, 188);
 }
 
+#nombre_article{
+    background-color: rgb(78, 158, 188);
+    border-radius: 52%;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+  
+}
+
+.nombre{
+    width: 20px;
+    height: 20px;
+}
+
 
 /* Responsabilités */
 .box
 {
     padding: 0;
     display: flex;
-    background-color: white;  
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 15px;  
-    border-radius: 1rem;
+    background-color: rgb(78, 158, 188); 
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 5px 15px;  
+    border-radius: 2.5rem;
+  
+}
+
+.icon{
+    color:white;
+    align-self: center;
+    padding-right: 0.5rem;
+
+}
+
+.icon_box_content{
+    color:white;
+}
+
+.icon_box_title{
+    font-weight: 500;
+    line-height: 1.9rem;
+    font-size: 1.1rem;
+    font-family: "BodyFont", sans-serif;
+    margin: 0;
+}
+
+.icon_box_description{
+    line-height: 1.8rem;
+    font-weight: 300;
+    font-size: 0.9rem;
+    font-family: "Body-font", sans-serif;
+    margin:0;
+}
+
+
+
+.icon_box{
+    display:flex;
+    justify-content: center;
+    padding: 0.5rem;
 }
 
 
 
 
-
-
-
-
-
-
+/*********/
 .popover{
     min-width: 350px;
     position: fixed;

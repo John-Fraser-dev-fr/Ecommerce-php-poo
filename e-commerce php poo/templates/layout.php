@@ -50,7 +50,14 @@
             <a id="target2" class="nav-icon" href='#'><i class="fas fa-user-alt"></i></a>
           
             <a  id="target" class="nav-icon" href='#'><i class="fas fa-shopping-cart"></i></a>  
-            
+            <div id="nombre_article">
+            <?php
+            $totalArticle = array_sum($_SESSION['panier']['qte_produit']); ?>
+
+              <div class="nombre"><?= $totalArticle?></div>
+
+          
+            </div>
           </li>
       </ul>
 
@@ -69,7 +76,8 @@
                   $total ='0';
                   $montantTotal = '0';
 
-                  for ($i=0 ;$i < count($_SESSION['panier']['modele']) ; $i++){ ?>
+                  for ($i=0 ;$i < count($_SESSION['panier']['modele']) ; $i++){ 
+                    ?>
 
                   <ul>
                     <li>
