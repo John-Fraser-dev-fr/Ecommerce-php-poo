@@ -6,12 +6,13 @@ class Panier extends Controller
     protected $modelName = \Models\Panier::class;
 
   
-  
+ 
 
    public function add()
    {
         if (!empty($_GET['id']) && isset($_POST['ajout_panier']) )
         {
+            
 		
             $row =$this->model->ajouter();
 
@@ -20,7 +21,7 @@ class Panier extends Controller
             $produit_modele = $row['id_article'];
             $modele = $row['modele'];
 		    $produit_qte = '1';
-
+            
            
         }
 
@@ -59,8 +60,11 @@ class Panier extends Controller
            
         }
 
+       
         $pageTitle = 'panier';
         \Renderer::render('panier', compact('pageTitle','produits'));
+        \Alert::messageFlash('Votre Article a été ajouté au panier !');
+       
 
     }
 
@@ -132,6 +136,7 @@ class Panier extends Controller
           
             
    
+           
     
             $pageTitle = 'test page';
             \Renderer::render('panier', compact('pageTitle', 'montantTotal', 'produits'));

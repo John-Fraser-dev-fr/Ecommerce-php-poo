@@ -65,6 +65,17 @@
           </li>
       </ul>
 
+
+
+      <?php  
+    		if (!empty($_SESSION['messages_flash']))
+    		{
+				echo $_SESSION['messages_flash'];
+				$_SESSION['messages_flash']=[];
+    		}
+
+      ?>
+
             <!-- Contenu du Popover Panier -->
             <div id='panier_pop' class="container">
               <h6><b>Votre Panier</b></h6>
