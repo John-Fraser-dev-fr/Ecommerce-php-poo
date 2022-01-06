@@ -20,8 +20,6 @@
 <body>
 
 
-
-
   <nav class="navbar navbar-expand-lg navbar-dark " id="navbar">
     <div class="container-fluid">
       <a class="navbar-brand" href="index.php?controller=article&task=index"><img class="logo_light" src="assets/image_produits/logo.png" alt="logo" style="height: 40px; width: auto;">  </a>
@@ -51,10 +49,39 @@
           
             <a  id="target" class="nav-icon" href='#'><i class="fas fa-shopping-cart"></i></a>  
             <div id="nombre_article">
-            <?php
-            $totalArticle = array_sum($_SESSION['panier']['qte_produit']); ?>
 
-              <div class="nombre"><?= $totalArticle?></div>
+            <?php
+          
+           if(!isset($_SESSION['panier']['qte_produit'])){?>
+
+            <div class="nombre">0</div>
+
+           <?php } else if (isset($_SESSION['panier']['qte_produit'])){ 
+
+            $totalArticle = array_sum($_SESSION['panier']['qte_produit']);  ?>
+
+            <div class="nombre"><?= $totalArticle?></div>
+            
+            
+            <?php }?>
+            
+           
+       
+
+           
+
+      
+            
+
+           
+
+
+
+
+           
+        
+
+              
 
           
             </div>
