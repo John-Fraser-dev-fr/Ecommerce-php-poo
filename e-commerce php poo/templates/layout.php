@@ -46,44 +46,21 @@
           <li class="nav-icons">
           
             <a id="target2" class="nav-icon" href='#'><i class="fas fa-user-alt"></i></a>
-          
             <a  id="target" class="nav-icon" href='#'><i class="fas fa-shopping-cart"></i></a>  
             <div id="nombre_article">
 
-            <?php
-          
-           if(!isset($_SESSION['panier']['qte_produit'])){?>
+              <?php
+              if (isset($_SESSION['panier']['qte_produit'])){ 
+              $totalArticle = array_sum($_SESSION['panier']['qte_produit']); ?>
 
-            <div class="nombre">0</div>
+              <div class="nombre"><?= $totalArticle?></div>
 
-           <?php } else if (isset($_SESSION['panier']['qte_produit'])){ 
+              <?php }else if(!isset($_SESSION['panier']['qte_produit'])){ ?>
 
-            $totalArticle = array_sum($_SESSION['panier']['qte_produit']);  ?>
+              <div class="nombre"></div>
 
-            <div class="nombre"><?= $totalArticle?></div>
+              <?php }?>
             
-            
-            <?php }?>
-            
-           
-       
-
-           
-
-      
-            
-
-           
-
-
-
-
-           
-        
-
-              
-
-          
             </div>
           </li>
       </ul>
