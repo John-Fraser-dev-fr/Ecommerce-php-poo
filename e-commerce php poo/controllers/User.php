@@ -23,7 +23,7 @@ class User extends Controller
 
                 if (!$nom || !$prenom|| !$email|| !$password) 
                 {
-                    die("Veuillez remplir tous les champs");
+                    \Alert::danger("Veuillez remplir tous les champs !");
                 }
                 else
                 {
@@ -58,7 +58,7 @@ class User extends Controller
 	        }
 	        else
 	        {
-	            die("Veuillez remplir tous les champs");
+	            \Alert::danger("Veuillez remplir tous les champs !");
 	        }
         }
 

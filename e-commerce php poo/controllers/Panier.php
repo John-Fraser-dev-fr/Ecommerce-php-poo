@@ -4,6 +4,7 @@ namespace Controllers;
 class Panier extends Controller
 {
     protected $modelName = \Models\Panier::class;
+    
 
   
  
@@ -60,10 +61,9 @@ class Panier extends Controller
            
         }
 
-       
-        $pageTitle = 'panier';
-        \Renderer::render('panier', compact('pageTitle','produits'));
-        \Alert::messageFlash('Votre Article a été ajouté au panier !');
+        $article= $_GET['id'];
+        \Http::redirect("index.php?controller=article&task=show&id=".$article['id_article']." ");
+
        
 
     }
