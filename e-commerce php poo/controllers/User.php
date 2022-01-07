@@ -56,11 +56,13 @@ class User extends Controller
 		        $this->model->connexion($email,$password);
                 \Http::redirect("index.php");
 	        }
-	        else
-	        {
-	            \Alert::danger("Veuillez remplir tous les champs !");
-	        }
+	        
+            
+
+            
         }
+
+        
 
     }
 

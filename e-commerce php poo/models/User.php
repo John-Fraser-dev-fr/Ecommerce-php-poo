@@ -33,10 +33,7 @@ class User extends Model
 		    $_SESSION['email']=$user['email'] ;	
             $_SESSION['role']=$user['role'];
 	    }
-	    else
-	    {
-            die("Email ou mot de passe incorrect");
-        }
+	   
     }
 
 }
