@@ -4,13 +4,13 @@
     <div class="carousel-item active">
       <img src="assets/image_produits/ban_Switch.jpeg" class="d-block w-100" alt="nintendo_switch">
       <div class="carousel-caption d-none d-md-block" style="left: 10%; text-align: left;">
-      <a class="btn btn-info">Découvrez maintenant</a>
+      <a class="btn btn-info" href="index.php?controller=article&task=show&id=7">Découvrez maintenant</a>
       </div>
     </div>
     <div class="carousel-item">
       <img src="assets/image_produits/ban_Iphone.jpeg" class="d-block w-100" alt="iphone_13">
       <div class="carousel-caption d-none d-md-block" style="left: 10%; text-align: left;">
-      <a class="btn btn-info">Découvrez maintenant</a>
+      <a class="btn btn-info" href="index.php?controller=article&task=show&id=1">Découvrez maintenant</a>
       </div>
     </div>
   </div>
