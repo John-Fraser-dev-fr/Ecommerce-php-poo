@@ -247,19 +247,34 @@ ul {
 
 /**********/
 
+.titre_panier{
+    text-align: center;
+   margin-top: 10%;
+   margin-bottom: 5%;
+}
+
+
 #page_panier{
     display: flex;
-    margin-top: 10%;
+   
+}
+
+#articles_panier{
+    padding: 1%;
 }
 
 .solid-black {
     border-top: 1px solid black;
   }
   
-
+.panier_description{
+    width: 100%;
+    padding-left: 5%;
+}
 
 .panier_produit{
     display:flex;
+    margin-bottom: 5%;
 }
 
 .paiement_panier{
@@ -292,4 +307,37 @@ ul {
 .livraison{
     display: flex;
     justify-content: space-between;
+}
+
+.panier_modele{
+    font-size: 1.2rem;
+    font-family: "BodyFont", sans-serif;
+}
+
+.panier_prix{
+    font-size: 1rem;
+    font-family: "BodyFont", sans-serif;
+}
+
+
+.quantite_prix{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15%;
+}
+
+
+.panier_image{
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 15px;
+}
+
+.btn_supp{
+    background-color: #f9f9f9;
+    border: none;
+}
+
+.bouton_supp{
+    color:rgb(78, 158, 188);
+
 }

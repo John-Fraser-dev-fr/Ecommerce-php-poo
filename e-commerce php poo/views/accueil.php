@@ -36,7 +36,7 @@
                     </div>
                     <div class="icon_box_content">
                         <p class="icon_box_title">Livraison gratuite</p>
-                        <p class="icon_box_description">À partir de 49 €</p>
+                        <p class="icon_box_description">À partir de 99 €</p>
                     </div>
                 </div>
             </div>

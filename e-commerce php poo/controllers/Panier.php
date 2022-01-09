@@ -88,6 +88,8 @@ class Panier extends Controller
         }
     }
 
+   
+
 
     public function montantTotal()
     {

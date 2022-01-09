@@ -1,4 +1,6 @@
-<h4><b>Votre Panier</b></h4>
+<div class="titre_panier">
+  <h3><b>Panier</b></h3>
+</div>
 <div id="page_panier" class="container">
 
   <div id="articles_panier" class="container col-4">
@@ -16,19 +18,31 @@
 
     
         <div class="panier_produit">
-          <div class="">
-            <img src="assets/image_produits/<?= $_SESSION['panier']['modele'][$i] ?>.jpg" class="img-fluid" style="width:auto; height: 100px;">
+          <div class="panier_image">
+            <img src="assets/image_produits/<?= $_SESSION['panier']['modele'][$i] ?>.jpg" class="img-fluid" style="width:200px; height:auto;">
           </div>
           <div class="panier_description">
-            <p style="margin-bottom: 0"><b><?= htmlspecialchars($_SESSION['panier']['modele'][$i])?></b></p>
-            <p style="margin-bottom: 0"><?= number_format($_SESSION['panier']['prix'][$i], 2, ',','')?> € </p>
-            <p style="font-size: 12px">Quantité : <?= htmlspecialchars($_SESSION['panier']['qte_produit'][$i])?> </p>
+            <div style="display:flex; justify-content: space-between">
+              <div>
+                <p class="panier_modele" style="margin-bottom: 0"><?= htmlspecialchars($_SESSION['panier']['modele'][$i])?></p>
+                <p class="panier_prix" style="margin-bottom: 0"><?= number_format($_SESSION['panier']['prix'][$i], 2, ',','')?> € </p>
+              </div>
+              <div>
+                <button type="submit" class="btn_supp" name="supp_art" ><i class="bouton_supp fas fa-trash-alt"></i></button>
+              </div>
+            </div>
+            <div class="quantite_prix">
+              <div>
+                <p style="font-size: 12px">Quantité : <?= htmlspecialchars($_SESSION['panier']['qte_produit'][$i])?> </p>
+              </div>
 
-            <?php 
-            $total = $_SESSION['panier']['qte_produit'][$i] * $_SESSION['panier']['prix'][$i];
-            $montantTotal += $total;?>
-
-            <p style="font-size: 12px">Total : <?= number_format($total, 2, ',','')?> € </p>
+              <?php 
+              $total = $_SESSION['panier']['qte_produit'][$i] * $_SESSION['panier']['prix'][$i];
+              $montantTotal += $total;?>
+              <div>
+                <p style="font-size: 12px">Total : <?= number_format($total, 2, ',','')?> € </p>
+              </div>
+            </div>
           </div>
           <div class="panier_total">
 
@@ -61,7 +75,12 @@
         <p style="font-size: 12px; color:grey">Livraison</p>
       </div>
       <div>
+        <?php if($montantTotal > 99){?>
         <p style="font-size: 12px">Gratuit</p>
+        <?php } else if ($montantTotal < 99) {?>
+        <p style="font-size: 12px">12,99 €</p>
+        <?php }?>
+
       </div>
     </div>
     <div class="solid-black">
@@ -72,7 +91,11 @@
         <p><b>Total de la commande :  </b></p>
       </div>
       <div>
+        <?php if($montantTotal > 99){?>
           <p><b><?= number_format($montantTotal, 2, ',', ' ')?> €</b></p>
+        <?php }else if($montantTotal < 99) {?>
+          <p><b><?= number_format($montantTotal + 12.99, 2, ',', ' ')?> €</b></p>
+        <?php } ?>
       </div>
     </div>
     <form method="POST" action="index.php?controller=panier&task=validate">
