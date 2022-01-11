@@ -28,7 +28,10 @@
                 <p class="panier_prix" style="margin-bottom: 0"><?= number_format($_SESSION['panier']['prix'][$i], 2, ',','')?> € </p>
               </div>
               <div>
-                <button type="submit" class="btn_supp" name="supp_art" ><i class="bouton_supp fas fa-trash-alt"></i></button>
+                <form method="POST" action="index.php?controller=panier&task=supprimerArticle">
+                  <button type="submit" class="btn_supp" name="supp_art" ><i class="bouton_supp fas fa-trash-alt"></i></button>
+                  <input type="hidden" name="supp_art_hidden" value="<?= htmlspecialchars($_SESSION['panier']['modele'][$i])?>"/>
+                </form>
               </div>
             </div>
             <div class="quantite_prix">

@@ -88,6 +88,41 @@ class Panier extends Controller
         }
     }
 
+    public function supprimerArticle()
+    {
+        
+        //Tableau temporaire de stockage des articles
+        $panier_tmp = array("qte_produit"=>array(), "id_article"=>array(),"marque"=>array(),"modele"=>array(), "prix"=>array()); 
+
+        //Comptage des articles du panier 
+        $nb_articles = count($_SESSION['panier']['modele']); 
+
+        //Transfert du panier dans le panier temporaire 
+        for($i = 0; $i < $nb_articles; $i++) 
+        { 
+            $ref_article = $_POST['supp_art_hidden'];
+
+            if($_SESSION['panier']['modele'][$i] != $ref_article) 
+            { 
+                array_push($panier_tmp['marque'],$_SESSION['panier']['marque'][$i]); 
+                array_push($panier_tmp['qte_produit'],$_SESSION['panier']['qte_produit'][$i]); 
+                array_push($panier_tmp['modele'],$_SESSION['panier']['modele'][$i]); 
+                array_push($panier_tmp['id_article'],$_SESSION['panier']['id_article'][$i]);
+                array_push($panier_tmp['prix'],$_SESSION['panier']['prix'][$i]); 
+            } 
+        } 
+
+        //Réinitialisation du panier
+        $_SESSION['panier'] = $panier_tmp; 
+
+        //Suppression du panier temporaire
+        unset($panier_tmp); 
+  
+        $pageTitle = 'panier';
+        \Renderer::render('panier', compact('pageTitle'));
+    }
+ 
+
    
 
 
