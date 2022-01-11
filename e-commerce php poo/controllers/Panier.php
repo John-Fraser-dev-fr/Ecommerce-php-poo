@@ -91,7 +91,7 @@ class Panier extends Controller
     public function supprimerArticle()
     {
         
-        //Tableau temporaire de stockage des articles
+        //Paniet temporaire
         $panier_tmp = array("qte_produit"=>array(), "id_article"=>array(),"marque"=>array(),"modele"=>array(), "prix"=>array()); 
 
         //Comptage des articles du panier 
@@ -132,6 +132,7 @@ class Panier extends Controller
 
         for ($i = 0; $i < count($_SESSION['panier']['modele']); $i++) {
     
+            
             $total += $_SESSION['panier']['qte_produit'][$i] * $_SESSION['panier']['prix'][$i];// le symbole += pour ajouter la nouvelle valeut a l ancienne sans l ecraser
             
     
@@ -149,7 +150,15 @@ class Panier extends Controller
         if(isset($_POST['validate']) )
         {
 
+            
             $montantTotal = $this->montantTotal();
+
+            if($montantTotal < 99){
+                $montantTotal += 12.99;
+            }else if($montantTotal >= 99){
+                $montantTotal = $montantTotal;
+            }
+
 
             $id_commande =$this->model->valid_commande($montantTotal);
         

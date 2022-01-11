@@ -126,6 +126,7 @@ ul {
 .pop_total{
     display: flex;
     justify-content: space-between;
+    margin-top: 1rem;
 }
 
 
@@ -261,11 +262,17 @@ ul {
 
 #articles_panier{
     padding: 1%;
+    text-align: center;
 }
 
 .solid-black {
     border-top: 1px solid black;
   }
+
+.solid-grey {
+    border-top: 1px solid grey;
+  }
+
   
 .panier_description{
     width: 100%;
@@ -287,6 +294,7 @@ ul {
     display: flex;
     justify-content: space-between;
     margin-bottom: 10%;
+    margin-top: 1rem;
 }
 
 .btn_commande{
@@ -340,4 +348,22 @@ ul {
 .bouton_supp{
     color:rgb(78, 158, 188);
 
+}
+
+
+/************/
+
+.finalisation{
+    display:flex;
+    margin-top: 5rem;;
+}
+
+.client{
+    background-color: white;
+    padding: 30px;
+}
+
+.nouveau{
+    background-color: white;
+    padding: 30px;
 }

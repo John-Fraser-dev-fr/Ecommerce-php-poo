@@ -47,20 +47,20 @@
           
             <a id="target2" class="nav-icon" href='#'><i class="fas fa-user-alt"></i></a>
             <a  id="target" class="nav-icon" href='#'><i class="fas fa-shopping-cart"></i></a>  
-            <div id="nombre_article">
+           
 
               <?php
               if (isset($_SESSION['panier']['qte_produit'])){ 
               $totalArticle = array_sum($_SESSION['panier']['qte_produit']); ?>
             
-            
+            <div id="nombre_article">
 
 
               <div class="nombre"><?= $totalArticle?></div>
 
               <?php }else if(!isset($_SESSION['panier']['qte_produit'])){ ?>
 
-              <div class="nombre"></div>
+              
 
               <?php }?>
             
@@ -73,11 +73,31 @@
       
             <!-- Contenu du Popover Panier -->
             <div id='panier_pop' class="container">
-              <h6><b>Votre Panier</b></h6>
-              <div class="dropdown-divider" style="background-color:black"></div>
+             
+  
 
               <?php if (!isset($_SESSION['panier'])) : ?>
-              <p>Votre panier est vide</p>
+              <p><b>Votre panier est vide</b></p>
+              <div class="solid-grey"></div>
+                  <div class="valeur_com" style=" margin-top: 1rem;">
+                    <div>
+                      <p style="font-size: 12px; color: grey;">Valeur de la commande</p>
+                    </div>
+                    <div>
+                      <p style="font-size: 12px">0,00 €</p>
+                    </div>
+                  </div>
+                  <div class="solid-black">
+                  <div class="pop_total">
+                    <div>
+                      <p><b>Total de la commande : </b></p>
+                    </div>
+                    <div>
+                      <p><b>0,00 €</b></p>
+                    </div>
+                  </div>
+                  
+
               <?php else : ?>
 
              
@@ -104,7 +124,10 @@
                           <p style="font-size: 12px">Quantité : <?= htmlspecialchars($_SESSION['panier']['qte_produit'][$i])?> </p>
                         </div>
 
+                        
+
                         <div class="pop_panier_total col-4">
+          
                         <?php 
                            $total = $_SESSION['panier']['qte_produit'][$i] * $_SESSION['panier']['prix'][$i];
                            $montantTotal += $total;
@@ -128,24 +151,54 @@
                   
                  
                   <?php } ?>
-                 
-                  <div class="dropdown-divider" style="background-color:black"></div>
-                  <div class="pop_total">
+                  <div class="solid-grey"></div>
+                  <div class="valeur_com" style=" margin-top: 1rem;">
                     <div>
-                      <h5>Total : </h5>
+                      <p style="font-size: 12px; color: grey;">Valeur de la commande</p>
                     </div>
                     <div>
-                      <h5><?= number_format($montantTotal, 2, ',', ' ')?> €</h5>
+                      <p style="font-size: 12px"><?= number_format($montantTotal, 2, ',', ' ')?> €</p>
+                    </div>
+                  </div>
+                  
+                  <div class="livraison">
+                    <div>
+                      <p style="font-size: 12px; color:grey">Livraison</p>
+                    </div>
+                    <div>
+                    <?php if($montantTotal > 99){?>
+                    <p style="font-size: 12px">Gratuit</p>
+                    <?php } else if ($montantTotal < 99) {?>
+                    <p style="font-size: 12px">12,99 €</p>
+                    <?php } ?>
+
+                 </div>
+    </div>
+    <div class="solid-black">
+                  <div class="pop_total">
+                    <div>
+                      <p><b>Total de la commande : </b></p>
+                    </div>
+                    <?php $montantTotalAvecLivraison = $montantTotal + 12.99; ?>
+                    <div>
+                      <?php if ($montantTotal <= 12.99) {?>
+                      <p><b>0,00 €</b></p>
+                      <?php }else if($montantTotal <= 99 && $montantTotal > 12.99){ ?>
+                      <p><b><?= number_format($montantTotalAvecLivraison, 2, ',', ' ')?> €</b></p>
+                      <?php }else if($montantTotal >= 99){ ?>
+                    <p><b><?= number_format($montantTotal, 2, ',', ' ')?> €</b></p>
+                    <?php } ?>
                     </div>
                   </div>
               
+                  <div class="d-grid gap-2 mt-2">
+              <a href="#" ><button class="btn-pop" type="button" >Confirmer la commande</button></a>
+              <a href="index.php?controller=panier&task=show" ><button class="btn-pop" type="button" >Panier</button></a>
              
+</div>
               <?php endif ?>
 
-              <div class="d-grid gap-2 mt-2">
-              <a href="index.php?controller=panier&task=show" ><button class="btn-pop" type="button" >Voir mon panier</button></a>
-              <a href="#"><button class="btn-pop"  type="button">Finaliser ma commande</button></a>
-</div>
+              
               
             </div>
 
@@ -179,13 +232,7 @@
 <?php }else{?>
     <h6>Bonjour <?php echo $_SESSION['prenom'];?> <?php echo $_SESSION['nom'];?></h6> 
  
-    <br>
-    <h6>Voici vos informations de profil</h6>
-    <p>Votre Email : <?php echo $_SESSION['email'];?></p>
-
-    <br>
-    <h6>Etat des commandes :</h6>
-    <p>Aucune commande en cours</p>
+    
     <a class="nav-link" href="index.php?controller=user&task=deconnexion">Deconnexion</a>
 </div>
       <?php } ?>      </div>

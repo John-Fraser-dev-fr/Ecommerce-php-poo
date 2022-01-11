@@ -93,16 +93,20 @@
       <div>
         <p><b>Total de la commande :  </b></p>
       </div>
+      <?php $montantTotalAvecLivraison = $montantTotal + 12.99; ?>
       <div>
-        <?php if($montantTotal > 99){?>
-          <p><b><?= number_format($montantTotal, 2, ',', ' ')?> €</b></p>
-        <?php }else if($montantTotal < 99) {?>
-          <p><b><?= number_format($montantTotal + 12.99, 2, ',', ' ')?> €</b></p>
+        <?php if ($montantTotal <= 12.99) {?>
+        <p><b>0,00 €</b></p>
+        <?php }else if($montantTotal <= 99 && $montantTotal > 12.99){ ?>
+        <p><b><?= number_format($montantTotalAvecLivraison, 2, ',', ' ')?> €</b></p>
+        <?php }else if($montantTotal >= 99){ ?>
+        <p><b><?= number_format($montantTotal, 2, ',', ' ')?> €</b></p>
         <?php } ?>
       </div>
     </div>
+    <a href="index.php?controller=user&task=finalisation"> <button class="btn mb-2" style="width:100%" type="button">Terminer ma commande</button></a>
     <form method="POST" action="index.php?controller=panier&task=validate">
-      <input type="submit"  class="btn btn-light mb-2 btn_commande" name="validate" value="Terminer ma commande"></input>
+      <input type="submit"  class="btn btn-light mb-2 btn_commande" name="validate" value="Valider ma commande"></input>
     </form>
     <form method="POST" action="index.php?controller=panier&task=delete">
       <input type="submit" class="btn btn-light btn_commande" name="delete" value="Annuler ma commande"></input>
