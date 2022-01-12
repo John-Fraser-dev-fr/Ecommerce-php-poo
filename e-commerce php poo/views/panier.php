@@ -64,7 +64,7 @@
   </div>
 
 
-  <div class="paiement_panier col-4">
+  <div class="paiement_panier col-4" style="height: 500px;">
     <div class="valeur_com">
       <div>
         <p style="font-size: 12px; color: grey">Valeur de la commande</p>

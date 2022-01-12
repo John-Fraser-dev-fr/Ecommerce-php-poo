@@ -367,3 +367,7 @@ ul {
     background-color: white;
     padding: 30px;
 }
+
+.container_finalisation{
+    display:flex;
+}
