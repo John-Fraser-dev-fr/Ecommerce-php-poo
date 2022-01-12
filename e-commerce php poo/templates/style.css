@@ -371,3 +371,10 @@ ul {
 .container_finalisation{
     display:flex;
 }
+
+
+.info_accordeon{
+    line-height: 1.5;
+    font-size: .8125rem;
+    margin-bottom: 0.1rem;
+}

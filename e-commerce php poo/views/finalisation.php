@@ -52,7 +52,8 @@
             <div class="accordion-item">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne" style="display:grid">
                     <h5 class="accordion-header" id="headingOne">Mes informations</h5><br>
-                    <p>blabla</p>
+                    <p class="info_accordeon"><?php echo $_SESSION['prenom'];?> <?php echo $_SESSION['nom'];?></p>
+                    <p class="info_accordeon"><?php echo $_SESSION['email'];?></p>
                 </button>
                 
                 <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample" >
@@ -64,7 +65,10 @@
             <div class="accordion-item">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="display:grid">
                     <h5 class="accordion-header" id="headingTwo">Adresse de livraison</h5><br>
-                    <p>blabla</p>
+                    <p class="info_accordeon"><?php echo $_SESSION['prenom'];?> <?php echo $_SESSION['nom'];?></p>
+                    <p class="info_accordeon"><?php echo $_SESSION['numero_rue'];?>, <?php echo $_SESSION['rue'];?></p>
+                    <p class="info_accordeon"><?php echo $_SESSION['code_postal'];?> <?php echo $_SESSION['ville'];?></p>
+                    <p class="info_accordeon"><?php echo $_SESSION['pays'];?></p>
                 </button>
                 <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample" >
                     <div class="accordion-body">
@@ -74,10 +78,37 @@
             </div>
             <div class="accordion-item">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" style="display:grid">
-                    <h5 class="accordion-header" id="headingThree">Paiement</h5><br>
-                    <p>blabla</p>
+                    <h5 class="accordion-header" id="headingThree">Détails de votre commande</h5><br>
+                    <?php if(array_sum($_SESSION['panier']['qte_produit']) == 1) {?>
+                    <p class="info_accordeon">1 article</p>
+                    <?php }else{?>
+                    <p class="info_accordeon"><?php echo array_sum($_SESSION['panier']['qte_produit']);?> articles</p>
+                    <?php } ?>
                 </button>
                 <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample" >
+                    <div class="accordion-body">
+                        <div>
+                            <?php for ($i=0 ;$i < count($_SESSION['panier']['modele']) ; $i++){ ?>
+                            <div>
+                                <img src="assets/image_produits/<?= $_SESSION['panier']['modele'][$i] ?>.jpg" class="img-fluid" style="width:60px; height: auto;">
+                            </div>
+                            <div class="pop_panier_description col-6">
+                                <p style="margin-bottom: 0"><b><?= htmlspecialchars($_SESSION['panier']['modele'][$i])?></b></p>
+                                <p style="margin-bottom: 0"><?= number_format($_SESSION['panier']['prix'][$i], 2, ',','')?> € </p>
+                                <p style="font-size: 12px">Quantité : <?= htmlspecialchars($_SESSION['panier']['qte_produit'][$i])?> </p>
+                            </div>
+                            <?php } ?>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour" style="display:grid">
+                    <h5 class="accordion-header" id="headingFour">Paiement</h5><br>
+                    <p class="info_accordeon">...</p>
+                </button>
+                <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample" >
                     <div class="accordion-body">
                         <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
                     </div>
