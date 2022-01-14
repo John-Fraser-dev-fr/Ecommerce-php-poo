@@ -104,7 +104,7 @@
         <?php } ?>
       </div>
     </div>
-    <a href="index.php?controller=user&task=finalisation"> <button class="btn mb-2" style="width:100%" type="button">Terminer ma commande</button></a>
+    <a href="index.php?controller=panier&task=finalisation"> <button class="btn mb-2" style="width:100%" type="button">Terminer ma commande</button></a>
     <form method="POST" action="index.php?controller=panier&task=validate">
       <input type="submit"  class="btn btn-light mb-2 btn_commande" name="validate" value="Valider ma commande"></input>
     </form>

@@ -1,5 +1,9 @@
 <?php
+
 namespace Controllers;
+
+use Stripe\ApiOperations;
+use Stripe\Stripe;
 
 class Panier extends Controller
 {
@@ -176,19 +180,60 @@ class Panier extends Controller
                 $this->model->detail_commande($id_commande, $id_article, $quantiteParProduit, $total, $montantTotal);
             }
 
-
-           
-           
-          
-            
-   
-           
     
             $pageTitle = 'test page';
             \Renderer::render('panier', compact('pageTitle', 'montantTotal', 'produits'));
+        }
 
 
         
+    }
+
+    public function finalisation()
+    {
+        
+   
+        $pageTitle = 'Terminer ma commande';
+        \Renderer::render('finalisation', compact('pageTitle'));
+   
+
+    }
+
+
+
+    public function validPaiement()
+    {
+        
+        
+        if(isset($_POST['validateStripe']) && !empty($_POST['montantStripe']))
+        {
+            require_once('/Applications/MAMP/htdocs/GitHub/Ecommerce-php-poo/vendor/autoload.php');
+
+            $prix= $_POST['montantStripe'];
+
+            //instanciation Stripe
+
+           
+
+            \Stripe\Stripe::setApiKey('sk_test_51KHV5GAHhzIZdHyZaH9PmrBuPtOZJj0IqfgCN3wEDdZ6mwmCXIB80UvrN0D7ICezaa38aRtYQFTDaq6aZGlNPtEJ00FoXsgowS');
+
+            $intention = \Stripe\PaymentIntent::create([
+                'amount' => $prix*100,
+                'currency' => 'eur'
+                
+            ]);
+
+            
+           
+        }else{
+            \Http::redirect('index.php');
+        }
+
+
+
+
+        $pageTitle = 'test page';
+        \Renderer::render('finalisation', compact('pageTitle', 'intention'));
     }
     
 
@@ -227,4 +272,3 @@ class Panier extends Controller
 
   
 
-}

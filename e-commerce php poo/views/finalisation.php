@@ -147,7 +147,18 @@
                         
         <div class="detail_paiement">
             <h5>Paiement</h5><br>
-            <p class="info_accordeon">...</p>
+   
+                <form method="POST">
+                    <!-- Contient les messages d'erreur de paiement -->
+                    <div id="errors"></div>
+                    <input type="text" id="cardholder-name" placeholder="Titulaire de la carte">
+                    <!-- Contient le formulaire de saisie des informztions de carte -->
+                    <div id="card-elements"></div>
+                    <!-- Contient les erreurs de la carte  -->
+                    <div id="card-errors" role="alert"></div>
+                    
+                </form>
+         
         </div>
         
     </div>      
@@ -194,9 +205,10 @@
                 <?php } ?>
            </div>
         </div>
-
-        <form method="POST" action="#">
-            <input type="submit"  class="btn btn-light mb-2 btn_commande" name="validate" value="Valider l'achat"></input>
+     
+        <form method="POST" action="index.php?controller=panier&task=validPaiement">
+            <button type="submit" id="card-button" class="btn btn-light mb-2 btn_commande" name="validateStripe" data-secret="<?= $intention['client_secret'] ?>">Confirmer l'achat</button>
+            <input type="hidden" name="montantStripe" value="<?php echo $montantTotal ?>" />
         </form>      
     </div>
 </div>

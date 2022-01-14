@@ -84,14 +84,6 @@ class User extends Controller
         }
     }
 
-    public function finalisation()
-    {
-        
-   
-        $pageTitle = 'Terminer ma commande';
-        \Renderer::render('finalisation', compact('pageTitle'));
-   
-
-    }
+    
 
 }
