@@ -191,10 +191,30 @@ class Panier extends Controller
 
     public function finalisation()
     {
+        if(isset($_POST['prixTest']) && !empty($_POST['prixTest']))
+        {
+            require_once('/Applications/MAMP/htdocs/GitHub/Ecommerce-php-poo/vendor/autoload.php');
+
+            $prix= $_POST['prixTest'];
+
+            //instanciation Stripe
+            \Stripe\Stripe::setApiKey('sk_test_51KHV5GAHhzIZdHyZaH9PmrBuPtOZJj0IqfgCN3wEDdZ6mwmCXIB80UvrN0D7ICezaa38aRtYQFTDaq6aZGlNPtEJ00FoXsgowS');
+
+            $intention = \Stripe\PaymentIntent::create([
+                'amount' => $prix*100,
+                'currency' => 'eur'
+                
+            ]);
+
+
+            $pageTitle = 'Terminer ma commande';
+            \Renderer::render('finalisation', compact('pageTitle','intention'));
+
+        }
         
    
-        $pageTitle = 'Terminer ma commande';
-        \Renderer::render('finalisation', compact('pageTitle'));
+     
+        
    
 
     }
@@ -207,21 +227,11 @@ class Panier extends Controller
         
         if(isset($_POST['validateStripe']) && !empty($_POST['montantStripe']))
         {
-            require_once('/Applications/MAMP/htdocs/GitHub/Ecommerce-php-poo/vendor/autoload.php');
-
-            $prix= $_POST['montantStripe'];
-
-            //instanciation Stripe
+            
 
            
 
-            \Stripe\Stripe::setApiKey('sk_test_51KHV5GAHhzIZdHyZaH9PmrBuPtOZJj0IqfgCN3wEDdZ6mwmCXIB80UvrN0D7ICezaa38aRtYQFTDaq6aZGlNPtEJ00FoXsgowS');
-
-            $intention = \Stripe\PaymentIntent::create([
-                'amount' => $prix*100,
-                'currency' => 'eur'
-                
-            ]);
+           
 
             
            

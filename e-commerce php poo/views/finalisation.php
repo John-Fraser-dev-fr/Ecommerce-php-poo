@@ -157,6 +157,7 @@
                     <!-- Contient les erreurs de la carte  -->
                     <div id="card-errors" role="alert"></div>
                     
+
                 </form>
          
         </div>
@@ -205,10 +206,16 @@
                 <?php } ?>
            </div>
         </div>
-     
-        <form method="POST" action="index.php?controller=panier&task=validPaiement">
-            <button type="submit" id="card-button" class="btn btn-light mb-2 btn_commande" name="validateStripe" data-secret="<?= $intention['client_secret'] ?>">Confirmer l'achat</button>
-            <input type="hidden" name="montantStripe" value="<?php echo $montantTotal ?>" />
+
+        <?php  if($montantTotal < 99){
+                $montantTotal += 12.99;
+            }else if($montantTotal >= 99){
+                $montantTotal = $montantTotal;
+            }?>
+
+        <form method="POST">
+            <button class="btn btn-light mb-2 btn_commande" id="card-button" type="button" data-secret="<?= $intention['client_secret'] ?>">Procéder au paiement</button>
+
         </form>      
     </div>
 </div>

@@ -43,7 +43,7 @@ window.onload = () => {
     //variables
     var stripe = Stripe('pk_test_51KHV5GAHhzIZdHyZdRsJwB9IXrgQ7UTCPzivcgD76W19QY21YrSUJaVLPGyWn1F7BJ5y8JEL2sFML3pTvL11iIOQ00oEmjJuF3')
     var elements = stripe.elements()
-    var redirect = "/index.php"
+    var redirect = "index.php"
 
     //Objet de la page
     var cardHolderName = document.getElementById("cardholder-name")
