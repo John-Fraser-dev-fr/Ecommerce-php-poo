@@ -78,7 +78,7 @@
         <p style="font-size: 12px; color:grey">Livraison</p>
       </div>
       <div>
-        <?php if($montantTotal > 99){?>
+        <?php if($montantTotal >= 99){?>
         <p style="font-size: 12px">Gratuit</p>
         <?php } else if ($montantTotal < 99) {?>
         <p style="font-size: 12px">12,99 €</p>
@@ -93,27 +93,31 @@
       <div>
         <p><b>Total de la commande :  </b></p>
       </div>
+
+      
+      
       <?php $montantTotalAvecLivraison = $montantTotal + 12.99; ?>
       <div>
-        <?php if ($montantTotal <= 12.99) {?>
+        <?php if ($montantTotal == 0) {?>
         <p><b>0,00 €</b></p>
-        <?php }else if($montantTotal <= 99 && $montantTotal > 12.99){ ?>
+        <?php }else if($montantTotal < 99){ 
+          $montantTotal += 12.99;?>
         <p><b><?= number_format($montantTotalAvecLivraison, 2, ',', ' ')?> €</b></p>
-        <?php }else if($montantTotal >= 99){ ?>
+        <?php }else if($montantTotal >= 99){
+           $montantTotal == $montantTotal?>
         <p><b><?= number_format($montantTotal, 2, ',', ' ')?> €</b></p>
         <?php } ?>
       </div>
+
+        
+      
     </div>
 
     <form method="POST" action="index.php?controller=panier&task=finalisation">
-      <input type="hidden" name="prixTest" id="prix" value="<?= $montantTotal ?>">
+      <input type="hidden" name="prixFinal" id="prix" value="<?= $montantTotal ?>">
       <button class="btn btn-light mb-2 btn_commande">Terminer ma commande</button>
     </form>
 
-    
-    <form method="POST" action="index.php?controller=panier&task=validate">
-      <input type="submit"  class="btn btn-light mb-2 btn_commande" name="validate" value="Valider ma commande"></input>
-    </form>
     <form method="POST" action="index.php?controller=panier&task=delete">
       <input type="submit" class="btn btn-light btn_commande" name="delete" value="Annuler ma commande"></input>
     </form>

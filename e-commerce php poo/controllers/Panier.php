@@ -147,14 +147,28 @@ class Panier extends Controller
 
 
 
-    public function validate()
-    {
-        
-        
-        if(isset($_POST['validate']) )
-        {
+   
 
-            
+        
+    
+
+    public function finalisation()
+    {
+        if(isset($_POST['prixFinal']) && !empty($_POST['prixFinal']))
+        {
+            require_once('/Applications/MAMP/htdocs/GitHub/Ecommerce-php-poo/vendor/autoload.php');
+
+            $prix= $_POST['prixFinal'];
+
+            //instanciation Stripe
+            \Stripe\Stripe::setApiKey('sk_test_51KHV5GAHhzIZdHyZaH9PmrBuPtOZJj0IqfgCN3wEDdZ6mwmCXIB80UvrN0D7ICezaa38aRtYQFTDaq6aZGlNPtEJ00FoXsgowS');
+
+            $intention = \Stripe\PaymentIntent::create([
+                'amount' => $prix*100,
+                'currency' => 'eur'
+                
+            ]);
+             
             $montantTotal = $this->montantTotal();
 
             if($montantTotal < 99){
@@ -180,32 +194,6 @@ class Panier extends Controller
                 $this->model->detail_commande($id_commande, $id_article, $quantiteParProduit, $total, $montantTotal);
             }
 
-    
-            $pageTitle = 'test page';
-            \Renderer::render('panier', compact('pageTitle', 'montantTotal', 'produits'));
-        }
-
-
-        
-    }
-
-    public function finalisation()
-    {
-        if(isset($_POST['prixTest']) && !empty($_POST['prixTest']))
-        {
-            require_once('/Applications/MAMP/htdocs/GitHub/Ecommerce-php-poo/vendor/autoload.php');
-
-            $prix= $_POST['prixTest'];
-
-            //instanciation Stripe
-            \Stripe\Stripe::setApiKey('sk_test_51KHV5GAHhzIZdHyZaH9PmrBuPtOZJj0IqfgCN3wEDdZ6mwmCXIB80UvrN0D7ICezaa38aRtYQFTDaq6aZGlNPtEJ00FoXsgowS');
-
-            $intention = \Stripe\PaymentIntent::create([
-                'amount' => $prix*100,
-                'currency' => 'eur'
-                
-            ]);
-
 
             $pageTitle = 'Terminer ma commande';
             \Renderer::render('finalisation', compact('pageTitle','intention'));
@@ -221,31 +209,6 @@ class Panier extends Controller
 
 
 
-    public function validPaiement()
-    {
-        
-        
-        if(isset($_POST['validateStripe']) && !empty($_POST['montantStripe']))
-        {
-            
-
-           
-
-           
-
-            
-           
-        }else{
-            \Http::redirect('index.php');
-        }
-
-
-
-
-        $pageTitle = 'test page';
-        \Renderer::render('finalisation', compact('pageTitle', 'intention'));
-    }
-    
 
 
 

@@ -183,7 +183,7 @@
                 <p style="font-size: 12px; color:grey">Livraison</p>
             </div>
             <div>
-                <?php if($montantTotal > 99){?>
+                <?php if($montantTotal >= 99){?>
                 <p style="font-size: 12px">Gratuit</p>
                 <?php } else if ($montantTotal < 99) {?>
                 <p style="font-size: 12px">12,99 €</p>
@@ -196,26 +196,22 @@
                 <p><b>Total de la commande :  </b></p>
             </div>
             <div>
-                <?php $montantTotalAvecLivraison = $montantTotal + 12.99;
-                if ($montantTotal <= 12.99) {?>
+                <?php 
+                if ($montantTotal == 0) {?>
                 <p><b>0,00 €</b></p>
-                <?php }else if($montantTotal <= 99 && $montantTotal > 12.99){ ?>
-                <p><b><?= number_format($montantTotalAvecLivraison, 2, ',', ' ')?> €</b></p>
+                <?php }else if($montantTotal < 99){ ?>
+                <p><b><?= number_format($montantTotal += 12.99, 2, ',', ' ')?> €</b></p>
                 <?php }else if($montantTotal >= 99){ ?>
                 <p><b><?= number_format($montantTotal, 2, ',', ' ')?> €</b></p>
                 <?php } ?>
            </div>
         </div>
 
-        <?php  if($montantTotal < 99){
-                $montantTotal += 12.99;
-            }else if($montantTotal >= 99){
-                $montantTotal = $montantTotal;
-            }?>
+        
 
-        <form method="POST">
+        <form method="POST" >
             <button class="btn btn-light mb-2 btn_commande" id="card-button" type="button" data-secret="<?= $intention['client_secret'] ?>">Procéder au paiement</button>
-
+            
         </form>      
     </div>
 </div>

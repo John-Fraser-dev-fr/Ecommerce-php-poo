@@ -54,6 +54,9 @@ window.onload = () => {
     var card = elements.create("card")
     card.mount("#card-elements")
 
+    var goodAlert = "<?php \Alert::success('Bien joué');?>"
+    var badAlert = "<div class='alert alert-dismissible alert-success'><button type='button' class='btn-close' data-bs-dismiss='alert'></button><p>coucou</p></div>"
+    
 
     //Gestion de la saisie
     card.addEventListener("change", (event) => {
@@ -79,7 +82,10 @@ window.onload = () => {
             if(result.error){
                 document.getElementById("errors").innerText = result.error.message
             }else{
-                document.location.href = redirect
+                
+                alert('Votre paiement a bien été effectué !')
+                
+                
             }
         })
     })

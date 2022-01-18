@@ -20,6 +20,7 @@
 <body>
 
 
+
   <nav class="navbar navbar-expand-lg navbar-dark " id="navbar">
     <div class="container-fluid">
       <a class="navbar-brand" href="index.php"><img class="logo_light" src="assets/image_produits/logo.png" alt="logo" style="height: 40px; width: auto;">  </a>
@@ -249,6 +250,10 @@
 
   
 </nav>
+
+
+
+
 
 
 
