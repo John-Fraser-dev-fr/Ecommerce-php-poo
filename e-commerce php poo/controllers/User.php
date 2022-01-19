@@ -30,7 +30,7 @@ class User extends Controller
                 {
                     $password = password_hash($password,PASSWORD_DEFAULT);
                     $this->model->inscription($nom,$prenom,$email,$password);
-		            \Http::redirect("index.php?controller=user&task=connexion");
+		            \Http::redirect("index.php");
                 }
 	        }
 	        else{}
@@ -50,7 +50,6 @@ class User extends Controller
 
 	        if (!empty(['email','password']))
 	        {
-                
 		        $_POST=array_map('htmlspecialchars',$_POST);
 		        $_POST=array_map('trim',$_POST);
 		        extract($_POST,EXTR_SKIP);
@@ -62,27 +61,46 @@ class User extends Controller
                 else
                 {
                     $this->model->connexion($email,$password);
-                    
-                }
-                
-		       
-                
+                }    
 	        }
-            
         }
 
-       
-        
-
-
         \Http::redirect("index.php");
-        
-
-     
-
-        
-
+    
     }
+
+
+    public function connexionFinalisation()
+    {
+       
+
+        if (isset($_POST['login']))
+        {
+
+	        if (!empty(['email','password']))
+	        {
+		        $_POST=array_map('htmlspecialchars',$_POST);
+		        $_POST=array_map('trim',$_POST);
+		        extract($_POST,EXTR_SKIP);
+
+                if (!$email|| !$password) 
+                {
+                    
+                }
+                else
+                {
+                    $this->model->connexion($email,$password);
+                }    
+	        }
+        }
+
+        \Http::redirect("index.php?controller=panier&task=show");
+    
+    }
+
+
+
+    
 
     
     public function deconnexion()

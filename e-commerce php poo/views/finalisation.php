@@ -17,7 +17,7 @@
 
         <div class="container client col-5">
             <h4>Déjà client</h4>      
-            <form method="POST" action="index.php?controller=user&task=connexion">
+            <form method="POST" action="index.php?controller=user&task=connexionFinalisation">
                 <div class="form-group">
                     <label >Email</label>
                     <input type="email" class="form-control" name="email">
@@ -65,19 +65,19 @@
                         <form method="POST" >
                             <div class="form-group">
                                 <label>Nom</label>
-                                <input type="text" class="form_finalisation form-control" value="<?php echo $_SESSION['nom'];?>" name="nom" >
+                                <input type="text" class="form_finalisation form-control" value="<?php echo $_SESSION['nom'];?>" name="nom" required>
                             </div>
                             <div class="form-group">
                                 <label>Prénom</label>
-                                <input type="text" class="form_finalisation form-control" value="<?php echo $_SESSION['prenom'];?>" name="prenom">
+                                <input type="text" class="form_finalisation form-control" value="<?php echo $_SESSION['prenom'];?>" name="prenom" required>
                             </div>
                             <div class="form-group">
                                 <label >Email </label>
-                                <input type="email" class="form_finalisation form-control" value="<?php echo $_SESSION['email'];?>" name="email">
+                                <input type="email" class="form_finalisation form-control" value="<?php echo $_SESSION['email'];?>" name="email" required>
                             </div>
-                            <div class="d-grid gap-2" style="text-align: -webkit-center;">
+                            <div class="d-grid gap-2" style="justify-content: center;">
                                 <button type="submit" class="btn  btn-primary">Enregistrer</button>
-                                <a href="index.php?controller=user&task=finalisation" ><button class="btn  btn-primary" type="button">Annuler</button></a>
+                                <button class="btn btn-primary btn-accordeon-annuler accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne" >Annuler</button>
                             </div>
                         </form>
                     </div>
@@ -89,7 +89,7 @@
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="display:grid">
                     <h5 class="accordion-header" id="headingTwo">Adresse de livraison</h5><br>
                     <p class="info_accordeon"><?php echo $_SESSION['prenom'];?> <?php echo $_SESSION['nom'];?></p>
-                    <p class="info_accordeon"><?php echo $_SESSION['numero_rue'];?>, <?php echo $_SESSION['rue'];?></p>
+                    <p class="info_accordeon"><?php echo $_SESSION['numero_rue'];?> <?php echo $_SESSION['rue'];?></p>
                     <p class="info_accordeon"><?php echo $_SESSION['code_postal'];?> <?php echo $_SESSION['ville'];?></p>
                     <p class="info_accordeon"><?php echo $_SESSION['pays'];?></p>
                 </button>
@@ -98,27 +98,27 @@
                     <form method="POST" >
                             <div class="form-group">
                                 <label>Numéro</label>
-                                <input type="text" class="form_finalisation form-control" value="<?php echo $_SESSION['numero_rue'];?>" name="numero_rue" >
+                                <input type="text" class="form_finalisation form-control" value="<?php echo $_SESSION['numero_rue'];?>" name="numero_rue" required>
                             </div>
                             <div class="form-group">
                                 <label>Rue</label>
-                                <input type="text" class="form_finalisation form-control" value="<?php echo $_SESSION['rue'];?>" name="rue">
+                                <input type="text" class="form_finalisation form-control" value="<?php echo $_SESSION['rue'];?>" name="rue" required>
                             </div>
                             <div class="form-group">
                                 <label >Code postal</label>
-                                <input type="email" class="form_finalisation form-control" value="<?php echo $_SESSION['code_postal'];?>" name="code_postal">
+                                <input type="email" class="form_finalisation form-control" value="<?php echo $_SESSION['code_postal'];?>" name="code_postal" required>
                             </div>
                             <div class="form-group">
                                 <label >Ville</label>
-                                <input type="email" class="form_finalisation form-control" value="<?php echo $_SESSION['ville'];?>" name="ville">
+                                <input type="email" class="form_finalisation form-control" value="<?php echo $_SESSION['ville'];?>" name="ville" required>
                             </div>
                             <div class="form-group">
                                 <label >Pays</label>
-                                <input type="email" class="form_finalisation form-control" value="<?php echo $_SESSION['pays'];?>" name="pays">
+                                <input type="email" class="form_finalisation form-control" value="<?php echo $_SESSION['pays'];?>" name="pays" required>
                             </div>
-                            <div class="d-grid gap-2" style="text-align: -webkit-center;">
+                            <div class="d-grid gap-2" style="justify-content: center;">
                                 <button type="submit" class="btn  btn-primary">Enregistrer</button>
-                                <a href="index.php?controller=user&task=finalisation" ><button class="btn  btn-primary" type="button">Annuler</button></a>
+                                <button class="btn btn-primary btn-accordeon-annuler accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" >Annuler</button>
                             </div>
                         </form>
                     </div>

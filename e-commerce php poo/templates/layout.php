@@ -193,7 +193,7 @@
                   </div>
               
                   <div class="d-grid gap-2 mt-2">
-              <a href="#" ><button class="btn-pop" type="button" >Confirmer la commande</button></a>
+              
               <a href="index.php?controller=panier&task=show" ><button class="btn-pop" type="button" >Panier</button></a>
              
 </div>
@@ -215,11 +215,12 @@
       <form method="POST" action="index.php?controller=user&task=connexion">
         <div class="form-group">
           <label >Email</label>
-          <input type="email" class="form-control" name="email">
+          <input type="email" class="form-control" name="email" required>
         </div>
+        <div id="errors_form"></div>
         <div class="form-group">
           <label for="exampleInputPassword1">Mot de passe</label>
-          <input type="password" class="form-control" name="password" >
+          <input type="password" class="form-control" name="password" required>
         </div>
         <button type="submit" class="btn btn-primary mt-1" name="login">Connexion</button>
       </form>

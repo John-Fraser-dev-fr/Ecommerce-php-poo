@@ -14,6 +14,7 @@ class User extends Model
 		            'prenom'=>$prenom,
 			        'email'=>$email,
 				    'password'=>$password]);
+        
     }
 
 

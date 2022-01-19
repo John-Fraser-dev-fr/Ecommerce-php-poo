@@ -153,6 +153,7 @@ class Panier extends Controller
 
     public function finalisation()
     {
+        if(isset($_SESSION['id'])){
         if(isset($_POST['prixFinal']) && !empty($_POST['prixFinal']))
         {
             require_once('/Applications/MAMP/htdocs/GitHub/Ecommerce-php-poo/vendor/autoload.php');
@@ -198,6 +199,12 @@ class Panier extends Controller
             \Renderer::render('finalisation', compact('pageTitle','intention'));
 
         }
+
+    }else {
+        $pageTitle = 'Terminer ma commande';
+        \Renderer::render('finalisation', compact('pageTitle'));
+
+    }
         
    
      
