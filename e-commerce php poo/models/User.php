@@ -37,7 +37,10 @@ class User extends Model
             $_SESSION['code_postal']=$user['code_postal'];
             $_SESSION['ville']=$user['ville'];
             $_SESSION['pays']=$user['pays'];
+
+            
 	    }
+        
 	   
     }
 

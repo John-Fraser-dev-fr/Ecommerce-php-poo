@@ -10,6 +10,8 @@
 
     <p>Votre panier est vide</p>
 
+    <a href="index.php?controller=article&task=index"> <button class="btn mt-5" type="button">Retournez à l'accueil</button></a>
+
     <?php else : 
     $total ='0';
     $montantTotal = '0';

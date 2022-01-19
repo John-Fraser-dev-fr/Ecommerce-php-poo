@@ -1,4 +1,8 @@
 
+
+
+
+
 <div class="mt-5 mb-5">
     <h2 style="text-align:center">Terminer ma commande</h2>
 </div>

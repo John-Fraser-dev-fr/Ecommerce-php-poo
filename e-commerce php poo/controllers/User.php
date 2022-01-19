@@ -2,12 +2,13 @@
 
 namespace Controllers;
 
-
+use Alert;
 
 class User extends Controller
 {
 
    protected $modelName = \Models\User::class;
+   
 
 
     public function inscription()
@@ -49,25 +50,42 @@ class User extends Controller
 
 	        if (!empty(['email','password']))
 	        {
+                
 		        $_POST=array_map('htmlspecialchars',$_POST);
 		        $_POST=array_map('trim',$_POST);
 		        extract($_POST,EXTR_SKIP);
 
-		        $this->model->connexion($email,$password);
-                \Http::redirect("index.php");
+                if (!$email|| !$password) 
+                {
+                    
+                }
+                else
+                {
+                    $this->model->connexion($email,$password);
+                    
+                }
+                
+		       
+                
 	        }
-	        
-            
-
             
         }
+
+       
+        
+
+
+        \Http::redirect("index.php");
+        
+
+     
 
         
 
     }
 
     
-    public function deconnexion(): void
+    public function deconnexion()
     {
 
         session_destroy();

@@ -1,5 +1,6 @@
 <?php 
 
+
 class Alert
 {
     public static function success($msg)

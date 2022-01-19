@@ -35,6 +35,14 @@ $(document).ready(function() {
   
 });
 
+/************ Modal ***************** */
+
+function ModalFinalPaiement(text,text2) {
+    document.getElementById("textModalFinalPaiement").innerHTML = text;
+    document.getElementById("textModalFinalPaiement2").innerHTML = text2;
+    $('#modalFinalPaiement').modal('show');
+};
+
 
 
 /******* Paiment Stripe ********/
@@ -54,8 +62,11 @@ window.onload = () => {
     var card = elements.create("card")
     card.mount("#card-elements")
 
-    var goodAlert = "<?php \Alert::success('Bien joué');?>"
-    var badAlert = "<div class='alert alert-dismissible alert-success'><button type='button' class='btn-close' data-bs-dismiss='alert'></button><p>coucou</p></div>"
+   
+
+    
+
+   
     
 
     //Gestion de la saisie
@@ -83,7 +94,11 @@ window.onload = () => {
                 document.getElementById("errors").innerText = result.error.message
             }else{
                 
-                alert('Votre paiement a bien été effectué !')
+
+                ModalFinalPaiement("Votre paiement a été validé !", "Merci pour votre commande");
+                   
+               
+                
                 
                 
             }

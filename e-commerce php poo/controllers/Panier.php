@@ -86,8 +86,7 @@ class Panier extends Controller
 
             unset($_SESSION['panier']); 
 
-            $pageTitle = 'panier';
-            \Renderer::render('panier', compact('pageTitle'));
+            \Http::redirect("index.php");
        
         }
     }

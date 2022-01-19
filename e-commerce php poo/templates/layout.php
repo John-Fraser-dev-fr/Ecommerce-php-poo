@@ -253,12 +253,32 @@
 
 
 
+<div class="modal fade" id="modalFinalPaiement" data-bs-backdrop="static" role="dialog">
+        <div class="modal-dialog modal-fullscreen-sm-down">
+
+            <!-- Modal erreur-->
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div id="textModalFinalPaiement" data-nomsecteur="" data-idajout="">
+                    </div>
+                    <div id="textModalFinalPaiement2" class="mt-3" data-nomsecteur="" data-idajout="">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                <form method="POST" action="index.php?controller=panier&task=delete">
+                    <input type="submit" class="btn btn-light btn_commande" name="delete" value="Terminer"></input>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 
 
 
  <?= $pageContent ?>
+ 
 
 
 
