@@ -35,13 +35,12 @@ class Admin extends Model
         return $articles;
     }
 
-    public function addProduct($marque, $modele, $prix, $stock)
+    public function addProduct($marque, $modele, $prix)
     {
-	    $q = $this->pdo->prepare('INSERT INTO articles(marque, modele, prix, stock) VALUES (:marque,:modele,:prix,:stock)');
+	    $q = $this->pdo->prepare('INSERT INTO articles(marque, modele, prix) VALUES (:marque,:modele,:prix)');
 	    $q->execute(['marque'=>$marque,
 		            'modele'=>$modele,
-                    'prix'=>$prix,
-                    'stock'=>$stock]);
+                    'prix'=>$prix]);
     }
 
 
