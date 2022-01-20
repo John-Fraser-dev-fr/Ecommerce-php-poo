@@ -11,19 +11,19 @@
     <ul>
       <li>
         <a href="#" class="active" onclick="show('Page1')">
-          <span class="icon"><i class="fas fa-home"></i></span>
+          <span class="icon"><i class="fas fa-tachometer-alt"></i></span>
           <span class="item">Dashboard</span>
         </a>
       </li>
       <li>
         <a href="#" onclick="show('Page2');">
-          <span class="icon"><i class="fas fa-desktop"></i></span>
+          <span class="icon"><i class="fas fa-box"></i></i></span>
           <span class="item">Commandes</span>
         </a>
       </li>
       <li>
         <a href="#" onclick="show('Page3');">
-          <span class="icon"><i class="fas fa-user-friends"></i></span>
+          <span class="icon"><i class="fas fa-th"></i></span>
           <span class="item">Produits</span>
         </a>
       </li>
@@ -32,41 +32,27 @@
 
 
 
-  <div class="container col-10" style="margin-left: 16.7%;padding-top: 5%;padding-left: 5%;">
+  <div class="container col-10" style="margin-left: 16.7%;padding-top: 10%;padding-left: 5%;">
 
     <!-- PAGE 1 (dashboard) -->
     <div id="Page1" class="page">
       <div class="cards-list">
-        <div class="cardAdmin 1" style="background-color: rgb(254, 228, 203);">
-          <div class="card_image">
-            
-          </div>
-          <div class="card_title title-white">
-            <p>Card Title</p>
-          </div>
-        </div>
-        <div class="cardAdmin 2" style="background-color: rgb(200, 247, 220);">
-          <div class="card_image">
-            
-          </div>
-          <div class="card_title title-white">
-            <p>Card Title</p>
-          </div>
-        </div>
-        <div class="cardAdmin 3" style="background-color: rgb(219, 246, 253);">
-          <div class="card_image">
-            
-          </div>
-          <div class="card_title">
-            <p>Card Title</p>
-          </div>
-        </div>
-        <div class="cardAdmin 4" style="background-color: rgb(255, 211, 226);">
-          <div class="card_image">
-            
-          </div>
+        <div class="cardAdmin 1" style="background-color: rgb(78, 158, 188);">
           <div class="card_title title-black">
-            <p>Card Title</p>
+            <p>Commande en cours</p>
+            <p style="font-size: xxx-large;margin-top: revert;"><?= $commandeEnCours ?></p>
+          </div>
+        </div>
+        <div class="cardAdmin 2" style="background-color: #252526">
+          <div class="card_title" style="color:rgb(78, 158, 188);">
+            <p>Commande terminées</p>
+            <p style="font-size: xxx-large;margin-top: revert;"><?= $commandeTermine ?></p>
+          </div>
+        </div>
+        <div class="cardAdmin 3" style="background-color: rgb(78, 158, 188);">
+          <div class="card_title">
+            <p>Nombre d'utilisateurs</p>
+            <p style="font-size: xxx-large;margin-top: revert;"><?= $nbUser?></p>
           </div>
         </div>
       </div>

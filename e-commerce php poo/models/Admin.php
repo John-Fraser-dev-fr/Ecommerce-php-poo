@@ -51,6 +51,35 @@ class Admin extends Model
     }
 
 
+
+    public function commandeEnCours()
+    {
+        
+        $r = $this->pdo->query('SELECT COUNT(id_commande) FROM commande WHERE status != 4');
+        $commandeEnCours = $r->fetchColumn();
+
+        return $commandeEnCours;
+    }
+
+
+    public function commandeTermine()
+    {
+        
+        $r = $this->pdo->query('SELECT COUNT(id_commande) FROM commande WHERE status = 4');
+        $commandeTermine = $r->fetchColumn();
+
+        return $commandeTermine;
+    }
+
+    public function nbUser()
+    {
+        
+        $r = $this->pdo->query('SELECT COUNT(id_user) FROM users WHERE role = 0');
+        $nbUser = $r->fetchColumn();
+
+        return $nbUser;
+    }
+
     
     
     
