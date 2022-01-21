@@ -105,7 +105,7 @@
               echo "<td>" . number_format($commande['montant'], 2, ',','') . " €</td>";
               echo "<td>" . $status . " </td>";
               echo "<td><button type='button' style='display: contents' data-bs-toggle='modal' data-bs-target='#Modal". $commande['id_commande'] ."'><i class='fas fa-pen'></i></button></td>";  
-              echo "<td><button type='button' style='display: contents' data-bs-toggle='modal' data-bs-target='#ModalInfo". $commande['id_commande'] ."'><i class='fas fa-info-circle'></i></button></td>";              
+              echo "<td><button type='button' style='display: contents' data-bs-toggle='modal' data-bs-target='#ModalInformation". $commande['id_commande'] ."'><i class='fas fa-info-circle'></i></button></td>"; 
               echo "</td>";
     
               echo'<div class="modal fade" id="Modal'. $commande['id_commande'] .'" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -136,21 +136,7 @@
                 </div>
               </div>';
 
-              echo'<div class="modal fade" id="ModalInfo'. $commande['id_commande'] .'" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title">Test</h5>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                  <div class="modal-body">
-                    <div class=" mb-5">
-                      <h5>Modifier l\'état de la commande</h5>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>';
+              
 
               
             }else{}
@@ -189,10 +175,10 @@
               echo "<td>" . $commande['date'] . "</td>";
               echo "<td>" . number_format($commande['montant'], 2, ',','') . " €</td>";
               echo "<td>" . $status . " </td>";
-              echo "<td><button type='button' style='display: contents' data-bs-toggle='modal' data-bs-target='#Modal". $commande['id_commande'] ."'><i class='fas fa-pen'></i></button></td>";        
+              echo "<td><button type='button' style='display: contents' data-bs-toggle='modal' data-bs-target='#Modal2". $commande['id_commande'] ."'><i class='fas fa-pen'></i></button></td>";        
               echo "</td>";
     
-              echo'<div class="modal fade" id="Modal'. $commande['id_commande'] .'" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              echo'<div class="modal fade" id="Modal2'. $commande['id_commande'] .'" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
                   <div class="modal-header">
@@ -219,6 +205,7 @@
                   </div>
                 </div>
               </div>';
+              
           }
           else{}
           
@@ -230,6 +217,41 @@
         </tbody>
       </table>
 
+      <?php foreach ($commandes as $commande) : ?>
+        <?php foreach ($infoLivraisons as $infoLivraison) : ?>
+   
+      <!-- modal informations-->
+      <div class="modal fade" id="ModalInformation<?= $commande['id_commande']?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    
+                    <h5 class="modal-title" id="exampleModalLabel"><?= $commande['id_commande']?></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <div>
+                      <p>Adresse : </p>
+                     
+                    </div>
+                    <div>
+                      <p>Articles :</p>
+                      <p><?= $infoLivraison['article_par']?> </p>
+                      <p><?= $infoLivraison['id_user']?></p>
+                    </div>
+
+                   
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <?php endforeach ?>
+          <?php endforeach ?>
+         
     </div>
 
     <!-- PAGE 3 (produits) -->

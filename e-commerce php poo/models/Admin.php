@@ -80,6 +80,14 @@ class Admin extends Model
         return $nbUser;
     }
 
+    public function infoLivraison()
+    {
+        $r = $this->pdo->query('SELECT users.id_user, GROUP_CONCAT(articles.id_article) AS article_par FROM articles, commande, details_commande, users WHERE details_commande.id_article = articles.id_article AND commande.id_user = users.id_user AND commande.id_commande = details_commande.id_commande GROUP BY users.id_user');
+        $infoLivraisons = $r->fetchAll();
+
+        return $infoLivraisons;
+    }
+
     
     
     

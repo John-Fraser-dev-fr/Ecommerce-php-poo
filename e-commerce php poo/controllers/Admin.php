@@ -18,12 +18,13 @@ class Admin extends Controller
          $commandeEnCours=$this->model->commandeEnCours();
          $commandeTermine=$this->model->commandeTermine();
          $nbUser=$this->model->nbUser();
+         $infoLivraisons=$this->model->infoLivraison();
 
             
        
 
          $pageTitle= 'Administrateur';
-         \Renderer::render('admin', compact('pageTitle', 'commandes', 'articles', 'commandeEnCours', 'commandeTermine', 'nbUser' ));
+         \Renderer::render('admin', compact('pageTitle', 'commandes', 'articles', 'commandeEnCours', 'commandeTermine', 'nbUser', 'infoLivraisons' ));
         }else{}
        
     }
