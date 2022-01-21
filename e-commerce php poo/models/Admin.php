@@ -55,7 +55,7 @@ class Admin extends Model
     public function commandeEnCours()
     {
         
-        $r = $this->pdo->query('SELECT COUNT(id_commande) FROM commande WHERE status != 4');
+        $r = $this->pdo->query('SELECT COUNT(id_commande) FROM commande WHERE status < 3');
         $commandeEnCours = $r->fetchColumn();
 
         return $commandeEnCours;
@@ -65,7 +65,7 @@ class Admin extends Model
     public function commandeTermine()
     {
         
-        $r = $this->pdo->query('SELECT COUNT(id_commande) FROM commande WHERE status = 4');
+        $r = $this->pdo->query('SELECT COUNT(id_commande) FROM commande WHERE status = 3');
         $commandeTermine = $r->fetchColumn();
 
         return $commandeTermine;

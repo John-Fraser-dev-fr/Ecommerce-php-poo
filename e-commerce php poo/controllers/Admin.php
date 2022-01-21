@@ -11,19 +11,20 @@ class Admin extends Controller
 
     public function show()
     {
-        
+        if($_SESSION['role'] == 1) {
 
-        $commandes = $this->model->CommandeClient();
-        $articles=$this->model->findAll();
-        $commandeEnCours=$this->model->commandeEnCours();
-        $commandeTermine=$this->model->commandeTermine();
-        $nbUser=$this->model->nbUser();
+         $commandes = $this->model->CommandeClient();
+         $articles=$this->model->findAll();
+         $commandeEnCours=$this->model->commandeEnCours();
+         $commandeTermine=$this->model->commandeTermine();
+         $nbUser=$this->model->nbUser();
 
             
        
 
-        $pageTitle= 'Administrateur';
-        \Renderer::render('admin', compact('pageTitle', 'commandes', 'articles', 'commandeEnCours', 'commandeTermine', 'nbUser' ));
+         $pageTitle= 'Administrateur';
+         \Renderer::render('admin', compact('pageTitle', 'commandes', 'articles', 'commandeEnCours', 'commandeTermine', 'nbUser' ));
+        }else{}
        
     }
 

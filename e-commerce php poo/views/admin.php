@@ -38,19 +38,19 @@
     <div id="Page1" class="page">
       <div class="cards-list">
         <div class="cardAdmin 1" style="background-color: rgb(78, 158, 188);">
-          <div class="card_title title-black">
+          <div class="card_title text-white">
             <p>Commande en cours</p>
             <p style="font-size: xxx-large;margin-top: revert;"><?= $commandeEnCours ?></p>
           </div>
         </div>
         <div class="cardAdmin 2" style="background-color: #252526">
-          <div class="card_title" style="color:rgb(78, 158, 188);">
+          <div class="card_title text-white" style="color:rgb(78, 158, 188);">
             <p>Commande terminées</p>
             <p style="font-size: xxx-large;margin-top: revert;"><?= $commandeTermine ?></p>
           </div>
         </div>
         <div class="cardAdmin 3" style="background-color: rgb(78, 158, 188);">
-          <div class="card_title">
+          <div class="card_title text-white">
             <p>Nombre d'utilisateurs</p>
             <p style="font-size: xxx-large;margin-top: revert;"><?= $nbUser?></p>
           </div>
@@ -60,88 +60,176 @@
 
     <!-- PAGE 2 (commande)-->
     <div id="Page2" class="page" style="display:none">
-      <h4 id="titre">Voici les commandes en cours :</h4>
-      <!-- tableau commande -->
-      <table class="table table-hover">
+      <h4 class="mb-3">Commandes en cours :</h4>
+      <!-- tableau commande en cours -->
+      <table class="table table-hover mb-5">
         <thead>
-	        <tr>
-		        <th scope="col">Nom</th>
-            <th scope="col">Prénom</th>
-            <th scope="col">Commande N°</th>
-		        <th scope="col">Total</th>
-            <th scope="col">Status</th>
-            <th scope="col">Date</th>
-            <th scope="col"></th>
+	        <tr style="background-color: rgb(78, 158, 188); text-align: center">
+		        <th class="text-white" scope="col">Commande n°</th>
+            <th class="text-white" scope="col">Client</th>
+		        <th class="text-white" scope="col">Date</th>
+            <th class="text-white" scope="col">Total</th>
+            <th class="text-white" scope="col">Etat</th>
+            <th class="text-white" scope="col">Action</th>
+            <th class="text-white" scope="col">Infos</th>
           </tr>
         </thead>
         <tbody>
 
 	      <?php foreach ($commandes as $commande) : 
-          $status_1 = '';
-          $status_2 = '';
-          $status_3 = '';
-          $status_4 = '';
-
-          if ($commande['status'] == 1)
+          $status = '';
+          
+          if ($commande['status'] == 0)
           {
-            $status_1 = 'En attente de validation';
+            $status = "<p style='color:red'>En attente de validation</p>";
+          }
+          else if ($commande['status'] == 1)
+          {
+            $status = "<p style='color:orange'>Validée";
           }
           else if ($commande['status'] == 2)
           {
-            $status_2 = 'Validée';
+            $status = "<p style='color:green'>En préparation";
           }
           else if ($commande['status'] == 3)
           {
-            $status_3 = 'En préparation';
-          }
-          else if ($commande['status'] == 4)
-          {
-            $status_4 = 'Expédiée';
+            $status = '<p>Expédiée</p>';
           }
 
-          echo "<tr>";
-            echo "<td>" . $commande['nom'] . "</ td>";
-            echo "<td>" . $commande['prenom']  . "</ td>";
-            echo "<td>" . $commande['id_commande'] . "</td>";
-            echo "<td>" . number_format($commande['montant'], 2, ',','') . " €</td>";
-            echo '<td>
-              <form method="POST" action="index.php?controller=admin&task=changeStatus">
-                <select   name="changementStatus">
-                  <option value="">' . $status_1 .  $status_2 . $status_3 . $status_4 . '</option>
-                  <option value="1">En attente de validation</option>
-                  <option value="2">Validée</option>
-                  <option value="3">En préparation</option>
-                  <option value="4">Expédiée</option>
-                </select>
-                <button type="submit" class="btn btn-primary" name="status">ok</button>
-                <input type="hidden" class="btn btn-primary" name="id_commande" value="'. $commande['id_commande'] .'"></input>
-              </form> 
-            </ td>';
-            echo "<td>" . $commande['date'] . "</td>";
-            echo "<td><button type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#Modal". $commande['id_commande'] ."'>+ d'infos</button></td>";        
-          echo "</tr>";
+          if ($commande['status'] < 3)
+          {
+            echo "<tr style='text-align:center'>";
+              echo "<th scope='row'>" . $commande['id_commande']. "</ th>";
+              echo "<th scope='row'>" . $commande['nom'].' '.$commande['prenom']. "</ th>";
+              echo "<td>" . $commande['date'] . "</td>";
+              echo "<td>" . number_format($commande['montant'], 2, ',','') . " €</td>";
+              echo "<td>" . $status . " </td>";
+              echo "<td><button type='button' style='display: contents' data-bs-toggle='modal' data-bs-target='#Modal". $commande['id_commande'] ."'><i class='fas fa-pen'></i></button></td>";  
+              echo "<td><button type='button' style='display: contents' data-bs-toggle='modal' data-bs-target='#ModalInfo". $commande['id_commande'] ."'><i class='fas fa-info-circle'></i></button></td>";              
+              echo "</td>";
     
-          echo'<div class="modal fade" id="Modal'. $commande['id_commande'] .'" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Commande N°'. $commande['id_commande'] .'</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              echo'<div class="modal fade" id="Modal'. $commande['id_commande'] .'" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Commande N°'. $commande['id_commande'] .'</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                  <div class="modal-body">
+                    <div class=" mb-5">
+                      <h5>Modifier l\'état de la commande</h5>
+                    </div>
+                    <form method="POST" action="index.php?controller=admin&task=changeStatus">
+                      <select class="form-select"   name="changementStatus">
+                        <option value="">' . $status . '</option>
+                        <option value="0">En attente de validation</option>
+                        <option value="1">Validée</option>
+                        <option value="2">En préparation</option>
+                        <option value="3">Expédiée</option>
+                      </select>
+                      <div>
+                        <button type="submit" class="btn btn-primary" name="status" style="width: 100%; margin-top: 1rem;">Valider</button>
+                        <input type="hidden" class="btn btn-primary" name="id_commande" value="'. $commande['id_commande'] .'"></input>
+                      </div>
+                    </form> 
+                  </div>
                 </div>
-                <div class="modal-body">
-                  <u><p>Adresse de livraison :</p></u>
-                  <p>'. $commande['nom'].' '.$commande['prenom'].'</p>
-                  <p>'. $commande['numero_rue'].' '.$commande['rue'].'</p>
-                  <p>'. $commande['code_postal'].' '.$commande['ville'].', '. $commande['pays'].' </p>
+              </div>';
+
+              echo'<div class="modal fade" id="ModalInfo'. $commande['id_commande'] .'" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Test</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                  <div class="modal-body">
+                    <div class=" mb-5">
+                      <h5>Modifier l\'état de la commande</h5>
+                    </div>
+                    
+                  </div>
                 </div>
-              </div>
-            </div>
-          </div>';
+              </div>';
+
+              
+            }else{}
 
         endforeach ?>
 
         </tbody>
       </table>
+
+      <!--tableau commande terminées -->
+      <h4 class="mt-5 mb-3">Commandes terminées :</h4>
+      
+      <table class="table table-hover">
+        <thead>
+	        <tr style="background-color: rgb(78, 158, 188); text-align: center">
+		        <th class="text-white" scope="col">Commande n°</th>
+            <th class="text-white" scope="col">Client</th>
+		        <th class="text-white" scope="col">Date</th>
+            <th class="text-white" scope="col">Total</th>
+            <th class="text-white" scope="col">Etat</th>
+            <th class="text-white" scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+
+	      <?php foreach ($commandes as $commande) : 
+          $status = '';
+        
+          if ($commande['status'] == 3)
+          {
+            $status = '<p>Expédiée</p>';
+
+            echo "<tr style='text-align:center'>";
+              echo "<th scope='row'>" . $commande['id_commande']. "</ th>";
+              echo "<th scope='row'>" . $commande['nom'].' '.$commande['prenom']. "</ th>";
+              echo "<td>" . $commande['date'] . "</td>";
+              echo "<td>" . number_format($commande['montant'], 2, ',','') . " €</td>";
+              echo "<td>" . $status . " </td>";
+              echo "<td><button type='button' style='display: contents' data-bs-toggle='modal' data-bs-target='#Modal". $commande['id_commande'] ."'><i class='fas fa-pen'></i></button></td>";        
+              echo "</td>";
+    
+              echo'<div class="modal fade" id="Modal'. $commande['id_commande'] .'" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Commande N°'. $commande['id_commande'] .'</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <div class=" mb-5">
+                      <h5>Modifier l\'état de la commande</h5>
+                    </div>
+                    <form method="POST" action="index.php?controller=admin&task=changeStatus">
+                      <select class="form-select"   name="changementStatus">
+                        <option value="">' . $status . '</option>
+                        <option value="0">En attente de validation</option>
+                        <option value="1">Validée</option>
+                        <option value="2">En préparation</option>
+                        <option value="3">Expédiée</option>
+                      </select>
+                      <div>
+                        <button type="submit" class="btn btn-primary" name="status" style="width: 100%; margin-top: 1rem;">Valider</button>
+                        <input type="hidden" class="btn btn-primary" name="id_commande" value="'. $commande['id_commande'] .'"></input>
+                      </div>
+                    </form> 
+                  </div>
+                </div>
+              </div>';
+          }
+          else{}
+          
+       
+          
+
+        endforeach ?>
+
+        </tbody>
+      </table>
+
     </div>
 
     <!-- PAGE 3 (produits) -->
