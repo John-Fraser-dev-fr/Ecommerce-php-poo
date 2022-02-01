@@ -70,7 +70,7 @@
 		        <th class="text-white" scope="col">Date</th>
             <th class="text-white" scope="col">Total</th>
             <th class="text-white" scope="col">Etat</th>
-            <th class="text-white" scope="col">Action</th>
+            <th class="text-white" scope="col">Actions</th>
             <th class="text-white" scope="col">Infos</th>
           </tr>
         </thead>
@@ -116,11 +116,11 @@
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                   <div class="modal-body">
-                    <div class=" mb-5">
+                    <div class=" ">
                       <h5>Modifier l\'état de la commande</h5>
                     </div>
                     <form method="POST" action="index.php?controller=admin&task=changeStatus">
-                      <select class="form-select"   name="changementStatus">
+                      <select class="form-select" style="margin-top: 16px" name="changementStatus">
                         <option value="">' . $status . '</option>
                         <option value="0">En attente de validation</option>
                         <option value="1">Validée</option>
@@ -132,6 +132,17 @@
                         <input type="hidden" class="btn btn-primary" name="id_commande" value="'. $commande['id_commande'] .'"></input>
                       </div>
                     </form> 
+                  </div>
+                  <div class="modal-body" style="border-top: 1px solid #dee2e6">
+                    <div>
+                      <h5>Supprimer la commande</h5>
+                    </div>
+                    <div>
+                      <form method="POST" action="index.php?controller=admin&task=suppCommande">
+                        <button type="submit" class="btn btn-primary" name="suppCom" style="width: 100%; margin-top: 1rem;background: black">Supprimer</button>
+                        <input type="hidden" name="id_commande_supp"  value="'. $commande['id_commande'] .'"></input>
+                      </form>
+                    </div>
                   </div>
                 </div>
               </div>';
@@ -157,7 +168,8 @@
 		        <th class="text-white" scope="col">Date</th>
             <th class="text-white" scope="col">Total</th>
             <th class="text-white" scope="col">Etat</th>
-            <th class="text-white" scope="col">Action</th>
+            <th class="text-white" scope="col">Actions</th>
+            <th class="text-white" scope="col">Infos</th>
           </tr>
         </thead>
         <tbody>
@@ -175,7 +187,8 @@
               echo "<td>" . $commande['date'] . "</td>";
               echo "<td>" . number_format($commande['montant'], 2, ',','') . " €</td>";
               echo "<td>" . $status . " </td>";
-              echo "<td><button type='button' style='display: contents' data-bs-toggle='modal' data-bs-target='#Modal2". $commande['id_commande'] ."'><i class='fas fa-pen'></i></button></td>";        
+              echo "<td><button type='button' style='display: contents' data-bs-toggle='modal' data-bs-target='#Modal2". $commande['id_commande'] ."'><i class='fas fa-pen'></i></button></td>";   
+              echo "<td><button type='button' style='display: contents' data-bs-toggle='modal' data-bs-target='#ModalInformation". $commande['id_commande'] ."'><i class='fas fa-info-circle'></i></button></td>";      
               echo "</td>";
     
               echo'<div class="modal fade" id="Modal2'. $commande['id_commande'] .'" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -202,6 +215,17 @@
                         <input type="hidden" class="btn btn-primary" name="id_commande" value="'. $commande['id_commande'] .'"></input>
                       </div>
                     </form> 
+                  </div>
+                  <div class="modal-body" style="border-top: 1px solid #dee2e6">
+                    <div>
+                      <h5>Supprimer la commande</h5>
+                    </div>
+                    <div>
+                      <form method="POST" action="index.php?controller=admin&task=suppCommande">
+                        <button type="submit" class="btn btn-primary" name="suppCom" style="width: 100%; margin-top: 1rem;background: black">Supprimer</button>
+                        <input type="hidden" name="id_commande_supp"  value="'. $commande['id_commande'] .'"></input>
+                      </form>
+                    </div>
                   </div>
                 </div>
               </div>';
@@ -233,21 +257,25 @@
                     <div>
                       <p><b><u>Adresse : </u></b></p>
                       <p><?= $infoLivraison['nom']?> <?= $infoLivraison['prenom']?> </p>
-                      <p><?= $infoLivraison['numero_rue']?> <?= $infoLivraison['rue']?> </p>
+                      <p style="margin-bottom: 0"><?= $infoLivraison['numero_rue']?>, <?= $infoLivraison['rue']?> </p>
                       <p><?= $infoLivraison['code_postal']?> <?= $infoLivraison['ville']?> </p>
                      
                     </div>
 
-                    <div>
+                    <div style="margin-top: 10%">
                       <p><b><u>Articles :</u></b></p>
 
+                      
+
                       <?php $array_produits=explode( ',', $infoLivraison['articleByUser'])?>
+                      <?php $array_produits2=explode( ',', $infoLivraison['qttByArt'])?>
 
                       <?php if(count($array_produits) == 1) {?>
                         <p class="info_accordeon">1 article</p>
                       <?php }else{?>
-                        <p class="info_accordeon"><?php echo count($array_produits);?> articles</p>
+                        <p class="info_accordeon"><?php echo array_sum($array_produits2);?> articles</p>
                       <?php } ?>
+
 
                       <div class="details_commande_produits">
                         <?php for ($i=0 ;$i < count($array_produits) ; $i++){ ?>
@@ -257,7 +285,7 @@
                             </div>
                             <div class="details_commande_description">
                               <p style="line-height: 1.5;font-size: 0.6rem; text-align:center; margin-bottom: 0.2rem;"><b><?= $array_produits[$i] ?> </b></p>
-                              <p style="line-height: 1.5;font-size: 0.5rem; text-align:center">Quantité : <?= $infoLivraison['nbArtByUser'][$i]?> </p> </p>
+                              <p style="line-height: 1.5;font-size: 0.5rem; text-align:center">Quantité : <?= $array_produits2[$i]?> </p> </p>
                             </div>
                           </div>
                         <?php } ?>
@@ -338,10 +366,30 @@
               <label >Prix</label>
               <input type="number" step="0.01" class="form-control" name="prix">
             </div>
-            <button type="submit" class="btn btn-primary" name="ajoutProduit">Valider</button>
+            <button type="button" class="btn mb-3" data-bs-toggle="modal" data-bs-target="#ajout_photo">Ajouter photo</button>
+            <button type="submit" class="btn btn-primary mb-5" name="ajoutProduit">Valider</button>
           </form>
         </div>
       </div>
+
+
+       <!-- Modal modification photo-->
+    <div class="modal fade" id="ajout_photo" tabindex="-1" aria-labelledby="ajout_photo" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Ajouter photo de produit</h5>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" enctype="multipart/form-data">
+                        <input type="file" name="avatar"/>
+                        <button type="button" class="btn btn-secondary" style="margin-top:16px" data-bs-dismiss="modal">Annuler</button>
+                        <input type="submit" class="btn btn-primary" style="margin-top:16px" name="valider_photo" value="Envoyer">  
+                    </form>
+                </div>     
+            </div>
+        </div>
+    </div>
     </div>
 
   </div>

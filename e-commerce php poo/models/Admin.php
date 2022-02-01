@@ -82,15 +82,21 @@ class Admin extends Model
 
     public function infoLivraison()
     {
-        $r = $this->pdo->query('SELECT commande.id_commande, users.nom,users.prenom,users.numero_rue,users.rue,users.code_postal,users.ville,users.pays,details_commande.quantite, GROUP_CONCAT(articles.modele) AS articleByUser, COUNT(*) AS nbArtByUser
-                                FROM articles,users,commande, details_commande 
-                                WHERE commande.id_commande = details_commande.id_commande
-                                AND users.id_user = commande.id_user
-                                AND details_commande.id_article= articles.id_article
-                                GROUP BY commande.id_commande');
+        $r = $this->pdo->query('SELECT commande.id_commande, users.nom,users.prenom,users.numero_rue,users.rue,users.code_postal,users.ville,users.pays,GROUP_CONCAT(details_commande.quantite) AS qttByArt, GROUP_CONCAT(articles.modele) AS articleByUser
+        FROM articles,users,commande, details_commande 
+        WHERE commande.id_commande = details_commande.id_commande
+        AND users.id_user = commande.id_user
+        AND details_commande.id_article= articles.id_article
+        GROUP BY commande.id_commande');
         $infoLivraisons = $r->fetchAll();
 
         return $infoLivraisons;
+    }
+
+    public function suppCommande($id_commande_supp)
+    {
+        $q = $this->pdo->prepare("DELETE FROM commande WHERE id_commande =:id_commande ");
+        $q->execute(['id_commande' => $id_commande_supp]);
     }
 
     

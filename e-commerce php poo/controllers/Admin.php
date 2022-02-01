@@ -101,4 +101,17 @@ class Admin extends Controller
             \Http::redirect("index.php?controller=admin&task=show");
         }
     }
+
+
+    public function suppCommande()
+    {
+        if(isset($_POST['suppCom']) && !empty($_POST['id_commande_supp']))
+        {
+            $id_commande_supp = $_POST['id_commande_supp'];
+
+            $this->model->suppCommande($id_commande_supp);
+
+            \Http::redirect("index.php?controller=admin&task=show");
+        }
+    }
 }
