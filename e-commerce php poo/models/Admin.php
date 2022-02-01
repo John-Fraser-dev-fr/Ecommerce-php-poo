@@ -82,7 +82,12 @@ class Admin extends Model
 
     public function infoLivraison()
     {
-        $r = $this->pdo->query('SELECT users.id_user, GROUP_CONCAT(articles.id_article) AS article_par FROM articles, commande, details_commande, users WHERE details_commande.id_article = articles.id_article AND commande.id_user = users.id_user AND commande.id_commande = details_commande.id_commande GROUP BY users.id_user');
+        $r = $this->pdo->query('SELECT commande.id_commande, users.nom,users.prenom,users.numero_rue,users.rue,users.code_postal,users.ville,users.pays,details_commande.quantite, GROUP_CONCAT(articles.modele) AS articleByUser, COUNT(*) AS nbArtByUser
+                                FROM articles,users,commande, details_commande 
+                                WHERE commande.id_commande = details_commande.id_commande
+                                AND users.id_user = commande.id_user
+                                AND details_commande.id_article= articles.id_article
+                                GROUP BY commande.id_commande');
         $infoLivraisons = $r->fetchAll();
 
         return $infoLivraisons;

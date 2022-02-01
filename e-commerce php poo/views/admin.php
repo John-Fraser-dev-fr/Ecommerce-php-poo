@@ -217,40 +217,74 @@
         </tbody>
       </table>
 
-      <?php foreach ($commandes as $commande) : ?>
+     
         <?php foreach ($infoLivraisons as $infoLivraison) : ?>
    
       <!-- modal informations-->
-      <div class="modal fade" id="ModalInformation<?= $commande['id_commande']?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal fade" id="ModalInformation<?= $infoLivraison['id_commande']?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
                     
-                    <h5 class="modal-title" id="exampleModalLabel"><?= $commande['id_commande']?></h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Commande n° <?= $infoLivraison['id_commande']?></h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
                     <div>
-                      <p>Adresse : </p>
+                      <p><b><u>Adresse : </u></b></p>
+                      <p><?= $infoLivraison['nom']?> <?= $infoLivraison['prenom']?> </p>
+                      <p><?= $infoLivraison['numero_rue']?> <?= $infoLivraison['rue']?> </p>
+                      <p><?= $infoLivraison['code_postal']?> <?= $infoLivraison['ville']?> </p>
                      
                     </div>
+
                     <div>
-                      <p>Articles :</p>
-                      <p><?= $infoLivraison['article_par']?> </p>
-                      <p><?= $infoLivraison['id_user']?></p>
+                      <p><b><u>Articles :</u></b></p>
+
+                      <?php $array_produits=explode( ',', $infoLivraison['articleByUser'])?>
+
+                      <?php if(count($array_produits) == 1) {?>
+                        <p class="info_accordeon">1 article</p>
+                      <?php }else{?>
+                        <p class="info_accordeon"><?php echo count($array_produits);?> articles</p>
+                      <?php } ?>
+
+                      <div class="details_commande_produits">
+                        <?php for ($i=0 ;$i < count($array_produits) ; $i++){ ?>
+                          <div class="commande_produit">
+                            <div class="img_produit">
+                              <img src="assets/image_produits/<?= $array_produits[$i]?>.jpg" class="img-fluid" style="width:100px; height: 100px">
+                            </div>
+                            <div class="details_commande_description">
+                              <p style="line-height: 1.5;font-size: 0.6rem; text-align:center; margin-bottom: 0.2rem;"><b><?= $array_produits[$i] ?> </b></p>
+                              <p style="line-height: 1.5;font-size: 0.5rem; text-align:center">Quantité : <?= $infoLivraison['nbArtByUser'][$i]?> </p> </p>
+                            </div>
+                          </div>
+                        <?php } ?>
+                      </div>
                     </div>
 
+
+
+
+
+
+
+
+
+
+                    
+                   
+                    
+                    
                    
                   </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                  </div>
+                  
                 </div>
               </div>
             </div>
             <?php endforeach ?>
-          <?php endforeach ?>
+       
          
     </div>
 
