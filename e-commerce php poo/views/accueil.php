@@ -2,13 +2,13 @@
 <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="assets/image_produits/ban_Switch.jpeg" class="d-block w-100" alt="nintendo_switch">
+      <img src="assets/image_banniere/ban_Switch.jpeg" class="d-block w-100" alt="nintendo_switch">
       <div class="carousel-caption d-none d-md-block" style="left: 10%; text-align: left;">
       <a class="btn btn-info" href="index.php?controller=article&task=show&id=7">Découvrez maintenant</a>
       </div>
     </div>
     <div class="carousel-item">
-      <img src="assets/image_produits/ban_Iphone.jpeg" class="d-block w-100" alt="iphone_13">
+      <img src="assets/image_banniere/ban_Iphone.jpeg" class="d-block w-100" alt="iphone_13">
       <div class="carousel-caption d-none d-md-block" style="left: 10%; text-align: left;">
       <a class="btn btn-info" href="index.php?controller=article&task=show&id=1">Découvrez maintenant</a>
       </div>
@@ -82,7 +82,7 @@
 
 <div class="row" id="list_products">
 
-<h3 id="title_products" class="mt-5 ">test</h3>
+<h3 id="title_products" class="mt-5 ">Nos produits</h3>
 
 
 
@@ -92,7 +92,7 @@
         <div class="card mt-5  m-3 col-3 products">
             
             <div class="card-body product">
-            <a href="index.php?controller=article&task=show&id=<?= $article['id_article'] ?>"><img src="assets/image_produits/<?= $article['modele'] ?>.jpg" class="img-fluid" ></a>
+            <a href="index.php?controller=article&task=show&id=<?= $article['id_article'] ?>"><img src="assets/image_produits/<?= $article['photo_produit'] ?>" class="img-fluid" ></a>
                 <p class="card-text-modele"> <?= $article['modele'] ?></p>
                 <p class="card-text-detail"><?= $article['detail_modele'] ?></p>
                 <p class="card-text-prix"> <?= number_format($article['prix'], 2, ',', ' ') ?> €</p>

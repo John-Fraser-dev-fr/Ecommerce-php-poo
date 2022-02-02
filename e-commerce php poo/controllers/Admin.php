@@ -61,29 +61,117 @@ class Admin extends Controller
     {
         if(isset($_POST['ajoutProduit']))
         {
-            if(!empty(['marque', 'modele', 'prix', 'stock']))
+            if(!empty(['marque', 'modele','detail_modele', 'prix']) && isset($_FILES['photoProduit']) && !empty($_FILES['photoProduit']['name']))
             {
+
+                $tailleMax= 2097152;
+	            $extensionsValides = array('jpg', 'jpeg');
+
                 $_POST=array_map('htmlspecialchars',$_POST);
 		        extract($_POST,EXTR_SKIP);
 
-                if (!$marque || !$modele|| !$prix|| !$stock) 
+                //retourne en minuscule/Ignore la 1ere chaine/Récupératoin de le extension avec le point
+                $extensionUpload = strtolower(substr(strrchr($_FILES['photoProduit']['name'], '.'), 1)); 
+
+                if ($_FILES['photoProduit']['size'] <= $tailleMax) 
                 {
-                    die("Veuillez remplir tous les champs");
+                
+                    // Si extension d'upload correpond à $extensionsValides
+		            if(in_array($extensionUpload,$extensionsValides))
+		            {
+                        $chemin= "assets/image_produits/".$_FILES['photoProduit']['name'];
+                        $resultat = move_uploaded_file($_FILES['photoProduit']['tmp_name'], $chemin);
+                        $file=$_FILES['photoProduit']['name'];
+
+                        if($resultat && $marque && $modele && $detail_modele && $prix)
+			            {
+                            $this->model->addProduct($marque, $modele, $detail_modele, $prix, $file);
+                            \Http::redirect("index.php?controller=admin&task=show");
+			            }
+                        else
+                        {
+                            die("erreur");
+                        }
+
+
+                      
+                    }
+                    else
+                    {
+                        die("La photo doit être au format jpg, jpeg");
+                    }
+                    
                 }
                 else
                 {
-
-
-                $this->model->addProduct($marque, $modele, $prix, $stock);
-                
-
-                \Http::redirect("index.php?controller=admin&task=show");
+                    die("La photo ne doit pas dépasser 2 Mo");
                 }
               
             }
             else
             {
-            
+                die("Veuillez remplir tous les champs");
+            }
+        }
+        
+    }
+
+
+    public function UpdateProduit()
+    {
+        if(isset($_POST['modifArt']))
+        {
+            if(!empty(['modif_marque', 'modif_modele','modif_detailModele', 'modif_prix', 'id_art_modif']) && isset($_FILES['photoProduitModif']) && !empty($_FILES['photoProduitModif']['name']))
+            {
+
+                $tailleMax= 2097152;
+	            $extensionsValides = array('jpg', 'jpeg');
+
+                $_POST=array_map('htmlspecialchars',$_POST);
+		        extract($_POST,EXTR_SKIP);
+
+                //retourne en minuscule/Ignore la 1ere chaine/Récupératoin de le extension avec le point
+                $extensionUpload = strtolower(substr(strrchr($_FILES['photoProduitModif']['name'], '.'), 1)); 
+
+                if ($_FILES['photoProduitModif']['size'] <= $tailleMax) 
+                {
+                
+                    // Si extension d'upload correpond à $extensionsValides
+		            if(in_array($extensionUpload,$extensionsValides))
+		            {
+                        $chemin= "assets/image_produits/".$_FILES['photoProduitModif']['name'];
+                        $resultat = move_uploaded_file($_FILES['photoProduitModif']['tmp_name'], $chemin);
+                        $file=$_FILES['photoProduitModif']['name'];
+                        $id_article_modif = $_POST['id_art_modif'];
+
+                        if($resultat && $modif_marque && $modif_modele && $modif_detailModele && $modif_prix)
+			            {
+                            $this->model->updateProduct($modif_marque, $modif_modele, $modif_detailModele, $modif_prix, $file,$id_article_modif);
+                            \Http::redirect("index.php?controller=admin&task=show");
+			            }
+                        else
+                        {
+                            die("erreur");
+                        }
+
+
+                      
+                    }
+                    else
+                    {
+                        die("La photo doit être au format jpg, jpeg");
+                    }
+                    
+                }
+                else
+                {
+                    die("La photo ne doit pas dépasser 2 Mo");
+                }
+              
+            }
+            else
+            {
+                die("Veuillez remplir tous les champs");
             }
         }
         

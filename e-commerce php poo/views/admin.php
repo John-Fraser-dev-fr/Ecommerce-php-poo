@@ -104,7 +104,8 @@
               echo "<td>" . $commande['date'] . "</td>";
               echo "<td>" . number_format($commande['montant'], 2, ',','') . " €</td>";
               echo "<td>" . $status . " </td>";
-              echo "<td><button type='button' style='display: contents' data-bs-toggle='modal' data-bs-target='#Modal". $commande['id_commande'] ."'><i class='fas fa-pen'></i></button></td>";  
+              echo "<td><button type='button' style='display: contents' data-bs-toggle='modal' data-bs-target='#Modal". $commande['id_commande'] ."'><i class='fas fa-pen' style='margin-right: 15%'></i></button>
+              <button type='button' style='display: contents' data-bs-toggle='modal' data-bs-target='#ModalSupprimer". $commande['id_commande'] ."'><i class='fas fa-trash'></i></button></td>";  
               echo "<td><button type='button' style='display: contents' data-bs-toggle='modal' data-bs-target='#ModalInformation". $commande['id_commande'] ."'><i class='fas fa-info-circle'></i></button></td>"; 
               echo "</td>";
     
@@ -133,17 +134,7 @@
                       </div>
                     </form> 
                   </div>
-                  <div class="modal-body" style="border-top: 1px solid #dee2e6">
-                    <div>
-                      <h5>Supprimer la commande</h5>
-                    </div>
-                    <div>
-                      <form method="POST" action="index.php?controller=admin&task=suppCommande">
-                        <button type="submit" class="btn btn-primary" name="suppCom" style="width: 100%; margin-top: 1rem;background: black">Supprimer</button>
-                        <input type="hidden" name="id_commande_supp"  value="'. $commande['id_commande'] .'"></input>
-                      </form>
-                    </div>
-                  </div>
+                  
                 </div>
               </div>';
 
@@ -187,7 +178,8 @@
               echo "<td>" . $commande['date'] . "</td>";
               echo "<td>" . number_format($commande['montant'], 2, ',','') . " €</td>";
               echo "<td>" . $status . " </td>";
-              echo "<td><button type='button' style='display: contents' data-bs-toggle='modal' data-bs-target='#Modal2". $commande['id_commande'] ."'><i class='fas fa-pen'></i></button></td>";   
+              echo "<td><button type='button' style='display: contents' data-bs-toggle='modal' data-bs-target='#Modal2". $commande['id_commande'] ."'><i class='fas fa-pen' style='margin-right: 15%'></i></button>
+              <button type='button' style='display: contents' data-bs-toggle='modal' data-bs-target='#ModalSupprimer". $commande['id_commande']. "'><i class='fas fa-trash'></i></button></td>";   
               echo "<td><button type='button' style='display: contents' data-bs-toggle='modal' data-bs-target='#ModalInformation". $commande['id_commande'] ."'><i class='fas fa-info-circle'></i></button></td>";      
               echo "</td>";
     
@@ -216,19 +208,10 @@
                       </div>
                     </form> 
                   </div>
-                  <div class="modal-body" style="border-top: 1px solid #dee2e6">
-                    <div>
-                      <h5>Supprimer la commande</h5>
-                    </div>
-                    <div>
-                      <form method="POST" action="index.php?controller=admin&task=suppCommande">
-                        <button type="submit" class="btn btn-primary" name="suppCom" style="width: 100%; margin-top: 1rem;background: black">Supprimer</button>
-                        <input type="hidden" name="id_commande_supp"  value="'. $commande['id_commande'] .'"></input>
-                      </form>
-                    </div>
-                  </div>
+                  
                 </div>
               </div>';
+              
               
           }
           else{}
@@ -291,26 +274,40 @@
                         <?php } ?>
                       </div>
                     </div>
-
-
-
-
-
-
-
-
-
-
-                    
-                   
-                    
-                    
                    
                   </div>
                   
                 </div>
               </div>
             </div>
+
+
+
+            <!-- modal supprimer-->
+            <div class="modal fade" id="ModalSupprimer<?= $infoLivraison['id_commande']?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Commande N° <?= $infoLivraison['id_commande']?></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <div class=" mb-5">
+                      <h5>Etes-vous sur de vouloir supprimer cette commande ?</h5>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <form method="POST" action="index.php?controller=admin&task=suppCommande">
+                      <button type="submit" class="btn btn-primary" name="suppCom" style="background-color: black">Supprimer</button>
+                      <input type="hidden" name="id_commande_supp"  value="<?= $infoLivraison['id_commande']?>"></input>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+    
             <?php endforeach ?>
        
          
@@ -322,10 +319,12 @@
       <!--Tableau des produits mis en ligne-->
       <table class="table table-hover">
         <thead>
-	        <tr>
-		        <th scope="col">Marque</th>
-            <th scope="col">Modèle</th>
-            <th scope="col">Prix</th>
+	        <tr style='background-color: rgb(78, 158, 188)'>
+		        <th class="text-white" scope="col">Marque</th>
+            <th class="text-white" scope="col">Modèle</th>
+            <th class="text-white" scope="col">Détails</th>
+            <th class="text-white" scope="col">Prix</th>
+            <th class="text-white" scope="col">Actions</th>
 		      </tr>
         </thead>	
         <tbody>
@@ -335,14 +334,53 @@
             echo "<tr>";
               echo "<td>" . $article['marque'] . "</ td>";
               echo "<td>" . $article['modele']  . "</ td>";
+              echo "<td>" . $article['detail_modele']  . "</ td>";
               echo "<td>" . number_format($article['prix'], 2, ',','') . " €</td>";
-              echo '<td>
-                <form method="POST" action="index.php?controller=admin&task=suppProduit">
-                  <input type="submit" class="btn btn-primary" name="suppArt"  value="Supprimer"></input>
-                  <input type="hidden" name="article_supp"  value="'. $article['id_article'] .'"></input>
-                </form>
-              </td>';
-            echo "<tr>";
+              echo "<td><button type='button' style='display: contents' data-bs-toggle='modal' data-bs-target='#ModalModif". $article['id_article'] ."'><i class='fas fa-pen' style='margin-right: 15%'></i></button>
+              <button type='button' style='display: contents' data-bs-toggle='modal' data-bs-target='#ModalSuppArt". $article['id_article'] ."'><i class='fas fa-trash'></i></button></td>";  
+
+              echo'<div class="modal fade" id="ModalModif'. $article['id_article'] .'" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Modifier votre produit</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <form method="POST" action="index.php?controller=admin&task=Updateproduit" enctype="multipart/form-data">
+                    <div class="form-group">
+                       <label>Marque</label>
+                        <input type="text" class="form_finalisation form-control" value="'.$article['marque'].'" name="modif_marque" required>
+                    </div>
+                    <div class="form-group">
+                      <label>Modéle</label>
+                      <input type="text" class="form_finalisation form-control" value="'.$article['modele'].'" name="modif_modele" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleTextarea" class="form-label">Détails</label>
+                      <textarea class="form-control" id="exampleTextarea" rows="3" name="modif_detailModele" >'.$article['detail_modele'].'</textarea>
+                    </div>
+                    <div class="form-group">
+                      <label >Prix</label>
+                      <input type="number" step="0.01" class="form-control" value="'.$article['prix'].'" name="modif_prix">
+                    </div>
+                    <div class="form-group">
+                      <label for="formFile" class="form-label">Photo produit</label>
+                      <input class="form-control" type="file" name="photoProduitModif" id="formFile">
+                    </div>
+                            
+                    <div class="d-grid gap-2" style="justify-content: center;">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                      <button type="submit" class="btn btn-primary" name="modifArt" >Modifier</button>
+                      <input type="hidden" name="id_art_modif"  value="'. $article['id_article'] .'"></input>
+                    </div>
+                  </form>
+                </div>
+                
+              </div>
+            </div>';
+
+            
 
           endforeach ?>
         
@@ -353,7 +391,7 @@
       <div class="mt-5">
         <h4>Ajouter produits :</h4>
         <div id="formulaireAjoutProduit" class="d-flex">
-          <form method="POST" action="index.php?controller=admin&task=ajoutProduit"class="col-3" >
+          <form method="POST" enctype="multipart/form-data" action="index.php?controller=admin&task=ajoutProduit"class="col-3" >
             <div class="form-group">
               <label>Marque</label>
               <input type="text" class="form-control" name="marque" >
@@ -363,19 +401,47 @@
               <input type="text" class="form-control" name="modele">
             </div>
             <div class="form-group">
+              <label>Détails</label>
+              <input type="text" class="form-control" name="detail_modele">
+            </div>
+            <div class="form-group">
               <label >Prix</label>
               <input type="number" step="0.01" class="form-control" name="prix">
             </div>
-            
-              <input type="file" name="avatar"/>
-              
-                 <button type="submit" class="btn btn-primary mb-5 mt-3" name="ajoutProduit">Valider</button>
-
+            <div class="form-group">
+              <input type="file" name="photoProduit"/>  
+            </div>
+            <button type="submit" class="btn btn-primary mb-5 mt-3" name="ajoutProduit">Valider</button>
           </form>
         </div>
       </div>
 
 
+      <?php foreach ($articles as $article) { ?>
+      <div class="modal fade" id="ModalSuppArt<?=$article['id_article']?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Etes-vous sur de vouloir supprimer ce produit ?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <div class=" mb-5">
+                      <h5><?= $article['marque']?> <?=$article['modele']?></h5>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <form method="POST" action="index.php?controller=admin&task=suppProduit">
+                  <input type="submit" class="btn btn-primary" name="suppArt"  value="Supprimer"></input>
+                  <input type="hidden" name="article_supp"  value="<?=$article['id_article']?>"></input>
+                </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+        <?php } ?>
    
     </div>
 

@@ -4,7 +4,7 @@
 <div class="container description_produit mt-5"> 
 
     <div class="photo col-6">
-        <img src="assets/image_produits/<?= $article['modele'] ?>.jpg" class="photo_desc img-fluid" >
+        <img src="assets/image_produits/<?= $article['photo_produit'] ?>" class="photo_desc img-fluid" >
     </div>
 
     <div class="detail col-6">
