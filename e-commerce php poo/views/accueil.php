@@ -82,7 +82,7 @@
 
 <div class="row" id="list_products">
 
-<h3 id="title_products" class="mt-5 ">Nos produits</h3>
+<h3 id="title_products" class="mt-5 ">test</h3>
 
 
 

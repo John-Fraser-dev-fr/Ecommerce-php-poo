@@ -366,30 +366,17 @@
               <label >Prix</label>
               <input type="number" step="0.01" class="form-control" name="prix">
             </div>
-            <button type="button" class="btn mb-3" data-bs-toggle="modal" data-bs-target="#ajout_photo">Ajouter photo</button>
-            <button type="submit" class="btn btn-primary mb-5" name="ajoutProduit">Valider</button>
+            
+              <input type="file" name="avatar"/>
+              
+                 <button type="submit" class="btn btn-primary mb-5 mt-3" name="ajoutProduit">Valider</button>
+
           </form>
         </div>
       </div>
 
 
-       <!-- Modal modification photo-->
-    <div class="modal fade" id="ajout_photo" tabindex="-1" aria-labelledby="ajout_photo" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Ajouter photo de produit</h5>
-                </div>
-                <div class="modal-body">
-                    <form method="POST" enctype="multipart/form-data">
-                        <input type="file" name="avatar"/>
-                        <button type="button" class="btn btn-secondary" style="margin-top:16px" data-bs-dismiss="modal">Annuler</button>
-                        <input type="submit" class="btn btn-primary" style="margin-top:16px" name="valider_photo" value="Envoyer">  
-                    </form>
-                </div>     
-            </div>
-        </div>
-    </div>
+   
     </div>
 
   </div>
