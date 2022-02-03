@@ -35,6 +35,25 @@ $(document).ready(function() {
   
 });
 
+
+$(document).ready(function() {
+
+   
+    $('#upPhotoPop').hide();
+
+    $('#target3').popover({
+        content: $('#upPhotoPop'), 
+        placement: 'right',
+        html: true
+    });
+    
+    $('#target3').popover('show');
+    $('#target3').popover('hide');
+    
+    $('#upPhotoPop').show();
+  
+});
+
 /************ Modal ***************** */
 
 function ModalFinalPaiement(text,text2) {
@@ -43,6 +62,14 @@ function ModalFinalPaiement(text,text2) {
     $('#modalFinalPaiement').modal('show');
 };
 
+/************Erreur *******************/
+
+function Erreur(){
+    $('#numppl').on('change', function () {
+        $("#snoAlertBox").fadeIn();
+         closeSnoAlertBox();
+           });
+}
 
 
 /******* Paiment Stripe ********/

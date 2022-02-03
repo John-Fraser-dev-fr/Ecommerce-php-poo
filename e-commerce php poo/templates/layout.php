@@ -106,6 +106,8 @@
                   <?php
                   $total ='0';
                   $montantTotal = '0';
+               
+                  
 
                   for ($i=0 ;$i < count($_SESSION['panier']['modele']) ; $i++){ 
                     ?>
@@ -116,7 +118,7 @@
                       <div class="pop_panier_produit">
 
                         <div class="col-3">
-                          <img src="assets/image_produits/<?= $_SESSION['panier']['modele'][$i] ?>.jpg" class="img-fluid" style="width:60px; height: auto;">
+                          <img src="assets/image_produits/<?= $_SESSION['panier']['modele'][$i]?>.jpg" class="img-fluid" style="width:60px; height: auto;">
                         </div>
 
                         <div class="pop_panier_description col-6">
@@ -254,10 +256,11 @@
 
 
 
+
+
+
 <div class="modal fade" id="modalFinalPaiement" data-bs-backdrop="static" role="dialog">
         <div class="modal-dialog modal-fullscreen-sm-down">
-
-            <!-- Modal erreur-->
             <div class="modal-content">
                 <div class="modal-body">
                     <div id="textModalFinalPaiement" data-nomsecteur="" data-idajout="">

@@ -324,6 +324,8 @@
             <th class="text-white" scope="col">Modèle</th>
             <th class="text-white" scope="col">Détails</th>
             <th class="text-white" scope="col">Prix</th>
+            <th class="text-white" scope="col">Image</th>
+            <th></th>
             <th class="text-white" scope="col">Actions</th>
 		      </tr>
         </thead>	
@@ -336,8 +338,11 @@
               echo "<td>" . $article['modele']  . "</ td>";
               echo "<td>" . $article['detail_modele']  . "</ td>";
               echo "<td>" . number_format($article['prix'], 2, ',','') . " €</td>";
+              echo'<td style="background-color:white;text-align:center"><img src="assets/image_produits/'. $article['photo_produit']  . '" class="img-fluid" style="width:50px; height: auto;"></td>';
+              echo'<td></td>';
               echo "<td><button type='button' style='display: contents' data-bs-toggle='modal' data-bs-target='#ModalModif". $article['id_article'] ."'><i class='fas fa-pen' style='margin-right: 15%'></i></button>
               <button type='button' style='display: contents' data-bs-toggle='modal' data-bs-target='#ModalSuppArt". $article['id_article'] ."'><i class='fas fa-trash'></i></button></td>";  
+              
 
               echo'<div class="modal fade" id="ModalModif'. $article['id_article'] .'" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog">
@@ -390,7 +395,7 @@
       <!-- Ajout produit -->
       <div class="mt-5">
         <h4>Ajouter produits :</h4>
-        <div id="formulaireAjoutProduit" class="d-flex">
+        <div id="formulaireAjoutProduit" class="d-flex" style="width: 150%">
           <form method="POST" enctype="multipart/form-data" action="index.php?controller=admin&task=ajoutProduit"class="col-3" >
             <div class="form-group">
               <label>Marque</label>
@@ -408,13 +413,39 @@
               <label >Prix</label>
               <input type="number" step="0.01" class="form-control" name="prix">
             </div>
-            <div class="form-group">
-              <input type="file" name="photoProduit"/>  
+            <div class="form-group" style="display:flex">
+              <div style="width:100%">
+                <label for="formFile" class="form-label">Photo produit</label>
+                <input class="form-control" type="file" name="photoProduit" id="formFile">
+              </div>
+              <div style="align-self: self-end;padding-bottom: 1.5%;padding-left: 1%;" onclick="">
+                <span><a id="target3" class="nav-icon"><i class="fas fa-info-circle" style="color:red"></i></a></span>
+                
+              </div>
+              
             </div>
-            <button type="submit" class="btn btn-primary mb-5 mt-3" name="ajoutProduit">Valider</button>
+      
+            <div>
+            <button type="submit" onclick="" class="btn btn-primary mb-5 mt-3" style="width: 100%" name="ajoutProduit">Valider</button>
+            </div>
+           
           </form>
         </div>
       </div>
+
+     
+
+      <!--popover info photo upload -->
+      <div id='upPhotoPop' class="container">
+            
+              <p>Le nom du fichier doit être le même que celui du modèle</p>
+            
+      </div>
+    
+    
+    
+</div>
+  
 
 
       <?php foreach ($articles as $article) { ?>

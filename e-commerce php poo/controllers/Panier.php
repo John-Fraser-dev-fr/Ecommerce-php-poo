@@ -66,7 +66,7 @@ class Panier extends Controller
         }
 
         $article= $_GET['id'];
-        \Http::redirect("index.php?controller=article&task=show&id=".$article['id_article']." ");
+        \Http::redirect("index.php?controller=article&task=show&id=".$article." ");
 
        
 

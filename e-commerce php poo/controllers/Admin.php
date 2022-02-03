@@ -2,6 +2,7 @@
 
 namespace Controllers;
 
+use Http;
 
 class Admin extends Controller
 {
@@ -81,36 +82,51 @@ class Admin extends Controller
 		            {
                         $chemin= "assets/image_produits/".$_FILES['photoProduit']['name'];
                         $resultat = move_uploaded_file($_FILES['photoProduit']['tmp_name'], $chemin);
-                        $file=$_FILES['photoProduit']['name'];
+                        $file_name=$_FILES['photoProduit']['name'];
+                        $file_array = explode('.',$file_name);
+                        $extension = count($file_array) - 1;
+                        $new_file_name = substr ($file_name,0,strlen($file_name) -strlen ($file_array[$extension])-1);
+                         
 
                         if($resultat && $marque && $modele && $detail_modele && $prix)
 			            {
-                            $this->model->addProduct($marque, $modele, $detail_modele, $prix, $file);
-                            \Http::redirect("index.php?controller=admin&task=show");
+                            if($new_file_name == $modele)
+                            {
+                                $this->model->addProduct($marque, $modele, $detail_modele, $prix, $file_name);
+                                $this->show();
+                                \Alert::success("Le produit a été ajouté bien été ajouté");
+                            }
+                            else
+                            {
+                                $this->show();
+                                \Alert::danger("Le nom du fichier doit être le même que celui du modèle !"); 
+                            }
 			            }
                         else
-                        {
-                            die("erreur");
-                        }
+                        {}
+                        
 
 
                       
                     }
                     else
                     {
-                        die("La photo doit être au format jpg, jpeg");
+                        $this->show();
+                        \Alert::danger("La photo doit être au format jpg, jpeg !");
                     }
                     
                 }
                 else
                 {
-                    die("La photo ne doit pas dépasser 2 Mo");
+                    $this->show();
+                    \Alert::danger("La photo ne doit pas dépasser 2 Mo !");
                 }
               
             }
             else
             {
-                die("Veuillez remplir tous les champs");
+                $this->show();
+                \Alert::danger("Veuillez remplir tous les champs !");
             }
         }
         
@@ -141,42 +157,52 @@ class Admin extends Controller
 		            {
                         $chemin= "assets/image_produits/".$_FILES['photoProduitModif']['name'];
                         $resultat = move_uploaded_file($_FILES['photoProduitModif']['tmp_name'], $chemin);
-                        $file=$_FILES['photoProduitModif']['name'];
+                        $file_name=$_FILES['photoProduitModif']['name'];
+                        $file_array = explode('.',$file_name);
+                        $extension = count($file_array) - 1;
+                        $new_file_name = substr ($file_name,0,strlen($file_name) -strlen ($file_array[$extension])-1);
                         $id_article_modif = $_POST['id_art_modif'];
+                         
 
                         if($resultat && $modif_marque && $modif_modele && $modif_detailModele && $modif_prix)
 			            {
-                            $this->model->updateProduct($modif_marque, $modif_modele, $modif_detailModele, $modif_prix, $file,$id_article_modif);
-                            \Http::redirect("index.php?controller=admin&task=show");
+                            if($new_file_name == $modif_modele)
+                            {
+                                $this->model->updateProduct($modif_marque, $modif_modele, $modif_detailModele, $modif_prix, $file_name,$id_article_modif);
+                               $this->show();
+                               \Alert::success("Le produit a été ajouté bien été modifié");
+                            }
+                            else
+                            {
+                                $this->show();
+                                \Alert::danger("Le nom du fichier doit être le même que celui du modèle !"); 
+                            }
 			            }
-                        else
-                        {
-                            die("erreur");
-                        }
 
 
-                      
-                    }
                     else
                     {
-                        die("La photo doit être au format jpg, jpeg");
+                        $this->show();
+                        \Alert::danger("La photo doit être au format jpg, jpeg !");
                     }
                     
                 }
                 else
                 {
-                    die("La photo ne doit pas dépasser 2 Mo");
+                    $this->show();
+                    \Alert::danger("La photo ne doit pas dépasser 2 Mo !");
                 }
               
             }
             else
             {
-                die("Veuillez remplir tous les champs");
+                $this->show();
+                \Alert::danger("Veuillez remplir tous les champs !");
             }
         }
         
     }
-
+    }
 
     public function suppProduit()
     {
@@ -186,7 +212,8 @@ class Admin extends Controller
 
             $this->model->deleteArticle($id_article);
 
-            \Http::redirect("index.php?controller=admin&task=show");
+            $this->show();
+            \Alert::success("Le produit a été bien été supprimé");
         }
     }
 
@@ -199,7 +226,8 @@ class Admin extends Controller
 
             $this->model->suppCommande($id_commande_supp);
 
-            \Http::redirect("index.php?controller=admin&task=show");
+            $this->show();
+            \Alert::success("La commande a bien été supprimé");
         }
     }
 }

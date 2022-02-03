@@ -35,24 +35,24 @@ class Admin extends Model
         return $articles;
     }
 
-    public function addProduct($marque, $modele,$detail_modele, $prix,$file)
+    public function addProduct($marque, $modele,$detail_modele, $prix,$file_name)
     {
 	    $q = $this->pdo->prepare('INSERT INTO articles(marque, modele,detail_modele, prix, photo_produit) VALUES (:marque,:modele,:detail_modele,:prix,:photo_produit)');
 	    $q->execute(['marque'=>$marque,
 		            'modele'=>$modele,
                     'detail_modele'=>$detail_modele,
                     'prix'=>$prix,
-                    'photo_produit'=>$file]);
+                    'photo_produit'=>$file_name]);
     }
 
-    public function updateProduct($modif_marque, $modif_modele,$modif_detailModele, $modif_prix,$file,$id_article_modif)
+    public function updateProduct($modif_marque, $modif_modele,$modif_detailModele, $modif_prix,$file_name,$id_article_modif)
     {
 	    $q = $this->pdo->prepare('UPDATE articles SET marque=:marque, modele=:modele, detail_modele=:detail_modele, prix=:prix, photo_produit=:photo_produit WHERE id_article=:id_article');
 	    $q->execute(['marque'=>$modif_marque,
 		            'modele'=>$modif_modele,
                     'detail_modele'=>$modif_detailModele,
                     'prix'=>$modif_prix,
-                    'photo_produit'=>$file,
+                    'photo_produit'=>$file_name,
                     'id_article'=>$id_article_modif]);
     }
 

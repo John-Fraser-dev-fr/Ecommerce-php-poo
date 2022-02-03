@@ -466,8 +466,8 @@ label{
 
 .alert{
     z-index: 999999;
-    position: fixed;
-    margin-top: 82px;
+    position: absolute;
+    top: 82px;
     width: 100%;
     border-radius: 0;
 }
