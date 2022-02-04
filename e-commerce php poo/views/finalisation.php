@@ -50,7 +50,7 @@
         $total = $_SESSION['panier']['qte_produit'][$i] * $_SESSION['panier']['prix'][$i];
         $montantTotal += $total; } ?>
           
-
+          <?php print_r($orders); ?>
     <div class="col-6">
         <div class="accordion" id="accordion1">
             <div class="accordion-item">

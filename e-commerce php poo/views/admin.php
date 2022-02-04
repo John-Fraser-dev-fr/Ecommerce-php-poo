@@ -10,7 +10,7 @@
     <!-- menu item -->
     <ul>
       <li>
-        <a href="#" class="active" onclick="show('Page1')">
+        <a href="#" onclick="show('Page1')">
           <span class="icon"><i class="fas fa-tachometer-alt"></i></span>
           <span class="item">Dashboard</span>
         </a>
@@ -31,7 +31,7 @@
   </div>
 
 
-
+<?php echo $orders ?>
   <div class="container col-10" style="margin-left: 16.7%;padding-top: 10%;padding-left: 5%;">
 
     <!-- PAGE 1 (dashboard) -->
@@ -419,7 +419,10 @@
                 <input class="form-control" type="file" name="photoProduit" id="formFile">
               </div>
               <div style="align-self: self-end;padding-bottom: 1.5%;padding-left: 1%;" onclick="">
-                <span><a id="target3" class="nav-icon"><i class="fas fa-info-circle" style="color:red"></i></a></span>
+             
+                  <span><a id="target3" class="nav-icon"><i class="fas fa-info-circle" style="color:rgb(78, 158, 188);"></i></a></span>
+              
+                
                 
               </div>
               
@@ -466,6 +469,7 @@
                     <form method="POST" action="index.php?controller=admin&task=suppProduit">
                   <input type="submit" class="btn btn-primary" name="suppArt"  value="Supprimer"></input>
                   <input type="hidden" name="article_supp"  value="<?=$article['id_article']?>"></input>
+                  <input type="hidden" name="nom_photo"  value="<?=$article['photo_produit']?>"></input>
                 </form>
                   </div>
                 </div>

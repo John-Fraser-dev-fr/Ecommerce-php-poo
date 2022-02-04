@@ -168,6 +168,7 @@ class Panier extends Controller
                 'currency' => 'eur'
                 
             ]);
+
              
             $montantTotal = $this->montantTotal();
 

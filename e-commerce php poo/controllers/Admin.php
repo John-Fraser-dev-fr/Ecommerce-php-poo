@@ -21,11 +21,25 @@ class Admin extends Controller
          $nbUser=$this->model->nbUser();
          $infoLivraisons=$this->model->infoLivraison();
 
+         require_once('/Applications/MAMP/htdocs/GitHub/Ecommerce-php-poo/vendor/autoload.php');
+
+         \Stripe\Stripe::setApiKey('sk_test_51KHV5GAHhzIZdHyZaH9PmrBuPtOZJj0IqfgCN3wEDdZ6mwmCXIB80UvrN0D7ICezaa38aRtYQFTDaq6aZGlNPtEJ00FoXsgowS');
+
+         
+
+         $orders = \Stripe\PaymentIntent::retrieve('pi_3KPNa5AHhzIZdHyZ3PR9u7F5');
+
+
+         
+         
+
+    
+
             
        
 
          $pageTitle= 'Administrateur';
-         \Renderer::render('admin', compact('pageTitle', 'commandes', 'articles', 'commandeEnCours', 'commandeTermine', 'nbUser', 'infoLivraisons' ));
+         \Renderer::render('admin', compact('pageTitle', 'commandes', 'articles', 'commandeEnCours', 'commandeTermine', 'nbUser', 'infoLivraisons', 'orders'));
         }else{}
        
     }
@@ -180,6 +194,7 @@ class Admin extends Controller
 			            }
 
 
+                    }
                     else
                     {
                         $this->show();
@@ -202,15 +217,30 @@ class Admin extends Controller
         }
         
     }
-    }
+    
 
     public function suppProduit()
     {
-        if(isset($_POST['suppArt']) && !empty($_POST['article_supp']))
+        if(isset($_POST['suppArt']) && !empty($_POST['article_supp']) && !empty($_POST['nom_photo']))
         {
             $id_article = $_POST['article_supp'];
 
             $this->model->deleteArticle($id_article);
+
+            
+            /* Photo à supprimer */
+
+            $nomPhoto= $_POST['nom_photo'];
+
+            $photo = './assets/image_produits/'.$nomPhoto.'';
+
+            if(file_exists($photo))
+            {
+                unlink($photo) ;
+            }
+            
+
+ 
 
             $this->show();
             \Alert::success("Le produit a été bien été supprimé");
