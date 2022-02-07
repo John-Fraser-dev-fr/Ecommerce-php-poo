@@ -30,8 +30,8 @@
     </ul>
   </div>
 
+ 
 
-<?php echo $orders ?>
   <div class="container col-10" style="margin-left: 16.7%;padding-top: 10%;padding-left: 5%;">
 
     <!-- PAGE 1 (dashboard) -->
@@ -69,6 +69,7 @@
             <th class="text-white" scope="col">Client</th>
 		        <th class="text-white" scope="col">Date</th>
             <th class="text-white" scope="col">Total</th>
+            <th class="text-white" scope="col">Paiement</th>
             <th class="text-white" scope="col">Etat</th>
             <th class="text-white" scope="col">Actions</th>
             <th class="text-white" scope="col">Infos</th>
@@ -103,6 +104,7 @@
               echo "<th scope='row'>" . $commande['nom'].' '.$commande['prenom']. "</ th>";
               echo "<td>" . $commande['date'] . "</td>";
               echo "<td>" . number_format($commande['montant'], 2, ',','') . " €</td>";
+              echo "<td>" . $commande['paiement'] . "</td>";
               echo "<td>" . $status . " </td>";
               echo "<td><button type='button' style='display: contents' data-bs-toggle='modal' data-bs-target='#Modal". $commande['id_commande'] ."'><i class='fas fa-pen' style='margin-right: 15%'></i></button>
               <button type='button' style='display: contents' data-bs-toggle='modal' data-bs-target='#ModalSupprimer". $commande['id_commande'] ."'><i class='fas fa-trash'></i></button></td>";  

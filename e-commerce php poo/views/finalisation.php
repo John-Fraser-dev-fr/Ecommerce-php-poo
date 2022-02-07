@@ -50,7 +50,7 @@
         $total = $_SESSION['panier']['qte_produit'][$i] * $_SESSION['panier']['prix'][$i];
         $montantTotal += $total; } ?>
           
-          <?php print_r($orders); ?>
+        
     <div class="col-6">
         <div class="accordion" id="accordion1">
             <div class="accordion-item">
@@ -210,13 +210,16 @@
                 <?php } ?>
            </div>
         </div>
-
+       
         
 
         <form method="POST" >
-            <button class="btn btn-light mb-2 btn_commande" id="card-button" type="button" data-secret="<?= $intention['client_secret'] ?>">Procéder au paiement</button>
+            <button class="btn btn-light mb-2 btn_commande"  id="card-button" type="button" data-secret="<?= $intention['client_secret'] ?>">Procéder au paiement</button>
             
-        </form>      
+            
+        </form>   
+
+        <?= $intention['status'] ?>   
     </div>
 </div>
           

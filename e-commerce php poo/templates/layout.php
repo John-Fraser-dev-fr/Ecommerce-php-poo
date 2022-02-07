@@ -271,6 +271,8 @@
                 <div class="modal-footer">
                 <form method="POST" action="index.php?controller=panier&task=delete">
                     <input type="submit" class="btn btn-light btn_commande" name="delete" value="Terminer"></input>
+                    <input type="hidden" class="btn btn-primary" name="id_commande" value="<?=$id_commande ?>"></input>
+                    <input type="hidden" class="btn btn-primary" name="status_success" value="<?=$id_commande ?>"></input>
                 </form>
                 </div>
             </div>

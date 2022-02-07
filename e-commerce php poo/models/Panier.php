@@ -15,11 +15,12 @@ class Panier extends Model
 
     }
 
-    public function valid_commande($montantTotal)
+    public function valid_commande($montantTotal, $paiementStatus)
     {
-        $q = $this->pdo->prepare('INSERT INTO commande(id_user, montant, date ) VALUES (:id_user,:montant, NOW())');
+        $q = $this->pdo->prepare('INSERT INTO commande(id_user, montant,paiement, date ) VALUES (:id_user,:montant,:paiement, NOW())');
 	    $q->execute(['id_user'=>$_SESSION['id'],
-		            'montant'=>$montantTotal]);
+		            'montant'=>$montantTotal,
+                    'paiement'=>$paiementStatus]);
 
         $id_commande = $this->pdo->lastInsertId();
 
@@ -27,6 +28,12 @@ class Panier extends Model
       
     }
 
+    public function change_status($statusPaiement,$id_commande)
+    {
+        $q = $this->pdo->prepare('UPDATE commande SET paiement=:paiement WHERE id_commande=:id_commande');
+	    $q->execute(['paiement'=>$statusPaiement,
+                     'id_commande'=>$id_commande]);
+    }
    
 
     public function showDetail()

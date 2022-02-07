@@ -21,13 +21,15 @@ class Admin extends Controller
          $nbUser=$this->model->nbUser();
          $infoLivraisons=$this->model->infoLivraison();
 
-         require_once('/Applications/MAMP/htdocs/GitHub/Ecommerce-php-poo/vendor/autoload.php');
+       
 
-         \Stripe\Stripe::setApiKey('sk_test_51KHV5GAHhzIZdHyZaH9PmrBuPtOZJj0IqfgCN3wEDdZ6mwmCXIB80UvrN0D7ICezaa38aRtYQFTDaq6aZGlNPtEJ00FoXsgowS');
+          
+
 
          
 
-         $orders = \Stripe\PaymentIntent::retrieve('pi_3KPNa5AHhzIZdHyZ3PR9u7F5');
+         
+         
 
 
          
@@ -39,7 +41,7 @@ class Admin extends Controller
        
 
          $pageTitle= 'Administrateur';
-         \Renderer::render('admin', compact('pageTitle', 'commandes', 'articles', 'commandeEnCours', 'commandeTermine', 'nbUser', 'infoLivraisons', 'orders'));
+         \Renderer::render('admin', compact('pageTitle', 'commandes', 'articles', 'commandeEnCours', 'commandeTermine', 'nbUser', 'infoLivraisons'));
         }else{}
        
     }

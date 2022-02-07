@@ -84,9 +84,16 @@ class Panier extends Controller
    {
         if(isset($_POST['delete']) ) {
 
-            unset($_SESSION['panier']); 
+           if(!empty($_POST['id_commande']) && !empty($_POST['status_success']))
+           {
+            $id_commande=$_POST['id_commande'];
+            $statusPaiement= $_POST['status_success'];
+
+            $this->model->change_status($id_commande,$statusPaiement);
+            unset($_SESSION['panier']);
 
             \Http::redirect("index.php");
+           }
        
         }
     }
@@ -143,12 +150,6 @@ class Panier extends Controller
         return round($total, 2);
     }
 
-
-
-
-   
-
-        
     
 
     public function finalisation()
@@ -169,6 +170,9 @@ class Panier extends Controller
                 
             ]);
 
+
+            $paiementStatus=$intention['status'];
+
              
             $montantTotal = $this->montantTotal();
 
@@ -179,7 +183,7 @@ class Panier extends Controller
             }
 
 
-            $id_commande =$this->model->valid_commande($montantTotal);
+            $id_commande =$this->model->valid_commande($montantTotal, $paiementStatus);
         
 		    //Comptage des articles contenue dans le panier
 		    $produits = count($_SESSION['panier']['modele']);
@@ -195,9 +199,10 @@ class Panier extends Controller
                 $this->model->detail_commande($id_commande, $id_article, $quantiteParProduit, $total, $montantTotal);
             }
 
+            
 
             $pageTitle = 'Terminer ma commande';
-            \Renderer::render('finalisation', compact('pageTitle','intention'));
+            \Renderer::render('finalisation', compact('pageTitle','intention','id_commande'));
 
         }
 
@@ -207,12 +212,12 @@ class Panier extends Controller
 
     }
         
-   
-     
-        
-   
-
     }
+
+
+
+
+   
 
 
 
