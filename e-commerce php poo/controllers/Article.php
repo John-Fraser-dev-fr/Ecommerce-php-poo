@@ -13,6 +13,8 @@ class Article extends Controller
        
         $articles=$this->model->findAll();
 
+        
+
         $pageTitle = "Accueil";
         \Renderer::render('accueil', compact('pageTitle', 'articles'));
     }

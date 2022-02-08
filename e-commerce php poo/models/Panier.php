@@ -15,12 +15,13 @@ class Panier extends Model
 
     }
 
-    public function valid_commande($montantTotal, $paiementStatus)
+    public function valid_commande($montantTotal, $paiementStatus, $id_stripe)
     {
-        $q = $this->pdo->prepare('INSERT INTO commande(id_user, montant,paiement, date ) VALUES (:id_user,:montant,:paiement, NOW())');
+        $q = $this->pdo->prepare('INSERT INTO commande(id_user, montant,paiement, date, id_stripe ) VALUES (:id_user,:montant,:paiement, NOW(),:id_stripe)');
 	    $q->execute(['id_user'=>$_SESSION['id'],
 		            'montant'=>$montantTotal,
-                    'paiement'=>$paiementStatus]);
+                    'paiement'=>$paiementStatus,
+                    'id_stripe'=>$id_stripe]);
 
         $id_commande = $this->pdo->lastInsertId();
 
@@ -59,6 +60,18 @@ class Panier extends Model
                     'quantite'=> $quantiteParProduit,
                     'prix'=> $total]);
 			        
+    }
+
+
+    public function Commande($id_commande)
+    {
+        
+        $r = $this->pdo->prepare('SELECT * FROM commande WHERE id_commande =:id_commande');
+        $r->execute(['id_commande'=>$id_commande]);
+        $coms = $r->fetch();
+
+        return $coms;
+
     }
 
    

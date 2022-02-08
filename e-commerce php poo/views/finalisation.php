@@ -214,15 +214,43 @@
         
 
         <form method="POST" >
-            <button class="btn btn-light mb-2 btn_commande"  id="card-button" type="button" data-secret="<?= $intention['client_secret'] ?>">Procéder au paiement</button>
+            <button class="btn btn-light mb-2 btn_commande"  id="card-button" type="button" data-secret="<?= $intention['client_secret'] ?>" >Procéder au paiement</button>
             
             
         </form>   
 
-        <?= $intention['status'] ?>   
+      
     </div>
 </div>
           
 <?php } ?>
+
+
+
+
+
+<div class="modal fade" id="modalFinalPaiement" data-bs-backdrop="static" role="dialog">
+        <div class="modal-dialog modal-fullscreen-sm-down">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div id="textModalFinalPaiement" data-nomsecteur="" data-idajout="">
+                    </div>
+                    <div id="textModalFinalPaiement2" class="mt-3" data-nomsecteur="" data-idajout="">
+                    </div>
+                </div>
+                <div class="modal-footer">
+              
+                <form method="POST" action="index.php?controller=panier&task=delete">
+                    <input type="submit" class="btn btn-light btn_commande" name="delete" value="Terminer" onclick="location.reload()"></input>
+                    <input type="hidden" class="btn btn-primary" name="id_commande" value="<?=$id_commande?>"></input>
+                    <input type="hidden" class="btn btn-primary" name="id_stripe" value="<?=$aaa?>"></input>
+                    <input type="hidden" class="btn btn-primary" name="test" value="<?=$intention4?>"></input>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
 

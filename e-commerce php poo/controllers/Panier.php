@@ -84,14 +84,37 @@ class Panier extends Controller
    {
         if(isset($_POST['delete']) ) {
 
-           if(!empty($_POST['id_commande']) && !empty($_POST['status_success']))
+           require_once('/Applications/MAMP/htdocs/GitHub/Ecommerce-php-poo/vendor/autoload.php');
+
+           if(!empty($_POST['id_commande']) )
            {
-            $id_commande=$_POST['id_commande'];
-            $statusPaiement= $_POST['status_success'];
+
+            
+            
+
+            //instanciation Stripe
+            \Stripe\Stripe::setApiKey('sk_test_51KHV5GAHhzIZdHyZaH9PmrBuPtOZJj0IqfgCN3wEDdZ6mwmCXIB80UvrN0D7ICezaa38aRtYQFTDaq6aZGlNPtEJ00FoXsgowS');
+
+            
+
+                      
+            $id_commande =$_POST['id_commande'];
+		    
+
+            $test = $_POST['id_stripe'];
+            
+
+            
+
+            $intention2 = \Stripe\PaymentIntent::retrieve($test);
+
+            $statusPaiement=$intention2['status'];
 
             $this->model->change_status($id_commande,$statusPaiement);
-            unset($_SESSION['panier']);
+              
+        
 
+            unset($_SESSION['panier']);
             \Http::redirect("index.php");
            }
        
@@ -170,8 +193,10 @@ class Panier extends Controller
                 
             ]);
 
+            $id_stripe= $intention['id'];
 
             $paiementStatus=$intention['status'];
+
 
              
             $montantTotal = $this->montantTotal();
@@ -183,7 +208,7 @@ class Panier extends Controller
             }
 
 
-            $id_commande =$this->model->valid_commande($montantTotal, $paiementStatus);
+            $id_commande =$this->model->valid_commande($montantTotal, $paiementStatus, $id_stripe);
         
 		    //Comptage des articles contenue dans le panier
 		    $produits = count($_SESSION['panier']['modele']);
@@ -199,10 +224,18 @@ class Panier extends Controller
                 $this->model->detail_commande($id_commande, $id_article, $quantiteParProduit, $total, $montantTotal);
             }
 
+            $coms=$this->model->Commande($id_commande);
+
+            $aaa= $coms['id_stripe'];
+
+            $intention3 = \Stripe\PaymentIntent::retrieve($aaa);
+
+            $intention4 = $intention3['status'];
+
             
 
             $pageTitle = 'Terminer ma commande';
-            \Renderer::render('finalisation', compact('pageTitle','intention','id_commande'));
+            \Renderer::render('finalisation', compact('pageTitle','intention','id_commande','aaa', 'intention4'));
 
         }
 
