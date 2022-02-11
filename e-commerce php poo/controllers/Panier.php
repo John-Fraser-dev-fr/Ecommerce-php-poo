@@ -101,9 +101,9 @@ class Panier extends Controller
             $id_commande =$_POST['id_commande'];
 		    
 
-            $statusPaiement = $_POST['status_stripe'];
+            $statusPaiement = htmlspecialchars($_POST['status_stripe']);
 
-            $this->model->change_status($id_commande,$statusPaiement);
+            $this->model->change_status($statusPaiement,$id_commande);
               
         
 

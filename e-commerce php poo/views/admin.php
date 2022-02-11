@@ -99,12 +99,21 @@
 
           if ($commande['status'] < 3)
           {
+            if($commande['paiement'] == "succeeded"){}
             echo "<tr style='text-align:center'>";
               echo "<th scope='row'>" . $commande['id_commande']. "</ th>";
               echo "<th scope='row'>" . $commande['nom'].' '.$commande['prenom']. "</ th>";
               echo "<td>" . $commande['date'] . "</td>";
               echo "<td>" . number_format($commande['montant'], 2, ',','') . " €</td>";
-              echo "<td>" . $commande['paiement'] . "</td>";
+              if($commande['paiement'] == "succeeded")
+              {
+               echo "<td><div style='padding: 1px 6px; border-radius: 4px; background-color:rgb(215, 247, 194); color:rgb(5, 105, 13)'>Réussi</div></td>";
+              }
+              else if ($commande['paiement'] == "requires_payment_method")
+              {
+                echo "<td><div style='padding: 1px 6px; border-radius: 4px; background-color:rgb(235, 238, 241);color:rgb(84, 90, 105);'>Incomplet</div></td>";
+              }
+
               echo "<td>" . $status . " </td>";
               echo "<td><button type='button' style='display: contents' data-bs-toggle='modal' data-bs-target='#Modal". $commande['id_commande'] ."'><i class='fas fa-pen' style='margin-right: 15%'></i></button>
               <button type='button' style='display: contents' data-bs-toggle='modal' data-bs-target='#ModalSupprimer". $commande['id_commande'] ."'><i class='fas fa-trash'></i></button></td>";  

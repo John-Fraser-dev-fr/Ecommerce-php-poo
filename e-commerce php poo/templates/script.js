@@ -128,21 +128,8 @@ window.onload = () => {
             if(result.error){
                 document.getElementById("errors").innerText = result.error.message
             }else {
-                
-               
 
-                
-                
-
-                ModalFinalPaiement("Votre paiement a été validé !", "Merci pour votre commande "+result.paymentIntent.status+"", ""+result.paymentIntent.status+"")
-                  
-                  
-
-               
-                   
-               
-                
-                
+                ModalFinalPaiement("Votre paiement a été validé !", "Merci pour votre commande", ""+result.paymentIntent.status+"")
                 
             }
         })

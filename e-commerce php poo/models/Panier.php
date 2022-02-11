@@ -31,7 +31,7 @@ class Panier extends Model
 
     public function change_status($statusPaiement,$id_commande)
     {
-        $q = $this->pdo->prepare('UPDATE commande SET paiement=:paiement WHERE id_commande=:id_commande');
+        $q = $this->pdo->prepare('UPDATE commande SET paiement = :paiement WHERE id_commande=:id_commande');
 	    $q->execute(['paiement'=>$statusPaiement,
                      'id_commande'=>$id_commande]);
     }
