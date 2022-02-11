@@ -56,9 +56,10 @@ $(document).ready(function() {
 
 /************ Modal ***************** */
 
-function ModalFinalPaiement(text,text2) {
+function ModalFinalPaiement(text,text2, text3) {
     document.getElementById("textModalFinalPaiement").innerHTML = text;
     document.getElementById("textModalFinalPaiement2").innerHTML = text2;
+    document.getElementById("status_stripe").value = text3;
     $('#modalFinalPaiement').modal('show');
 };
 
@@ -78,7 +79,7 @@ window.onload = () => {
     //variables
     var stripe = Stripe('pk_test_51KHV5GAHhzIZdHyZdRsJwB9IXrgQ7UTCPzivcgD76W19QY21YrSUJaVLPGyWn1F7BJ5y8JEL2sFML3pTvL11iIOQ00oEmjJuF3')
     var elements = stripe.elements()
-    var redirect = "index.php"
+  
 
     //Objet de la page
     var cardHolderName = document.getElementById("cardholder-name")
@@ -88,6 +89,13 @@ window.onload = () => {
     //Crée les éléments du formulaire de carte bancaire
     var card = elements.create("card")
     card.mount("#card-elements")
+
+
+    
+
+
+
+
 
    
 
@@ -119,10 +127,18 @@ window.onload = () => {
         ).then((result) =>{
             if(result.error){
                 document.getElementById("errors").innerText = result.error.message
-            }else{
+            }else {
+                
+               
+
+                
                 
 
-                ModalFinalPaiement("Votre paiement a été validé !", "Merci pour votre commande");
+                ModalFinalPaiement("Votre paiement a été validé !", "Merci pour votre commande "+result.paymentIntent.status+"", ""+result.paymentIntent.status+"")
+                  
+                  
+
+               
                    
                
                 

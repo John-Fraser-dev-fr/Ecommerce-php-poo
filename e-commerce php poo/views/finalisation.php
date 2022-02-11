@@ -239,12 +239,12 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-              
+              <?php $zaza = "<span id='str'></span>"; ?>
                 <form method="POST" action="index.php?controller=panier&task=delete">
-                    <input type="submit" class="btn btn-light btn_commande" name="delete" value="Terminer" onclick="location.reload()"></input>
+                    <input type="submit" class="btn btn-light btn_commande" name="delete" value="Terminer"></input>
                     <input type="hidden" class="btn btn-primary" name="id_commande" value="<?=$id_commande?>"></input>
                     <input type="hidden" class="btn btn-primary" name="id_stripe" value="<?=$aaa?>"></input>
-                    <input type="hidden" class="btn btn-primary" name="test" value="<?=$intention4?>"></input>
+                    <input type="hidden" class="btn btn-primary" id="status_stripe" name="status_stripe" value=""></input>
                 </form>
                 </div>
             </div>

@@ -82,7 +82,7 @@ class Panier extends Controller
 
    public function delete()
    {
-        if(isset($_POST['delete']) ) {
+        if(isset($_POST['delete']) && !empty($_POST['status_stripe'])) {
 
            require_once('/Applications/MAMP/htdocs/GitHub/Ecommerce-php-poo/vendor/autoload.php');
 
@@ -101,14 +101,7 @@ class Panier extends Controller
             $id_commande =$_POST['id_commande'];
 		    
 
-            $test = $_POST['id_stripe'];
-            
-
-            
-
-            $intention2 = \Stripe\PaymentIntent::retrieve($test);
-
-            $statusPaiement=$intention2['status'];
+            $statusPaiement = $_POST['status_stripe'];
 
             $this->model->change_status($id_commande,$statusPaiement);
               
