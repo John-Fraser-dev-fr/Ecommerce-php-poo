@@ -82,24 +82,21 @@
           
           if ($commande['status'] == 0)
           {
-            $status = "<p style='color:red'>En attente de validation</p>";
+            $status = "<div style='padding: 1px 6px; border-radius: 4px; background-color:rgb(255, 231, 242); color:rgb(179, 6, 61)'><p style='margin:0'>En attente de validation</p></div>";
           }
           else if ($commande['status'] == 1)
           {
-            $status = "<p style='color:orange'>Validée";
+            $status = "<div style='padding: 1px 6px; border-radius: 4px; background-color:rgb(255, 246, 170); color:rgb(127, 127, 8)'><p style='margin:0'>Validée</p></div>";
           }
           else if ($commande['status'] == 2)
           {
-            $status = "<p style='color:green'>En préparation";
+            $status = "<div style='padding: 1px 6px; border-radius: 4px; background-color:rgb(255, 219, 163); color:rgb(146, 99, 11)'><p style='margin:0'>En préparation</p></div>";
           }
-          else if ($commande['status'] == 3)
-          {
-            $status = '<p>Expédiée</p>';
-          }
+          
 
           if ($commande['status'] < 3)
           {
-            if($commande['paiement'] == "succeeded"){}
+            
             echo "<tr style='text-align:center'>";
               echo "<th scope='row'>" . $commande['id_commande']. "</ th>";
               echo "<th scope='row'>" . $commande['nom'].' '.$commande['prenom']. "</ th>";
@@ -113,8 +110,12 @@
               {
                 echo "<td><div style='padding: 1px 6px; border-radius: 4px; background-color:rgb(235, 238, 241);color:rgb(84, 90, 105);'>Incomplet</div></td>";
               }
+              else if ($commande['paiement'] != "requires_payment_method" && $commande['paiement'] != "succeeded")
+              {
+                echo "<td><div style='padding: 1px 6px; border-radius: 4px; background-color:rgb(215, 247, 194); color:rgb(5, 105, 13)'>Réussi</div></td>";
+              }
 
-              echo "<td>" . $status . " </td>";
+              echo "<td>" . $status . "</td>";
               echo "<td><button type='button' style='display: contents' data-bs-toggle='modal' data-bs-target='#Modal". $commande['id_commande'] ."'><i class='fas fa-pen' style='margin-right: 15%'></i></button>
               <button type='button' style='display: contents' data-bs-toggle='modal' data-bs-target='#ModalSupprimer". $commande['id_commande'] ."'><i class='fas fa-trash'></i></button></td>";  
               echo "<td><button type='button' style='display: contents' data-bs-toggle='modal' data-bs-target='#ModalInformation". $commande['id_commande'] ."'><i class='fas fa-info-circle'></i></button></td>"; 
@@ -181,7 +182,7 @@
         
           if ($commande['status'] == 3)
           {
-            $status = '<p>Expédiée</p>';
+            $status = "<div style='padding: 1px 6px; border-radius: 4px; background-color:rgb(215, 247, 194); color:rgb(5, 105, 13)'>Expédiée</div>";
 
             echo "<tr style='text-align:center'>";
               echo "<th scope='row'>" . $commande['id_commande']. "</ th>";

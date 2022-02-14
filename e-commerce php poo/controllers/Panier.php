@@ -79,8 +79,15 @@ class Panier extends Controller
         \Renderer::render('panier', compact('pageTitle'));
    }
 
+   public function showFinalisation()
+   {
+        $pageTitle = 'finalisation';
+        \Renderer::render('panier', compact('pageTitle'));
+   }
 
-   public function delete()
+
+
+   public function MiseAjourStatus()
    {
         if(isset($_POST['delete']) && !empty($_POST['status_stripe'])) {
 
@@ -166,79 +173,144 @@ class Panier extends Controller
         return round($total, 2);
     }
 
+
+    public function delete()
+   {
+      unset($_SESSION['panier']);
+      \Http::redirect("index.php");
+   }
+
     
 
     public function finalisation()
     {
-        if(isset($_SESSION['id'])){
-        if(isset($_POST['prixFinal']) && !empty($_POST['prixFinal']))
+        if(isset($_SESSION['id']))
         {
-            require_once('/Applications/MAMP/htdocs/GitHub/Ecommerce-php-poo/vendor/autoload.php');
 
-            $prix= $_POST['prixFinal'];
-
-            //instanciation Stripe
-            \Stripe\Stripe::setApiKey('sk_test_51KHV5GAHhzIZdHyZaH9PmrBuPtOZJj0IqfgCN3wEDdZ6mwmCXIB80UvrN0D7ICezaa38aRtYQFTDaq6aZGlNPtEJ00FoXsgowS');
-
-            $intention = \Stripe\PaymentIntent::create([
-                'amount' => $prix*100,
-                'currency' => 'eur'
-                
-            ]);
-
-            $id_stripe= $intention['id'];
-
-            $paiementStatus=$intention['status'];
-
-
-             
-            $montantTotal = $this->montantTotal();
-
-            if($montantTotal < 99){
-                $montantTotal += 12.99;
-            }else if($montantTotal >= 99){
-                $montantTotal = $montantTotal;
-            }
-
-
-            $id_commande =$this->model->valid_commande($montantTotal, $paiementStatus, $id_stripe);
-        
-		    //Comptage des articles contenue dans le panier
-		    $produits = count($_SESSION['panier']['modele']);
-
-        
-            for ($i=0 ;$i < $produits ; $i++)
+            if(isset($_POST['prixFinal']) && !empty($_POST['prixFinal']))
             {
-                $total = $_SESSION['panier']['qte_produit'][$i] * $_SESSION['panier']['prix'][$i];
 
-                $id_article = $_SESSION['panier']['id_article'][$i];
-                $quantiteParProduit = $_SESSION['panier']['qte_produit'][$i];
+                //instanciation Stripe
+                require_once('/Applications/MAMP/htdocs/GitHub/Ecommerce-php-poo/vendor/autoload.php');
+                \Stripe\Stripe::setApiKey('sk_test_51KHV5GAHhzIZdHyZaH9PmrBuPtOZJj0IqfgCN3wEDdZ6mwmCXIB80UvrN0D7ICezaa38aRtYQFTDaq6aZGlNPtEJ00FoXsgowS');
+
+                $prix= $_POST['prixFinal'];
+                $intention = \Stripe\PaymentIntent::create(
+                [
+                    'amount' => $prix*100,
+                    'currency' => 'eur'
+                ]);
+
+                $id_stripe= $intention['id'];
+                $paiementStatus=$intention['status'];
+
+                $montantTotal = $this->montantTotal();
+
+                if($montantTotal < 99){
+                    $montantTotal += 12.99;
+                }else if($montantTotal >= 99){
+                    $montantTotal = $montantTotal;
+                }
+
+                $id_commande =$this->model->valid_commande($montantTotal, $paiementStatus, $id_stripe);
+        
+		        //Comptage des articles contenue dans le panier
+		        $produits = count($_SESSION['panier']['modele']);
+
+                for ($i=0 ;$i < $produits ; $i++)
+                {
+                    $total = $_SESSION['panier']['qte_produit'][$i] * $_SESSION['panier']['prix'][$i];
+                    $id_article = $_SESSION['panier']['id_article'][$i];
+                    $quantiteParProduit = $_SESSION['panier']['qte_produit'][$i];
                 
-                $this->model->detail_commande($id_commande, $id_article, $quantiteParProduit, $total, $montantTotal);
+                    $this->model->detail_commande($id_commande, $id_article, $quantiteParProduit, $total, $montantTotal);
+                }
+
+                $coms=$this->model->Commande($id_commande);
+
+                $infosUsers=$this->model->infoUtilisateur();
+
+                $pageTitle = 'Terminer ma commande';
+                \Renderer::render('finalisation', compact('pageTitle','intention','id_commande', 'infosUsers'));
+
             }
+            else 
+            {
+                $pageTitle = 'Terminer ma commande';
+                \Renderer::render('finalisation', compact('pageTitle'));
+            }    
+        }
+    }
 
-            $coms=$this->model->Commande($id_commande);
 
-            $aaa= $coms['id_stripe'];
 
-            $intention3 = \Stripe\PaymentIntent::retrieve($aaa);
+    public function modifInfo()
+    {
 
-            $intention4 = $intention3['status'];
+        if (isset($_POST['modifInfo']) && !empty($_POST['id_user']))
+        {
+
+	        if (!empty(['nom','prenom','email', 'id_user']))
+	        {
+		        $_POST=array_map('htmlspecialchars',$_POST);
+		        extract($_POST,EXTR_SKIP);
+                
 
             
 
-            $pageTitle = 'Terminer ma commande';
-            \Renderer::render('finalisation', compact('pageTitle','intention','id_commande','aaa', 'intention4'));
+                if (!$nom|| !$prenom|| !$email) 
+                {
+                    \Alert::danger("Veuillez remplir tous les champs !");
+                }
+                else
+                {
+                    $this->model->modifInfoUser($nom, $prenom, $email, $id_user);
 
+                    \Http::redirect('index.php?controller=panier&task=finalisation');
+                    
+                }    
+	        }
         }
 
-    }else {
-        $pageTitle = 'Terminer ma commande';
-        \Renderer::render('finalisation', compact('pageTitle'));
+    
+    
+    }
 
+
+    public function modifAdresse()
+    {
+
+        if (isset($_POST['modif_adresse']) && !empty($_POST['id_user2']))
+        {
+
+	        if (!empty(['numero_rue','rue','code_postal', 'ville', 'pays']))
+	        {
+		        $_POST=array_map('htmlspecialchars',$_POST);
+		        extract($_POST,EXTR_SKIP);
+
+            
+                  
+                  
+
+                if (!$numero_rue|| !$rue|| !$code_postal|| !$ville|| !$pays) 
+                {
+                    \Alert::danger("Veuillez remplir tous les champs !");
+                }
+                else
+                {
+                    $this->model->modif_adresse($numero_rue, $rue, $code_postal, $ville, $pays, $id_user2);
+
+
+                    \Http::redirect('index.php?controller=panier&task=finalisation');
+                    \Alert::success("Vos informations ont bien été modifiées !");
+                }    
+	        }
+        }
+
+    
+    
     }
-        
-    }
+
 
 
 

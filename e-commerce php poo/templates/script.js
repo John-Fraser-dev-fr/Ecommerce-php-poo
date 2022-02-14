@@ -6,7 +6,7 @@ $(document).ready(function() {
     $('#target').popover({
         content: $('#panier_pop'), 
         placement: 'bottom',
-        html: true
+        html: true,
     });
     
     $('#target').popover('show');

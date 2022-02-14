@@ -48,7 +48,16 @@
     for ($i=0 ;$i < count($_SESSION['panier']['modele']) ; $i++){ 
 
         $total = $_SESSION['panier']['qte_produit'][$i] * $_SESSION['panier']['prix'][$i];
-        $montantTotal += $total; } ?>
+        $montantTotal += $total; 
+    } 
+    
+    $in = new \Models\Panier;
+
+    $infosUsers = $in -> infoUtilisateur();
+
+    
+    ?>
+
           
         
     <div class="col-6">
@@ -56,27 +65,32 @@
             <div class="accordion-item">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne" style="display:grid">
                     <h5 class="accordion-header" id="headingOne">Mes informations</h5><br>
-                    <p class="info_accordeon"><?php echo $_SESSION['prenom'];?> <?php echo $_SESSION['nom'];?></p>
-                    <p class="info_accordeon"><?php echo $_SESSION['email'];?></p>
+                    
+    
+                    <p class="info_accordeon"><?= $infosUsers['prenom'];?> <?= $infosUsers['nom'];?></p>
+                    <p class="info_accordeon"><?= $infosUsers['email'];?></p>
+
+                    
                 </button>
                 
                 <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample" >
                     <div class="accordion-body">
-                        <form method="POST" >
+                        <form method="POST" action="index.php?controller=panier&task=modifInfo" >
                             <div class="form-group">
                                 <label>Nom</label>
-                                <input type="text" class="form_finalisation form-control" value="<?php echo $_SESSION['nom'];?>" name="nom" required>
+                                <input type="text" class="form_finalisation form-control" value="<?= $infosUsers['nom'];?>" name="nom" required>
                             </div>
                             <div class="form-group">
                                 <label>Prénom</label>
-                                <input type="text" class="form_finalisation form-control" value="<?php echo $_SESSION['prenom'];?>" name="prenom" required>
+                                <input type="text" class="form_finalisation form-control" value="<?= $infosUsers['prenom'];?>" name="prenom" required>
                             </div>
                             <div class="form-group">
                                 <label >Email </label>
-                                <input type="email" class="form_finalisation form-control" value="<?php echo $_SESSION['email'];?>" name="email" required>
+                                <input type="email" class="form_finalisation form-control" value="<?= $infosUsers['email'];?>" name="email" required>
                             </div>
                             <div class="d-grid gap-2" style="justify-content: center;">
-                                <button type="submit" class="btn  btn-primary">Enregistrer</button>
+                                <button type="submit" class="btn  btn-primary" name="modifInfo">Enregistrer</button>
+                                <input type="hidden" name="id_user" value="<?php echo $_SESSION['id'];?>"/>
                                 <button class="btn btn-primary btn-accordeon-annuler accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne" >Annuler</button>
                             </div>
                         </form>
@@ -88,36 +102,37 @@
             <div class="accordion-item">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="display:grid">
                     <h5 class="accordion-header" id="headingTwo">Adresse de livraison</h5><br>
-                    <p class="info_accordeon"><?php echo $_SESSION['prenom'];?> <?php echo $_SESSION['nom'];?></p>
-                    <p class="info_accordeon"><?php echo $_SESSION['numero_rue'];?> <?php echo $_SESSION['rue'];?></p>
-                    <p class="info_accordeon"><?php echo $_SESSION['code_postal'];?> <?php echo $_SESSION['ville'];?></p>
-                    <p class="info_accordeon"><?php echo $_SESSION['pays'];?></p>
+                    <p class="info_accordeon"><?= $infosUsers['prenom'];?> <?= $infosUsers['nom'];?></p>
+                    <p class="info_accordeon"><?= $infosUsers['numero_rue'];?> <?= $infosUsers['rue'];?></p>
+                    <p class="info_accordeon"><?= $infosUsers['code_postal'];?> <?= $infosUsers['ville'];?></p>
+                    <p class="info_accordeon"><?= $infosUsers['pays'];?></p>
                 </button>
                 <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample" >
                     <div class="accordion-body">
-                    <form method="POST" >
+                    <form method="POST" action= "index.php?controller=panier&task=modifAdresse">
                             <div class="form-group">
                                 <label>Numéro</label>
-                                <input type="text" class="form_finalisation form-control" value="<?php echo $_SESSION['numero_rue'];?>" name="numero_rue" required>
+                                <input type="number" class="form_finalisation form-control" value="<?= $infosUsers['numero_rue'];?>" name="numero_rue" required>
                             </div>
                             <div class="form-group">
                                 <label>Rue</label>
-                                <input type="text" class="form_finalisation form-control" value="<?php echo $_SESSION['rue'];?>" name="rue" required>
+                                <input type="text" class="form_finalisation form-control" value="<?= $infosUsers['rue'];?>" name="rue" required>
                             </div>
                             <div class="form-group">
                                 <label >Code postal</label>
-                                <input type="email" class="form_finalisation form-control" value="<?php echo $_SESSION['code_postal'];?>" name="code_postal" required>
+                                <input type="number" class="form_finalisation form-control" value="<?= $infosUsers['code_postal'];?>" name="code_postal" required>
                             </div>
                             <div class="form-group">
                                 <label >Ville</label>
-                                <input type="email" class="form_finalisation form-control" value="<?php echo $_SESSION['ville'];?>" name="ville" required>
+                                <input type="text" class="form_finalisation form-control" value="<?= $infosUsers['ville'];?>" name="ville" required>
                             </div>
                             <div class="form-group">
                                 <label >Pays</label>
-                                <input type="email" class="form_finalisation form-control" value="<?php echo $_SESSION['pays'];?>" name="pays" required>
+                                <input type="text" class="form_finalisation form-control" value="<?= $infosUsers['pays'];?>" name="pays" required>
                             </div>
                             <div class="d-grid gap-2" style="justify-content: center;">
-                                <button type="submit" class="btn  btn-primary">Enregistrer</button>
+                                <button type="submit" class="btn  btn-primary" name="modif_adresse">Enregistrer</button>
+                                <input type="hidden" name="id_user2" value="<?php echo $_SESSION['id'];?>"/>
                                 <button class="btn btn-primary btn-accordeon-annuler accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" >Annuler</button>
                             </div>
                         </form>
@@ -125,6 +140,8 @@
                 </div>
             </div>
         </div>
+
+        <?php } ?>
 
         <div class="details_commande">
             <h5>Détails de votre commande</h5><br>
@@ -213,41 +230,41 @@
        
         
 
-        <form method="POST" >
-            <button class="btn btn-light mb-2 btn_commande"  id="card-button" type="button" data-secret="<?= $intention['client_secret'] ?>" >Procéder au paiement</button>
+        <form method="POST">
+            <button class="btn btn-light mb-2 btn_commande"  id="card-button" type="button" data-secret="<?= $intention['client_secret'] ?> " >Procéder au paiement</button>
             
-            
+
         </form>   
 
       
     </div>
 </div>
           
-<?php } ?>
+
 
 
 
 
 
 <div class="modal fade" id="modalFinalPaiement" data-bs-backdrop="static" role="dialog">
-        <div class="modal-dialog modal-fullscreen-sm-down">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div id="textModalFinalPaiement" data-nomsecteur="" data-idajout="">
-                    </div>
-                    <div id="textModalFinalPaiement2" class="mt-3" data-nomsecteur="" data-idajout="">
-                    </div>
+    <div class="modal-dialog modal-fullscreen-sm-down">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div id="textModalFinalPaiement" data-nomsecteur="" data-idajout="">
                 </div>
-                <div class="modal-footer">
-                <form method="POST" action="index.php?controller=panier&task=delete">
+                <div id="textModalFinalPaiement2" class="mt-3" data-nomsecteur="" data-idajout="">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <form method="POST" action="index.php?controller=panier&task=MiseAjourStatus">
                     <input type="submit" class="btn btn-light btn_commande" name="delete" value="Terminer"></input>
                     <input type="hidden" class="btn btn-primary" name="id_commande" value="<?=$id_commande?>"></input>
-                    <input type="hidden" class="btn btn-primary" id="status_stripe" name="status_stripe"></input>
+                    <input type="hidden" class="btn btn-primary" id="status_stripe" name="status_stripe" ></input>
                 </form>
-                </div>
             </div>
         </div>
     </div>
+</div>
 
 
 
