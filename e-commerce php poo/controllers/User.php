@@ -111,14 +111,23 @@ class User extends Controller
     }
 
     
-    public function compte()
+    public function showCompte()
     {
         if (isset($_SESSION['id']) && isset($_SESSION['email']))  {
+
+            $infs= $this->model->infoCommandeEnCoursClient();
+
+           
         
             $pageTitle= 'Compte';
-            \Renderer::render('compte', compact('pageTitle'));
+            \Renderer::render('compte', compact('pageTitle', 'infs'));
         }
     }
+
+    
+
+
+    
 
     
 

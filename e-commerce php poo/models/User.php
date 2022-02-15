@@ -45,4 +45,17 @@ class User extends Model
 	   
     }
 
+
+    public function infoCommandeEnCoursClient()
+    {
+        $r= $this->pdo->query('SET lc_time_names = \'fr_FR\'');
+        $r = $this->pdo->prepare('SELECT * , DATE_FORMAT(date,"%W %d %M %Y") AS date FROM commande, users WHERE users.id_user = commande.id_user AND users.id_user = :userSession  ORDER BY commande.date DESC');
+        $r->execute(['userSession'=>$_SESSION['id']]);
+        $infs = $r->fetchAll();
+
+        return $infs;
+
+        
+    }
+
 }

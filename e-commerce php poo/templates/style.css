@@ -412,14 +412,14 @@ button.btn.btn-primary.btn-accordeon-annuler.accordion-button{
 .details_commande{
     background-color: white;
     margin-bottom: 1rem;
-    padding: 16px 20px;
+    padding: 20px 20px;
     border: 1px solid rgba(0, 0, 0, 0.125);
     border-radius: 4px;
 }
 
 .detail_paiement{
     background-color: white;
-    padding: 16px 20px;
+    padding: 20px 20px;
     border: 1px solid rgba(0, 0, 0, 0.125);
     border-radius: 4px;
     margin-bottom: 100px;

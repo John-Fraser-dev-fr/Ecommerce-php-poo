@@ -230,14 +230,15 @@
     <div class="dropdown-divider"></div>
               
            <p>Pas encore de compte ? <a href="index.php?controller=user&task=inscription">Inscrivez-vous</a></p>
+           
           
          
 
 <?php }else{?>
-    <h6>Bonjour <?php echo $_SESSION['prenom'];?> <?php echo $_SESSION['nom'];?></h6> 
+    <h5 style="text-align: center;margin-bottom: 5%;">Bonjour <?php echo $_SESSION['prenom'];?> <?php echo $_SESSION['nom'];?></h5> 
  
-    
-    <a class="nav-link" href="index.php?controller=user&task=deconnexion">Deconnexion</a>
+    <a href="index.php?controller=user&task=showCompte"><button class="btn-pop" type="button" >Accedez à votre compte</button></a>
+    <a class="nav-link" href="index.php?controller=user&task=deconnexion" style="padding: 0;margin-top: 2%;"><button class="btn-pop" type="button" style="background-color: black;">Deconnexion</button></a>
 </div>
       <?php } ?>      </div>
 

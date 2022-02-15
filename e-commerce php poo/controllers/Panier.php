@@ -79,11 +79,7 @@ class Panier extends Controller
         \Renderer::render('panier', compact('pageTitle'));
    }
 
-   public function showFinalisation()
-   {
-        $pageTitle = 'finalisation';
-        \Renderer::render('panier', compact('pageTitle'));
-   }
+  
 
 
 
@@ -231,7 +227,7 @@ class Panier extends Controller
                 $infosUsers=$this->model->infoUtilisateur();
 
                 $pageTitle = 'Terminer ma commande';
-                \Renderer::render('finalisation', compact('pageTitle','intention','id_commande', 'infosUsers'));
+                \Renderer::render('finalisation', compact('pageTitle','intention','id_commande', 'infosUsers', 'coms'));
 
             }
             else 
@@ -266,10 +262,15 @@ class Panier extends Controller
                 {
                     $this->model->modifInfoUser($nom, $prenom, $email, $id_user);
 
-                    \Http::redirect('index.php?controller=panier&task=finalisation');
+
+                    
+                    
+                    \Http::redirect('index.php?controller=user&task=showCompte');
                     
                 }    
 	        }
+
+            
         }
 
     
@@ -301,7 +302,7 @@ class Panier extends Controller
                     $this->model->modif_adresse($numero_rue, $rue, $code_postal, $ville, $pays, $id_user2);
 
 
-                    \Http::redirect('index.php?controller=panier&task=finalisation');
+                    \Http::redirect('index.php?controller=user&task=showCompte');
                     \Alert::success("Vos informations ont bien été modifiées !");
                 }    
 	        }

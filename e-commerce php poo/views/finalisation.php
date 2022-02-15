@@ -61,83 +61,16 @@
           
         
     <div class="col-6">
-        <div class="accordion" id="accordion1">
-            <div class="accordion-item">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne" style="display:grid">
-                    <h5 class="accordion-header" id="headingOne">Mes informations</h5><br>
-                    
     
-                    <p class="info_accordeon"><?= $infosUsers['prenom'];?> <?= $infosUsers['nom'];?></p>
-                    <p class="info_accordeon"><?= $infosUsers['email'];?></p>
+        
 
-                    
-                </button>
-                
-                <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample" >
-                    <div class="accordion-body">
-                        <form method="POST" action="index.php?controller=panier&task=modifInfo" >
-                            <div class="form-group">
-                                <label>Nom</label>
-                                <input type="text" class="form_finalisation form-control" value="<?= $infosUsers['nom'];?>" name="nom" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Prénom</label>
-                                <input type="text" class="form_finalisation form-control" value="<?= $infosUsers['prenom'];?>" name="prenom" required>
-                            </div>
-                            <div class="form-group">
-                                <label >Email </label>
-                                <input type="email" class="form_finalisation form-control" value="<?= $infosUsers['email'];?>" name="email" required>
-                            </div>
-                            <div class="d-grid gap-2" style="justify-content: center;">
-                                <button type="submit" class="btn  btn-primary" name="modifInfo">Enregistrer</button>
-                                <input type="hidden" name="id_user" value="<?php echo $_SESSION['id'];?>"/>
-                                <button class="btn btn-primary btn-accordeon-annuler accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne" >Annuler</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="accordion" id="accordion2">
-            <div class="accordion-item">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="display:grid">
-                    <h5 class="accordion-header" id="headingTwo">Adresse de livraison</h5><br>
-                    <p class="info_accordeon"><?= $infosUsers['prenom'];?> <?= $infosUsers['nom'];?></p>
-                    <p class="info_accordeon"><?= $infosUsers['numero_rue'];?> <?= $infosUsers['rue'];?></p>
-                    <p class="info_accordeon"><?= $infosUsers['code_postal'];?> <?= $infosUsers['ville'];?></p>
-                    <p class="info_accordeon"><?= $infosUsers['pays'];?></p>
-                </button>
-                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample" >
-                    <div class="accordion-body">
-                    <form method="POST" action= "index.php?controller=panier&task=modifAdresse">
-                            <div class="form-group">
-                                <label>Numéro</label>
-                                <input type="number" class="form_finalisation form-control" value="<?= $infosUsers['numero_rue'];?>" name="numero_rue" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Rue</label>
-                                <input type="text" class="form_finalisation form-control" value="<?= $infosUsers['rue'];?>" name="rue" required>
-                            </div>
-                            <div class="form-group">
-                                <label >Code postal</label>
-                                <input type="number" class="form_finalisation form-control" value="<?= $infosUsers['code_postal'];?>" name="code_postal" required>
-                            </div>
-                            <div class="form-group">
-                                <label >Ville</label>
-                                <input type="text" class="form_finalisation form-control" value="<?= $infosUsers['ville'];?>" name="ville" required>
-                            </div>
-                            <div class="form-group">
-                                <label >Pays</label>
-                                <input type="text" class="form_finalisation form-control" value="<?= $infosUsers['pays'];?>" name="pays" required>
-                            </div>
-                            <div class="d-grid gap-2" style="justify-content: center;">
-                                <button type="submit" class="btn  btn-primary" name="modif_adresse">Enregistrer</button>
-                                <input type="hidden" name="id_user2" value="<?php echo $_SESSION['id'];?>"/>
-                                <button class="btn btn-primary btn-accordeon-annuler accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" >Annuler</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+        <div class="accordion">
+            <div class="accordion-item" style="padding: 20px 20px">
+                <h5 class="accordion-header" id="headingTwo">Adresse de livraison</h5><br>
+                <p class="info_accordeon"><?= $infosUsers['prenom'];?> <?= $infosUsers['nom'];?></p>
+                <p class="info_accordeon"><?= $infosUsers['numero_rue'];?> <?= $infosUsers['rue'];?></p>
+                <p class="info_accordeon"><?= $infosUsers['code_postal'];?> <?= $infosUsers['ville'];?></p>
+                <p class="info_accordeon"><?= $infosUsers['pays'];?></p>
             </div>
         </div>
 
@@ -228,7 +161,7 @@
            </div>
         </div>
        
-        
+
 
         <form method="POST">
             <button class="btn btn-light mb-2 btn_commande"  id="card-button" type="button" data-secret="<?= $intention['client_secret'] ?> " >Procéder au paiement</button>
@@ -265,6 +198,10 @@
         </div>
     </div>
 </div>
+
+
+
+
 
 
 
