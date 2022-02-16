@@ -274,7 +274,81 @@
 
 
  
+<!-- Footer -->
+<footer class="text-center text-lg-start text-muted">
+  
 
+  <!-- Section: Links  -->
+  <section class="" style="background-color: rgba(0, 0, 0, 0.9); color:white">
+    <div class="container text-center text-md-start " style="padding-top: 2%;">
+      <!-- Grid row -->
+      <div class="row">
+        <!-- Grid column -->
+        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+          <!-- Content -->
+          <h6 class="text-uppercase fw-bold mb-4" style="color: rgb(78, 158, 188)">
+          <img class="logo_light" src="assets/logo/logo.png" alt="logo" style="height: 20px; width: auto;padding-right: 1%;"> E-Shop
+          </h6>
+          <p>
+          Hello, nous sommes E-Shop, le marché dédiée aux produits Hi-Tech. 
+          Notre mission ? Vous apporter notre meilleure sélection de produits. 
+          </p>
+        </div>
+        <!-- Grid column -->
+
+        
+       
+
+        <!-- Grid column -->
+        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+          <!-- Links -->
+          <h6 class="text-uppercase fw-bold mb-4" style="color: rgb(78, 158, 188)">
+            Liens Utiles
+          </h6>
+          <p>
+            <a  style="text-decoration: none" href="#" class="text-reset">Confidentialité</a>
+          </p>
+          <p>
+            <a style="text-decoration: none" href="#" class="text-reset">Aide & Assistance</a>
+          </p>
+          <p>
+            <a style="text-decoration: none" href="#" class="text-reset">FAQ</a>
+          </p>
+          <p>
+            <a style="text-decoration: none" href="#" class="text-reset">Paiement</a>
+          </p>
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+          <!-- Links -->
+          <h6 class="text-uppercase fw-bold mb-4" style="color: rgb(78, 158, 188)">
+            Contact
+          </h6>
+          <p style="margin-bottom: 0;"><i class="fas fa-home me-3" style="color: rgb(78, 158, 188)"></i>8, rue de l'Hermitage</p><p style="padding-left: 13%;">75016 PARIS</p>
+          <p>
+            <i class="fas fa-envelope me-3" style="color: rgb(78, 158, 188)"></i>
+            e-shop@example.com
+          </p>
+          <p><i class="fas fa-phone me-3" style="color: rgb(78, 158, 188)"></i> + 01 234 567 88</p>
+          
+        </div>
+        <!-- Grid column -->
+      </div>
+      <!-- Grid row -->
+    </div>
+  </section>
+  <!-- Section: Links  -->
+
+  <!-- Copyright -->
+  <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.9); color: rgb(78, 158, 188)"">
+    © 2022 Copyright
+    <a class="text-reset fw-bold" style="text-decoration:none;color: rgb(78, 158, 188)"" href="https://github.com/John-Fraser-dev-fr">John Fraser</a>
+  </div>
+  <!-- Copyright -->
+</footer>
+<!-- Footer -->
 
   <script src="https://js.stripe.com/v3/"></script>
   <script src="templates/script.js"></script>

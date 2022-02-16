@@ -610,6 +610,20 @@ label{
     line-height: 1.2;
     font-weight: unset!important
 }
+
+
+/***************/
+
+footer{ 
+    position:relative; 
+    background-color: rgb(78, 158, 188);
+    bottom:0; 
+    width:100%; 
+    margin-top: 15%;
+
+   
+    
+}
   
 
   
